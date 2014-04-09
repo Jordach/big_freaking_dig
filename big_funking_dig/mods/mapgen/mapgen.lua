@@ -327,7 +327,7 @@ minetest.register_decoration({
 	flags = "place_center_x, place_center_z",
 	replacements = {
 		{"base:leaves", "mapgen:cherry_blossom_leaves"},
-		{"base:tree", "mapgen:oak_log_tree"},
+		{"base:tree", "mapgen:cherry_tree"},
 		{"base:dirt", "mapgen:dirt"},
 	},
 })

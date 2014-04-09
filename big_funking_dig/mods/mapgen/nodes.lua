@@ -300,6 +300,25 @@ minetest.register_node("mapgen:oak_sapling", {
 -- Cherry Blossom Stuff
 --
 
+minetest.register_node("mapgen:cherry_tree", {
+	description = "Cherry Log",
+	tiles = {"mapgen_cherry_top.png", "mapgen_cherry_top.png", "mapgen_cherry_tree.png"},
+	is_ground_content = false,
+	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	--sounds = default.node_sound_wood_defaults(),
+	drop = "mapgen:cherry_log"
+})
+
+minetest.register_node("mapgen:cherry_log", {
+	description = "Cherry Log",
+	tiles = {"mapgen_cherry_top.png", "mapgen_cherry_top.png", "mapgen_cherry_tree.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	--sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node,
+})
+
 minetest.register_node("mapgen:cherry_sapling", {
 	description = "Cherry Sapling",
 	waving = 1,

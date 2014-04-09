@@ -1,12 +1,14 @@
 --init.lua
 --part of ores for BFD
 
+dofile(minetest.get_modpath("ores").."/oregen.lua")
+
 minetest.register_node("ores:iridium_ore", {
 	description = "Iridium Ore",
 	tiles = {"mapgen_stone.png^ores_iridium_ore.png"},
 	is_ground_content = true,
 	drop = 'ores:iridium_lump',
-	groups = {cracky=2},
+	groups = {cracky=1},
 })
 
 minetest.register_node("ores:oil_flowing", {

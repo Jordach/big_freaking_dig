@@ -4,8 +4,6 @@
 dofile(minetest.get_modpath("mapgen").."/mapgen.lua")
 dofile(minetest.get_modpath("mapgen").."/nodes.lua")
 dofile(minetest.get_modpath("mapgen").."/flowers.lua")
-dofile(minetest.get_modpath("mapgen").."/oregen.lua")
-
 
 minetest.register_alias("mapgen_water_source", "mapgen:water_source")
 minetest.register_alias("mapgen_lava_source", "mapgen:lava_source")
@@ -98,14 +96,14 @@ minetest.register_node("mapgen:mese_stone", {
 	description = "Mese Stone",
 	tiles = {"mapgen_mese_stone.png"},
 	is_ground_content = true,
-	groups = {hardness=1, stone=1},
+	groups = {hardness=3, stone=1}, --hardness refers to 30 seconds with dia pick
 })
 
 minetest.register_node("mapgen:crust_cobble", {
 	description = "Crust Cobblestone",
 	tiles = {"mapgen_crust_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky=2, stone=1},
+	groups = {cracky=1, stone=1},
 })
 
 minetest.register_node("mapgen:crust_stone", {
@@ -152,7 +150,7 @@ minetest.register_node("mapgen:crust_stone", {
 			}
 		}
 	},
-	groups = {cracky=2, stone=1},
+	groups = {cracky=1, stone=1},
 })
 
 minetest.register_node("mapgen:water_flowing", {
@@ -392,7 +390,7 @@ minetest.register_abm({
 		
 		
 		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:cherry_blossom_leaves"}, {"base:tree", "mapgen:oak_log_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:cherry_blossom_leaves"}, {"base:tree", "mapgen:cherry_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
 	end,
 })
 
