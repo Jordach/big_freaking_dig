@@ -265,7 +265,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"mapgen:oak_sapling"},
-	interval = 2,
+	interval = 80,
 	chance = 3,
 	action = function(pos, node)
 		
@@ -284,7 +284,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"mapgen:birch_sapling"},
-	interval = 2,
+	interval = 80,
 	chance = 3,
 	action = function(pos, node)
 		
@@ -303,7 +303,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"mapgen:cherry_sapling"},
-	interval = 2,
+	interval = 80,
 	chance = 3,
 	action = function(pos, node)
 		
