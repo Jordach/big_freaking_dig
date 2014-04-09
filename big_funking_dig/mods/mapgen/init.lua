@@ -94,6 +94,13 @@ minetest.register_node("mapgen:cobble", {
 	groups = {cracky=3, stone=1},
 })
 
+minetest.register_node("mapgen:mese_stone", {
+	description = "Mese Stone",
+	tiles = {"mapgen_mese_stone.png"},
+	is_ground_content = true,
+	groups = {hardness=1, stone=1},
+})
+
 minetest.register_node("mapgen:crust_cobble", {
 	description = "Crust Cobblestone",
 	tiles = {"mapgen_crust_cobble.png"},
@@ -213,6 +220,75 @@ minetest.register_node("mapgen:water_source", {
 	groups = {water=3, liquid=3, puts_out_fire=1},
 })
 
+minetest.register_node("mapgen:lava_flowing", {
+	description = "Flowing Lava",
+	inventory_image = minetest.inventorycube("mapgen_lava.png"),
+	drawtype = "flowingliquid",
+	tiles = {"mapgen_lava.png"},
+	special_tiles = {
+		{
+			image="mapgen_lava_flowing.png",
+			backface_culling=false,
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.3}
+		},
+		{
+			image="mapgen_lava_flowing.png",
+			backface_culling=true,
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.3}
+		},
+	},
+	paramtype = "light",
+	paramtype2 = "flowingliquid",
+	light_source = 13,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	drop = "",
+	drowning = 1,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "mapgen:lava_flowing",
+	liquid_alternative_source = "mapgen:lava_source",
+	liquid_viscosity = 7,
+	liquid_renewable = false,
+	damage_per_second = 4*2,
+	post_effect_color = {a=192, r=255, g=64, b=0},
+	groups = {lava=3, liquid=2, hot=3, igniter=1, not_in_creative_inventory=1},
+})
+
+minetest.register_node("mapgen:lava_source", {
+	description = "Lava Source",
+	inventory_image = minetest.inventorycube("mapgen_lava.png"),
+	drawtype = "liquid",
+	tiles = {
+		{name="mapgen_lava_source.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
+	},
+	special_tiles = {
+		-- New-style lava source material (mostly unused)
+		{
+			name="mapgen_lava_source.png",
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0},
+			backface_culling = false,
+		}
+	},
+	paramtype = "light",
+	light_source = 13,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	drop = "",
+	drowning = 1,
+	liquidtype = "source",
+	liquid_alternative_flowing = "mapgen:lava_flowing",
+	liquid_alternative_source = "mapgen:lava_source",
+	liquid_viscosity = 7,
+	liquid_renewable = false,
+	damage_per_second = 4*2,
+	post_effect_color = {a=192, r=255, g=64, b=0},
+	groups = {lava=3, liquid=2, hot=3, igniter=1},
+})
+
 minetest.register_abm({
 	nodenames = {"mapgen:dirt"},
 	neighbors = {"mapgen:grass"},
@@ -319,3 +395,41 @@ minetest.register_abm({
 		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:cherry_blossom_leaves"}, {"base:tree", "mapgen:oak_log_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
 	end,
 })
+
+---
+--- World Layering
+---
+
+local function crusty(old, new)
+	for i=1,8 do
+		minetest.register_ore({
+			ore_type = "scatter",
+			ore = new,
+			wherein = old,
+			clust_scarcity = 1,
+			clust_num_ores = 1,
+			clust_size = 1,
+			height_min = -16384,
+			height_max = -4096,
+		})
+	end
+end
+
+crusty("mapgen:stone", "mapgen:crust_stone")
+
+local function crustymese(old, new)
+	for i=1,8 do
+		minetest.register_ore({
+			ore_type = "scatter",
+			ore = new,
+			wherein = old,
+			clust_scarcity = 1,
+			clust_num_ores = 1,
+			clust_size = 1,
+			height_max = -16385,
+			height_min = -31000,
+		})
+	end
+end
+
+crustymese("mapgen:stone", "mapgen:mese_stone")

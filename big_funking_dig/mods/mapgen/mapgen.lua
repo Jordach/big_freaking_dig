@@ -250,26 +250,6 @@ minetest.register_biome({
 	humidity_point = 7,
 })
 
-minetest.register_biome({
-	name = "stone_level_1",
-	node_filler = "mapgen:stone",
-	--depth_filler = 3000,
-	height_min = -4096,
-	height_max = 0,
-	heat_point = 50, --ignore me
-	humidity_point = 50, --ignore these
-})
-
-minetest.register_biome({
-	name = "stone_level_2",
-	node_filler = "mapgen:crust_stone",
-	--depth_filler = 3000,
-	height_min = -16384,
-	height_max = -4097,
-	heat_point = 50, --ignore me
-	humidity_point = 50, --ignore these
-})
-
 minetest.register_decoration({
 	deco_type = "simple",
 	place_on = "mapgen:grass",
