@@ -16,7 +16,7 @@ How to Install:
 
 4a) With Windows, double click the zipfile named big_freaking_dig, then move the folder big_funking_dig into the games folder stated earlier.
 
-5) Start Minetest (may require MSVC 2010 or MinGW dlls)
+5) Start Minetest (may require MSVC 2010, you might want to google msvc 2010 redist or MinGW dlls)
 
 6) Under singleplayer, press new, then type a world name, make sure the world generator is on v7.
 
