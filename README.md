@@ -1,4 +1,4 @@
-big_freaking_dig
+Big Freaking Dig
 ================
 
 Repo containing the game for the Minetest Engine.
@@ -28,3 +28,9 @@ Developers:
 ===============
 
 Fork me then add features that are listed here, https://docs.google.com/document/d/13hIvCZfBJo7ibTHcLyY9E2oY74Hd0NUTXltoerGRMe4/ or download it here: http://www.mediafire.com/view/wdwy0wpdqvu8udv/BFD-BigFreakingDig.odt
+
+If a feature is just a normal minetest_game based mod, then make a pull request, it will get pulled, and will be modified to work with this game.
+
+If a .lua file is being worked on lots, you'll know that it will be finished by the end of the day.
+
+Keep in mind that pull requests may get ignored as mail is not often checked.
