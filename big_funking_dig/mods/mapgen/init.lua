@@ -232,7 +232,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"mapgen:dirt"},
-	neighbors = {"mapgen:edens_grass"},
+	neighbors = {"mapgen:edens_grass", "mapgen:grass"},
 	interval = 60,
 	chance = 2,
 	action = function(pos)
@@ -256,9 +256,66 @@ minetest.register_abm({
 		if not minetest.get_node_light(pos) then
 			return
 		end
-		if minetest.get_node_light(pos) < 2 then
+		if minetest.get_node_light(pos) < 1 then
 			pos.y = pos.y - 1
 			minetest.env:add_node(pos,{name="mapgen:dirt"})
 		end
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:oak_sapling"},
+	interval = 2,
+	chance = 3,
+	action = function(pos, node)
+		
+		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		local is_soil = minetest.get_item_group(nu, "soil")
+		
+		if is_soil == 0 then
+			return
+		end
+		
+		
+		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
+		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:oak_leaves"}, {"base:tree", "mapgen:oak_log_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:birch_sapling"},
+	interval = 2,
+	chance = 3,
+	action = function(pos, node)
+		
+		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		local is_soil = minetest.get_item_group(nu, "soil")
+		
+		if is_soil == 0 then
+			return
+		end
+		
+		
+		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
+		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:birch_leaves"}, {"base:tree", "mapgen:birch_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:cherry_sapling"},
+	interval = 2,
+	chance = 3,
+	action = function(pos, node)
+		
+		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		local is_soil = minetest.get_item_group(nu, "soil")
+		
+		if is_soil == 0 then
+			return
+		end
+		
+		
+		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
+		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:cherry_blossom_leaves"}, {"base:tree", "mapgen:oak_log_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
 	end,
 })

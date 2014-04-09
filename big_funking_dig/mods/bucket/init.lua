@@ -176,8 +176,8 @@ bucket.register_liquid(
 )
 
 bucket.register_liquid(
-	"mapgen:oil_source",
-	"mapgen:oil_flowing",
+	"ores:oil_source",
+	"ores:oil_flowing",
 	"bucket:oil",
 	"bucket_oil.png",
 	"Oil Bucket"
