@@ -5,11 +5,61 @@ dofile(minetest.get_modpath("ores").."/oregen.lua")
 
 minetest.register_node("ores:iridium_ore", {
 	description = "Iridium Ore",
-	tiles = {"mapgen_stone.png^ores_iridium_ore.png"},
+	tiles = {"mapgen_stone.png^ores_iridium.png"},
 	is_ground_content = true,
 	drop = 'ores:iridium_lump',
 	groups = {cracky=1},
 })
+
+minetest.register_node("ores:osmium_ore", {
+	description = "Osmium Ore",
+	tiles = {"mapgen_stone.png^ores_osmium.png"},
+	is_ground_content = true,
+	drop = 'ores:osmium_lump',
+	groups = {cracky=1},
+})
+
+minetest.register_node("ores:bauxite_ore", {
+	description = "Osmium Ore",
+	tiles = {"mapgen_stone.png^ores_bauxite.png"},
+	is_ground_content = true,
+	drop = 'ores:bauxite_lump',
+	groups = {cracky=2},
+})
+
+minetest.register_node("ores:coal_ore", {
+	description = "Coal Ore",
+	tiles = {"mapgen_stone.png^ores_coal.png"},
+	is_ground_content = true,
+	drop = 'ores:coal_lump',
+	groups = {cracky=3},
+})
+
+minetest.register_node("ores:cobalt_ore", {
+	description = "Osmium Ore",
+	tiles = {"mapgen_stone.png^ores_cobalt.png"},
+	is_ground_content = true,
+	drop = 'ores:coal_lump',
+	groups = {cracky=3},
+})
+
+minetest.register_node("ores:copper_ore", {
+	description = "Copper Ore",
+	tiles = {"mapgen_stone.png^ores_copper.png"},
+	is_ground_content = true,
+	drop = 'ores:copper_lump',
+	groups = {cracky=1},
+})
+
+minetest.register_node("ores:diamond_ore", {
+	description = "Diamond Ore",
+	tiles = {"mapgen_stone.png^ores_diamond.png"},
+	is_ground_content = true,
+	drop = 'ores:diamond',
+	groups = {cracky=1},
+})
+
+-- Liquids
 
 minetest.register_node("ores:oil_flowing", {
 	description = "Flowing Oil",
@@ -37,12 +87,13 @@ minetest.register_node("ores:oil_flowing", {
 	buildable_to = true,
 	drop = "",
 	drowning = 1,
+	liquid_renewable = false,
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "ores:oil_flowing",
 	liquid_alternative_source = "ores:oil_source",
 	liquid_viscosity = 12,
 	post_effect_color = {a=250, r=10, g=10, b=10},
-	groups = {water=3, liquid=3},
+	groups = {water=3, liquid=3, flammable=1},
 })
 
 minetest.register_node("ores:oil_source", {
@@ -66,6 +117,7 @@ minetest.register_node("ores:oil_source", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
+	liquid_renewable = false,
 	drop = "",
 	drowning = 1,
 	liquidtype = "source",
@@ -73,5 +125,5 @@ minetest.register_node("ores:oil_source", {
 	liquid_alternative_source = "ores:oil_source",
 	liquid_viscosity = 12,
 	post_effect_color = {a=250, r=10, g=10, b=10},
-	groups = {water=3, liquid=3},
+	groups = {water=3, liquid=3, flammable=1},
 })

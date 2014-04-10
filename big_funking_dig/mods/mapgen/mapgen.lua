@@ -42,7 +42,7 @@ minetest.register_biome({
 	
 	height_min = 1,
 	height_max = 60,
-	heat_point = 52,
+	heat_point = 45,
 	humidity_point = 40,
 })
 
