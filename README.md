@@ -18,7 +18,7 @@ How to Install:
 
 5) Start Minetest (may require MSVC 2010, you might want to google msvc 2010 redist or MinGW dlls)
 
-6) Under singleplayer, press new, then type a world name, make sure the world generator is on v7.
+6) Under singleplayer, press new, then type a world name.
 
 7) Press enter or create.
 
