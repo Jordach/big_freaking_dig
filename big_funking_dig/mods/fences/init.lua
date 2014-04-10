@@ -553,8 +553,8 @@ minetest.register_node("fences:fence_wood_13", {  --right(2)+top(11)=13
 minetest.register_craft({
 	output = 'fences:fence_wood 2',
 	recipe = {
-		{'default:stick', 'default:stick', 'default:stick'},
-		{'default:stick', 'default:stick', 'default:stick'},
+		{'tools:stick', 'tools:stick', 'tools:stick'},
+		{'tools:stick', 'tools:stick', 'tools:stick'},
 		{'', '', ''},
 	}
 })
@@ -562,8 +562,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'fences:fencegate',
 	recipe = {
-		{'default:stick', 'default:wood', 'default:stick'},
-		{'default:stick', 'default:wood', 'default:stick'},
+		{'tools:stick', 'group:wood', 'tools:stick'},
+		{'tools:stick', 'group:wood', 'tools:stick'},
 		{'', '', ''},
 	}
 })
