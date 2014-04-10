@@ -1,6 +1,15 @@
 --mapgen.lua
 --mapgen of bfd
 
+minetest.register_on_mapgen_init(function(params)
+	minetest.set_mapgen_params({
+		mgname = "v7",
+		seed = params.seed,
+		water_level = 1,
+		flags = "caves",
+	})
+end)
+
 minetest.register_biome({
 	name = "plains",
 	
