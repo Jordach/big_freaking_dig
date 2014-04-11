@@ -45,6 +45,7 @@ minetest.register_node("mapgen:grass", {
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
 	--no sounds until i install OpenAL myself! ;)
+	sounds = default.node_sound_dirt_defaults(),
 })
 
 minetest.register_node("mapgen:dirt", {
@@ -52,6 +53,7 @@ minetest.register_node("mapgen:dirt", {
 	tiles = {"mapgen_dirt.png"},
 	is_ground_content = true,
 	groups = {crumbly=3, soil=1},
+	sounds = default.node_sound_dirt_defaults(),
 })
 
 minetest.register_node("mapgen:stone", {
@@ -65,24 +67,21 @@ minetest.register_node("mapgen:stone", {
 				items = {'mapgen:cobble'},
 			},
 			{
-				items = {'mapgen:iron_fragment'},
+				items = {'ores:iron_fragment'},
 				rarity = 75,
 			},
 			{
-				items = {'mapgen:tin_fragment'},
+				items = {'ores:tin_fragment'},
 				rarity = 125,
 			},
 			{
-				items = {'mapgen:bone_meal'},
-				rarity = 372,
-			},
-			{
-				items = {'mapgen:copper_fragment'},
+				items = {'ores:copper_fragment'},
 				rarity = 62,
 			}
 		}
 	},
 	groups = {cracky=3, stone=1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:cobble", {
@@ -90,12 +89,14 @@ minetest.register_node("mapgen:cobble", {
 	tiles = {"mapgen_cobble.png"},
 	is_ground_content = true,
 	groups = {cracky=3, stone=1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:mese_stone", {
 	description = "Mese Stone",
 	tiles = {"mapgen_mese_stone.png"},
 	is_ground_content = true,
+	sounds = default.node_sound_stone_defaults(),
 	groups = {hardness=3, stone=1}, --hardness refers to 30 seconds with dia pick
 })
 
@@ -104,6 +105,7 @@ minetest.register_node("mapgen:crust_cobble", {
 	tiles = {"mapgen_crust_cobble.png"},
 	is_ground_content = true,
 	groups = {cracky=1, stone=1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:crust_stone", {
@@ -150,6 +152,7 @@ minetest.register_node("mapgen:crust_stone", {
 			}
 		}
 	},
+	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=1, stone=1},
 })
 

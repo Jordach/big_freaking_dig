@@ -9,6 +9,12 @@ minetest.register_node("ores:iridium_ore", {
 	is_ground_content = true,
 	drop = 'ores:iridium_lump',
 	groups = {cracky=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:iridium_lump", {
+	description = "Iridium Lump",
+	inventory_image = "ores_iridium.png",
 })
 
 minetest.register_node("ores:osmium_ore", {
@@ -16,7 +22,13 @@ minetest.register_node("ores:osmium_ore", {
 	tiles = {"mapgen_stone.png^ores_osmium.png"},
 	is_ground_content = true,
 	drop = 'ores:osmium_lump',
+	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=1},
+})
+
+minetest.register_craftitem("ores:osmium_lump", {
+	description = "Osmium Lump",
+	inventory_image = "ores_osmium_lump.png",
 })
 
 minetest.register_node("ores:bauxite_ore", {
@@ -24,7 +36,13 @@ minetest.register_node("ores:bauxite_ore", {
 	tiles = {"mapgen_stone.png^ores_bauxite.png"},
 	is_ground_content = true,
 	drop = 'ores:bauxite_lump',
+	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=2},
+})
+
+minetest.register_craftitem("ores:bauxite_lump", {
+	description = "Bauxite Lump",
+	inventory_image = "ores_bauxite_lump.png",
 })
 
 minetest.register_node("ores:coal_ore", {
@@ -33,6 +51,12 @@ minetest.register_node("ores:coal_ore", {
 	is_ground_content = true,
 	drop = 'ores:coal_lump',
 	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:coal_lump", {
+	description = "Coal Lump",
+	inventory_image = "ores_coal_lump.png",
 })
 
 minetest.register_node("ores:cobalt_ore", {
@@ -40,7 +64,13 @@ minetest.register_node("ores:cobalt_ore", {
 	tiles = {"mapgen_stone.png^ores_cobalt.png"},
 	is_ground_content = true,
 	drop = 'ores:coal_lump',
-	groups = {cracky=3},
+	groups = {cracky=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:cobalt_lump", {
+	description = "Cobalt Lump",
+	inventory_image = "ores_cobalt_lump.png",
 })
 
 minetest.register_node("ores:copper_ore", {
@@ -48,7 +78,13 @@ minetest.register_node("ores:copper_ore", {
 	tiles = {"mapgen_stone.png^ores_copper.png"},
 	is_ground_content = true,
 	drop = 'ores:copper_lump',
-	groups = {cracky=1},
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:copper_lump", {
+	description = "Copper Lump",
+	inventory_image = "ores_copper_lump.png",
 })
 
 minetest.register_node("ores:diamond_ore", {
@@ -57,6 +93,111 @@ minetest.register_node("ores:diamond_ore", {
 	is_ground_content = true,
 	drop = 'ores:diamond',
 	groups = {cracky=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:diamond", {
+	description = "Diamond",
+	inventory_image = "ores_diamond_crystal.png",
+})
+
+minetest.register_node("ores:mese", {
+	description = "Mese Block",
+	tiles = {"ores_mese_block.png"},
+	is_ground_content = true,
+	groups = {cracky=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("ores:mese_ore", {
+	description = "Mese Ore",
+	tiles = {"mapgen_stone.png^ores_mese.png"},
+	is_ground_content = true,
+	groups = {cracky=2},
+	drop = 'ores:mese_crystal',
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:mese_crystal", {
+	description = "Mese Crystal",
+	inventory_image = "ores_mese_crystal.png",
+})
+
+minetest.register_node("ores:obsidian", {
+	description = "Obsidian",
+	tiles = {"ores_obsidian_block.png"},
+	is_ground_content = true,
+	groups = {cracky=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("ores:obsidian_ore", {
+	description = "Obsidian Ore",
+	tiles = {"mapgen_stone.png^ores_obsidian.png"},
+	is_ground_content = true,
+	groups = {cracky=2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:obsidian_fragment", {
+	description = "Obsidian Fragment",
+	inventory_image = "ores_obsidian_fragment.png",
+})
+
+minetest.register_node("ores:lead_ore", {
+	description = "Lead Ore",
+	tiles = {"mapgen_stone.png^ores_lead.png"},
+	is_ground_content = true,
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
+	drop = 'ores:lead_lump',
+})
+
+minetest.register_craftitem("ores:lead_lump", {
+	description = "Lead Lump",
+	inventory_image = "ores_lead_lump.png",
+})
+
+minetest.register_node("ores:silver_ore", {
+	description = "Silver Ore",
+	tiles = {"mapgen_stone.png^ores_silver.png"},
+	drop = 'ores:silver_lump',
+	is_ground_content = true,
+	groups = {cracky=2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craftitem("ores:silver_lump", {
+	description = "Silver Lump",
+	inventory_image = "ores_silver_lump.png",
+})
+
+minetest.register_node("ores:platinum_ore", {
+	description = "Platinum Ore",
+	drop = 'ores:platinum_lump',
+	tiles = {"mapgen_stone.png^ores_platinum.png"},
+	is_ground_content = true,
+	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=1},
+})
+
+minetest.register_craftitem("ores:platinum_lump", {
+	description = "Platinum Lump",
+	inventory_image = "ores_platinum_lump.png",
+})
+
+minetest.register_node("ores:tin_ore", {
+	description = "Tin Ore",
+	sounds = default.node_sound_stone_defaults(),
+	drop = 'ores:tin_lump',
+	tiles = {"mapgen_stone.png^ores_tin.png"},
+	is_ground_content = true,
+	groups = {cracky=3},
+})
+
+minetest.register_craftitem("ores:tin_lump", {
+	description = "Tin Lump",
+	inventory_image = "ores_tin_lump.png",
 })
 
 -- Liquids

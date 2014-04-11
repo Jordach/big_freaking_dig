@@ -3,7 +3,10 @@
 
 dofile(minetest.get_modpath("tools").."/crafts.lua")
 
-print 'tools need to be programmed in at some point, must be done.'
+minetest.register_craft({
+	type = "toolrepair",
+	additional_wear = -0.02,
+})
 
 --tool rod defs
 
@@ -71,7 +74,7 @@ minetest.register_tool("tools:sword_wood", {
 		full_punch_interval = 2.3,
 		max_drop_level = 0,
 		groupcaps = {
-			snappy={times={[2]=0.5, [3]=1.2}, uses=10, maxlevel=1},
+			snappy={times={[2]=1.2, [3]=0.5}, uses=10, maxlevel=1},
 		},
 		damage_groups = {fleshy=2},
 	}
@@ -114,3 +117,95 @@ minetest.register_craft({
 		{'', 'tools:stick'},
 	}
 })
+
+-- stone tool defs
+
+minetest.register_tool("tools:pick_stone", {
+	description = "Stone Pickaxe",
+	inventory_image = "tool_stonepick.png",
+	tool_capabilities = {
+		full_punch_interval = 3.4,
+		max_drop_level = 0,
+		groupcaps={
+			cracky = {times={[3]=3.7}, uses=12, maxlevel=1},
+		},
+		damage_groups = {fleshy=2},
+	}
+})
+
+minetest.register_tool("tools:shovel_stone", {
+	description = "Stone Shovel",
+	inventory_image = "tool_stoneshovel.png",
+	tool_capabilities = {
+		full_punch_interval = 3.1,
+		max_drop_level = 0,
+		groupcaps={
+			crumbly = {times={[1]=6.2, [2]=3.1, [3]=1.55}, uses=23, maxlevel=1},
+		},
+		damage_groups = {fleshy=2},
+	}
+})
+
+minetest.register_tool("tools:axe_stone", {
+	description = "Stone Axe",
+	inventory_image = "tool_stoneaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 2.8,
+		max_drop_level = 0,
+		groupcaps={
+			choppy = {times={[1]=18.2, [2]=9.8, [3]=4.2}, uses = 24, maxlevel=1},
+		},
+		damage_groups= {fleshy=3},
+	}
+})
+
+minetest.register_tool("tools:sword_stone", {
+	description = "Stone Sword",
+	inventory_image = "tool_stonesword.png",
+	tool_capabilities = {
+		full_punch_interval = 4.1,
+		max_drop_level = 0,
+		groupcaps = {
+			snappy={times={[1]=1.2, [2]=0.6, [3]=0.6}, uses=17, maxlevel=1},
+		},
+	}
+})
+
+-- stone tool crafts
+
+minetest.register_craft({
+	output = 'tools:pick_stone',
+	recipe = {
+		{'group:stone', 'group:stone', 'group:stone'},
+		{'', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:shovel_stone',
+	recipe = {
+		{'', 'group:stone', ''},
+		{'', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:axe_stone',
+	recipe = {
+		{'group:stone', 'group:stone', ''},
+		{'group:stone', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:sword_stone',
+	recipe = {
+		{'group:stone'},
+		{'group:stone'},
+		{'tools:stone'},
+	}
+})
+		

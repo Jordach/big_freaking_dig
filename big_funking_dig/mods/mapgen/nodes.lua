@@ -14,7 +14,7 @@ minetest.register_node("mapgen:long_grass_1", {
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -40,7 +40,7 @@ minetest.register_node("mapgen:long_grass_2", {
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -67,7 +67,7 @@ minetest.register_node("mapgen:long_grass_3", {
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -94,7 +94,7 @@ minetest.register_node("mapgen:long_grass_1", {
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -121,7 +121,7 @@ minetest.register_node("mapgen:long_grass_4", {
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -148,7 +148,7 @@ minetest.register_node("mapgen:long_grass_5", {
 	is_ground_content = true,
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -172,7 +172,7 @@ minetest.register_node("mapgen:cactus", {
 	paramtype2 = "facedir",
 	is_ground_content = true,
 	groups = {snappy=1,choppy=3,flammable=2},
-	--sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
 
@@ -188,6 +188,7 @@ minetest.register_node("mapgen:sandstone", {
 	tiles = {"mapgen_sandstone.png"},
 	is_ground_content = true,
 	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:dead_bush", {
@@ -199,6 +200,8 @@ minetest.register_node("mapgen:dead_bush", {
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
 	drawtype = "plantlike",
 	paramtype = "light",
+	walkable = false,
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node("mapgen:perma_dirt", {
@@ -217,7 +220,7 @@ minetest.register_node("mapgen:dead_oak", {
 	tiles = {"mapgen_dead_oak_top.png", "mapgen_dead_oak_top.png", "mapgen_dead_oak_tree.png"},
 	is_ground_content = false,
 	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	--sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	drop = "mapgen:dead_oak_log"
 })
 
@@ -227,7 +230,7 @@ minetest.register_node("mapgen:dead_oak_log", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	--sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
 })
 
@@ -276,7 +279,7 @@ minetest.register_node("mapgen:oak_leaves", {
 			}
 		}
 	},
-	--sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node("mapgen:oak_sapling", {
@@ -294,6 +297,7 @@ minetest.register_node("mapgen:oak_sapling", {
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
 	},
 	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 --
@@ -305,7 +309,7 @@ minetest.register_node("mapgen:cherry_tree", {
 	tiles = {"mapgen_cherry_top.png", "mapgen_cherry_top.png", "mapgen_cherry_tree.png"},
 	is_ground_content = false,
 	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	--sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	drop = "mapgen:cherry_log"
 })
 
@@ -315,7 +319,7 @@ minetest.register_node("mapgen:cherry_log", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	--sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
 })
 
@@ -334,6 +338,7 @@ minetest.register_node("mapgen:cherry_sapling", {
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
 	},
 	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node("mapgen:cherry_blossom_leaves", {
@@ -357,6 +362,7 @@ minetest.register_node("mapgen:cherry_blossom_leaves", {
 			}
 		}
 	},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 --
@@ -384,6 +390,7 @@ minetest.register_node("mapgen:birch_leaves", {
 			}
 		}
 	},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node("mapgen:birch_sapling", {
@@ -401,6 +408,7 @@ minetest.register_node("mapgen:birch_sapling", {
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
 	},
 	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node("mapgen:birch_log", {
@@ -409,7 +417,7 @@ minetest.register_node("mapgen:birch_log", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	--sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
 })
 
@@ -418,6 +426,7 @@ minetest.register_node("mapgen:birch_tree", {
 	tiles = {"mapgen_birch_top.png", "mapgen_birch_top.png", "mapgen_birch_tree.png"},
 	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2,tree=1},
+	sounds = default.node_sound_wood_defaults(),
 	drop = "mapgen:birch_log",
 })
 
@@ -430,5 +439,6 @@ minetest.register_node("mapgen:edens_grass", {
 	tiles = {"mapgen_edens_grass.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_edens_grass_side.png"},
 	groups = {crumbly=3, soil=1},
 	is_ground_content = true,
+	sounds = default.node_sound_dirt_defaults(),
 })
 
