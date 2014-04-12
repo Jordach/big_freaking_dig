@@ -7,6 +7,7 @@ WATER_ALPHA = 160
 WATER_VISC = 1
 LAVA_VISC = 7
 LIGHT_MAX = 14
+BIG_FUNKING_DIG = 1
 
 -- Definitions made by this mod that other mods can use too
 default = {}
