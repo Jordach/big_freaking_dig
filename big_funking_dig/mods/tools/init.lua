@@ -42,7 +42,15 @@ minetest.register_craft({
 	}
 })
 
+-- ingot crafts
 
+minetest.register_craft({
+	type = "cooking",
+	output = "tools:steel_ingot",
+	recipe = "ores:iron_lump",
+})
+
+-- ingot defs
 
 --basic wooden tools, upgrades can only be applied to iron and beyond -- stone cannot have them either.
 

@@ -217,6 +217,20 @@ minetest.register_craftitem("ores:tin_lump", {
 	inventory_image = "ores_tin_lump.png",
 })
 
+minetest.register_node("ores:iron_ore", {
+	description = "Iron Ore",
+	sounds = default.node_sound_stone_defaults(),
+	drop = 'ores:iron_lump',
+	tiles = {"mapgen_stone.png^ores_iron.png"},
+	is_ground_content = true,
+	groups = {cracky=3},
+})
+
+minetest.register_craftitem("ores:iron_lump", {
+	description = "Iron Lump",
+	inventory_image = "ores_iron_lump.png",
+})
+
 -- Liquids
 
 minetest.register_node("ores:oil_flowing", {

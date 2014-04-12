@@ -17,3 +17,38 @@
 
     -- You should have received a copy of the GNU General Public License
     -- along with BFD.  If not, see <http://www.gnu.org/licenses/>.
+	
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "ores:coal_ore",
+	wherein = "mapgen:stone",
+	clust_scarcity = 8*8*8,
+	clusm_num_ores = 8,
+	clust_size = 3,
+	height_min = -4096,
+	height_max = 220,
+})
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "ores:coal_ore",
+	wherein = "mapgen:stone",
+	clust_scarcity = 24*24*24,
+	clust_num_ores = 27,
+	clust_size = 6,
+	height_min = -4096,
+	height_max = 0,
+	flags = "absheight",
+})
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "ores:iron_ore",
+	wherein = "mapgen:stone",
+	clust_scarcity = 7*7*7,
+	clust_num_ores = 5,
+	clust_size = 3,
+	height_min = -4096,
+	height_max = 0,
+	flags = "absheight",
+})
