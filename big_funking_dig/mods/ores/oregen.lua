@@ -22,7 +22,7 @@ minetest.register_ore({
 	ore_type = "scatter",
 	ore = "ores:coal_ore",
 	wherein = "mapgen:stone",
-	clust_scarcity = 8*8*8,
+	clust_scarcity = 4*4*4,
 	clusm_num_ores = 8,
 	clust_size = 3,
 	height_min = -4096,
@@ -33,11 +33,11 @@ minetest.register_ore({
 	ore_type = "scatter",
 	ore = "ores:coal_ore",
 	wherein = "mapgen:stone",
-	clust_scarcity = 24*24*24,
-	clust_num_ores = 27,
+	clust_scarcity = 12*12*12,
+	clust_num_ores = 12,
 	clust_size = 6,
 	height_min = -4096,
-	height_max = 0,
+	height_max = 220,
 	flags = "absheight",
 })
 
@@ -49,6 +49,6 @@ minetest.register_ore({
 	clust_num_ores = 5,
 	clust_size = 3,
 	height_min = -4096,
-	height_max = 0,
+	height_max = -64,
 	flags = "absheight",
 })

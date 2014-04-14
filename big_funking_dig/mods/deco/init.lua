@@ -423,6 +423,17 @@ minetest.register_abm({
 	end,
 })
 
+-- furnace crafting
+
+minetest.register_craft({
+	output = 'deco:furnace',
+	recipe = {
+		{'group:stone', 'group:stone', 'group:stone'},
+		{'group:stone', '', 'group:stone'},
+		{'group:stone', 'group:stone', 'group:stone'},
+	}
+})
+
 --
 -- Fuels
 --

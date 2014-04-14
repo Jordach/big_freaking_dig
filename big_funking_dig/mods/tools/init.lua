@@ -52,6 +52,11 @@ minetest.register_craft({
 
 -- ingot defs
 
+minetest.register_craftitem("tools:steel_ingot", {
+	description = "Steel Ingot",
+	inventory_image = "tool_steel_ingot.png",
+})
+
 --basic wooden tools, upgrades can only be applied to iron and beyond -- stone cannot have them either.
 
 minetest.register_tool("tools:pick_wood", {
@@ -161,7 +166,7 @@ minetest.register_tool("tools:pick_stone", {
 
 minetest.register_tool("tools:shovel_stone", {
 	description = "Stone Shovel",
-	inventory_image = "tool_stoneshovel.png",
+	inventory_image = "tool_stoneshovel.png^[transformR90",
 	tool_capabilities = {
 		full_punch_interval = 3.1,
 		max_drop_level = 0,
@@ -192,8 +197,9 @@ minetest.register_tool("tools:sword_stone", {
 		full_punch_interval = 4.1,
 		max_drop_level = 0,
 		groupcaps = {
-			snappy={times={[1]=1.2, [2]=0.6, [3]=0.6}, uses=17, maxlevel=1},
+			snappy={times={[1]=1.2, [2]=0.6, [3]=0.3}, uses=17, maxlevel=1},
 		},
+		damage_groups = {fleshy=5},
 	}
 })
 
@@ -234,4 +240,95 @@ minetest.register_craft({
 		{'tools:stone'},
 	}
 })
-		
+
+-- steel tools (regular)
+
+minetest.register_tool("tools:pick_steel", {
+	description = "Steel Pickaxe",
+	inventory_image = "tool_steelpick.png",
+	tool_capabilities = {
+		full_punch_interval = 2.05,
+		max_drop_level = 0,
+		groupcaps = {
+			cracky = {times={[1]=3.7*2, [2]=3.7, [3]=1.7}, uses=34, maxlevel=1},
+		},
+		damage_groups = {fleshy=4},
+	}
+})
+
+minetest.register_tool("tools:shovel_steel", {
+	description = "Steel Shovel",
+	inventory_image = "tool_steelshovel.png^[transformR90",
+	tool_capabilities = {
+		full_punch_interval = 2.05,
+		max_drop_level = 0,
+		groupcaps = {
+			crumbly = {times={[1]=3.1, [2]=1.55, [3]=0.75}, uses = 36, maxlevel=1},
+		},
+		damage_groups = {fleshy=3},
+	}
+})
+
+minetest.register_tool("tools:axe_steel", {
+	description = "Steel Axe",
+	inventory_image = "tool_steelaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 2.05,
+		max_drop_level = 0,
+		groupcaps = {
+			crumbly = {times={[1]=9.8, [2]=4.2, [1]=3.1}, uses = 42, maxlevel=1},
+		},
+		damage_groups = {fleshy=3},
+	}
+})
+
+minetest.register_tool("tools:sword_steel", {
+	description = "Steel Sword",
+	inventory_image = "tool_steelsword.png",
+	tool_capabilities = {
+		full_punch_interval = 1.78,
+		max_drop_level = 0,
+		groupcaps = {
+			snappy = {times={[1]=0.6, [2]=0.3, [3]=0.15}, uses = 32, maxlevel=1},
+		},
+		damage_groups = {fleshy = 7},
+	}
+})
+
+-- steel tool crafts (fuck me, i'm tired of this repetitive shit when it comes to working on tools.
+
+minetest.register_craft({
+	output = 'tools:pick_steel',
+	recipe = {
+		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
+		{'', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:shovel_steel',
+	recipe = {
+		{'tools:steel_ingot'},
+		{'tools:stick'},
+		{'tools:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:axe_steel',
+	recipe = {
+		{'tools:steel_ingot', 'tools:steel_ingot', ''},
+		{'tools:steel_ingot', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:sword_steel',
+	recipe = {
+		{'tools:steel_ingot'},
+		{'tools:steel_ingot'},
+		{'tools:stick'},
+	}
+})

@@ -109,7 +109,7 @@ minetest.register_node("ores:diamond_ore", {
 	tiles = {"mapgen_stone.png^ores_diamond.png"},
 	is_ground_content = true,
 	drop = 'ores:diamond',
-	groups = {cracky=1},
+	groups = {cracky=2},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -130,7 +130,7 @@ minetest.register_node("ores:mese_ore", {
 	description = "Mese Ore",
 	tiles = {"mapgen_stone.png^ores_mese.png"},
 	is_ground_content = true,
-	groups = {cracky=2},
+	groups = {cracky=1},
 	drop = 'ores:mese_crystal',
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -165,7 +165,7 @@ minetest.register_node("ores:lead_ore", {
 	description = "Lead Ore",
 	tiles = {"mapgen_stone.png^ores_lead.png"},
 	is_ground_content = true,
-	groups = {cracky=3},
+	groups = {cracky=2},
 	sounds = default.node_sound_stone_defaults(),
 	drop = 'ores:lead_lump',
 })
