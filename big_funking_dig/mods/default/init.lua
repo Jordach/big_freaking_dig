@@ -14,4 +14,4 @@ default = {}
 -- Load files
 dofile(minetest.get_modpath("default").."/functions.lua")
 dofile(minetest.get_modpath("default").."/player.lua")
-
+dofile(minetest.get_modpath("default").."/genders.lua")

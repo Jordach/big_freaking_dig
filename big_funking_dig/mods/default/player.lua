@@ -64,7 +64,22 @@ function default.player_register_model(name, def)
 end
 
 -- Default player appearance
-default.player_register_model("character.x", {
+default.player_register_model("character.b3d", {
+	animation_speed = 30,
+	textures = {"character.png", },
+	animations = {
+		-- Standard animations.
+		stand     = { x=  0, y= 79, },
+		lay       = { x=162, y=166, },
+		walk      = { x=168, y=187, },
+		mine      = { x=189, y=198, },
+		walk_mine = { x=200, y=219, },
+		-- Extra animations (not currently used by the game).
+		sit       = { x= 81, y=160, },
+	},
+})
+
+default.player_register_model("characterfemale.b3d", {
 	animation_speed = 30,
 	textures = {"character.png", },
 	animations = {
@@ -139,9 +154,7 @@ function default.player_set_animation(player, anim_name, speed)
 end
 
 -- Update appearance when the player joins
-minetest.register_on_joinplayer(function(player)
-	default.player_set_model(player, "character.x")
-end)
+
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
