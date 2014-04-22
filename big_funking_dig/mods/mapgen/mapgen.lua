@@ -34,6 +34,81 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
+	name = "snowy_plains",
+	
+	node_top = "mapgen:snowy_grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 1,
+	height_max = 31000,
+	heat_point = 18,
+	humidity_point = 20,
+})
+
+minetest.register_biome({
+	name = "taiga",
+	
+	node_top = "mapgen:snowy_grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 4,
+	height_max = 31000,
+	heat_point = 23,
+	humidity_point = 31,
+})
+
+minetest.register_biome({
+	name = "ice_lands",
+	
+	node_top = "mapgen:snowy_grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	node_dust_water = "mapgen:ice",
+	height_min = 1,
+	height_max = 4,
+	heat_point = 13,
+	humidity_point = 16,
+})
+
+minetest.register_biome({
+	name = "glacier",
+	
+	node_top = "mapgen:ice",
+	depth_top = 1,
+	node_filler = "mapgen:ice",
+	depth_filler = 3,
+	node_dust = "air",
+	node_dust_water = "mapgen:ice",
+	height_min = 0,
+	height_max = 80,
+	heat_point = 6,
+	humidity_point = 9,
+})
+
+minetest.register_biome({
+	name = "evergreens_forest",
+	
+	node_top = "mapgen:grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 4,
+	height_max = 200,
+	heat_point = 36,
+	humidity_point = 40,
+})
+
+minetest.register_biome({
 	name = "floral_plains",
 	
 	node_top = "mapgen:grass",
@@ -345,6 +420,36 @@ minetest.register_decoration({
 	replacements = {
 		{"base:leaves", "mapgen:cherry_blossom_leaves"},
 		{"base:tree", "mapgen:cherry_tree"},
+		{"base:dirt", "mapgen:dirt"},
+	},
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:snowy_grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
+	sidelen = 8,
+	fill_ratio = 0.051,
+	biomes = {"taiga"},
+	flags = "place_center_x, place_center_z",
+	replacements = {
+		{"base:leaves", "mapgen:evergreen_leaves_snowy"},
+		{"base:tree", "mapgen:evergreen_tree"},
+		{"base:dirt", "mapgen:dirt"},
+	},
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
+	sidelen = 8,
+	fill_ratio = 0.061,
+	biomes = {"evergreens_forest"},
+	flags = "place_center_x, place_center_z",
+	replacements = {
+		{"base:leaves", "mapgen:evergreen_leaves"},
+		{"base:tree", "mapgen:evergreen_tree"},
 		{"base:dirt", "mapgen:dirt"},
 	},
 })

@@ -212,51 +212,51 @@ function stairs.register_stair_and_slab(subname, recipeitem, groups, images, des
 	stairs.register_slab(subname, recipeitem, groups, images, desc_slab, sounds)
 end
 
-stairs.register_stair_and_slab("wood", "default:wood",
+stairs.register_stair_and_slab("wood", "deco:oak_plank",
 		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-		{"default_wood.png"},
-		"Wooden Stair",
-		"Wooden Slab",
+		{"deco_wood_oak_planks.png"},
+		"Oak Plank Stair",
+		"Oak Plank Slab",
+		default.node_sound_wood_defaults())
+		
+stairs.register_stair_and_slab("wood", "deco:birch_plank",
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"deco_wood_birch_planks.png"},
+		"Birch Plank Stair",
+		"Birch Plank Slab",
 		default.node_sound_wood_defaults())
 
-stairs.register_stair_and_slab("stone", "default:stone",
+stairs.register_stair_and_slab("wood", "deco:cherry_plank",
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"deco_wood_cherry_planks.png"},
+		"Cherry Plank Stair",
+		"Cherry Plank Slab",
+		default.node_sound_wood_defaults())		
+		
+stairs.register_stair_and_slab("stone", "mapgen:stone",
 		{cracky=3},
-		{"default_stone.png"},
+		{"mapgen_stone.png"},
 		"Stone Stair",
 		"Stone Slab",
 		default.node_sound_stone_defaults())
 
-stairs.register_stair_and_slab("cobble", "default:cobble",
+stairs.register_stair_and_slab("cobble", "mapgen:cobble",
 		{cracky=3},
-		{"default_cobble.png"},
+		{"mapgen_cobble.png"},
 		"Cobble Stair",
 		"Cobble Slab",
 		default.node_sound_stone_defaults())
 
-stairs.register_stair_and_slab("brick", "default:brick",
+stairs.register_stair_and_slab("brick", "deco:brick",
 		{cracky=3},
-		{"default_brick.png"},
+		{"deco_brick.png"},
 		"Brick Stair",
 		"Brick Slab",
 		default.node_sound_stone_defaults())
 
-stairs.register_stair_and_slab("sandstone", "default:sandstone",
+stairs.register_stair_and_slab("sandstone", "mapgen:sandstone",
 		{crumbly=2,cracky=2},
-		{"default_sandstone.png"},
+		{"mapgen_sandstone.png"},
 		"Sandstone Stair",
 		"Sandstone Slab",
-		default.node_sound_stone_defaults())
-
-stairs.register_stair_and_slab("junglewood", "default:junglewood",
-		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-		{"default_junglewood.png"},
-		"Junglewood Stair",
-		"Junglewood Slab",
-		default.node_sound_wood_defaults())
-
-stairs.register_stair_and_slab("stonebrick", "default:stonebrick",
-		{cracky=3},
-		{"default_stone_brick.png"},
-		"Stone Brick Stair",
-		"Stone Brick Slab",
 		default.node_sound_stone_defaults())

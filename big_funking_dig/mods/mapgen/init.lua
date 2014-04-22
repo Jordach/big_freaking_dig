@@ -61,9 +61,18 @@ minetest.register_node("mapgen:grass", {
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
-	--no sounds until i install OpenAL myself! ;)
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+minetest.register_node("mapgen:snowy_grass", {
+	description = "Dirt with Snow",
+	tiles = {"mapgen_snow.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_snow_side.png"},
+	is_ground_content = true,
+	drop = 'mapgen:dirt',
+	groups = {crumbly=3, soil=1},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
 
 minetest.register_node("mapgen:dirt", {
 	description = "Dirt",
@@ -342,7 +351,7 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	nodenames = {"mapgen:grass"},
+	nodenames = {"mapgen:grass", "mapgen:snowy_grass"},
 	interval = 60,
 	chance = 2,
 	action = function(pos)
@@ -411,6 +420,25 @@ minetest.register_abm({
 		
 		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
 		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:cherry_blossom_leaves"}, {"base:tree", "mapgen:cherry_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:evergreen_sapling"},
+	interval = 80,
+	chance = 3,
+	action = function(pos, node)
+		
+		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		local is_soil = minetest.get_item_group(nu, "soil")
+		
+		if is_soil == 0 then
+			return
+		end
+		
+		
+		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
+		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts", "random", {{"base:leaves", "mapgen:evergreen_leaves"}, {"base:tree", "mapgen:evergreen_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
 	end,
 })
 
