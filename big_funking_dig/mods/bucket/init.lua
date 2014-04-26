@@ -15,6 +15,14 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'bucket:bucket_empty 1',
+	recipe = {
+		{'tools:tin_ingot', '', 'tools:tin_ingot'},
+		{'', 'tools:tin_ingot', ''},
+	}
+})
+
 bucket = {}
 bucket.liquids = {}
 

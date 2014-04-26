@@ -212,25 +212,32 @@ function stairs.register_stair_and_slab(subname, recipeitem, groups, images, des
 	stairs.register_slab(subname, recipeitem, groups, images, desc_slab, sounds)
 end
 
-stairs.register_stair_and_slab("wood", "deco:oak_plank",
+stairs.register_stair_and_slab("oak_wood", "deco:oak_plank",
 		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 		{"deco_wood_oak_planks.png"},
 		"Oak Plank Stair",
 		"Oak Plank Slab",
 		default.node_sound_wood_defaults())
 		
-stairs.register_stair_and_slab("wood", "deco:birch_plank",
+stairs.register_stair_and_slab("birch_wood", "deco:birch_plank",
 		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 		{"deco_wood_birch_planks.png"},
 		"Birch Plank Stair",
 		"Birch Plank Slab",
 		default.node_sound_wood_defaults())
 
-stairs.register_stair_and_slab("wood", "deco:cherry_plank",
+stairs.register_stair_and_slab("cherry_wood", "deco:cherry_plank",
 		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 		{"deco_wood_cherry_planks.png"},
 		"Cherry Plank Stair",
 		"Cherry Plank Slab",
+		default.node_sound_wood_defaults())		
+
+stairs.register_stair_and_slab("evergreen_wood", "deco:evergreen_plank",
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"deco_wood_evergreen_planks.png"},
+		"Evergreen Plank Stair",
+		"Evergreen Plank Slab",
 		default.node_sound_wood_defaults())		
 		
 stairs.register_stair_and_slab("stone", "mapgen:stone",
@@ -255,8 +262,15 @@ stairs.register_stair_and_slab("brick", "deco:brick",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("sandstone", "mapgen:sandstone",
-		{crumbly=2,cracky=2},
+		{crumbly=2,cracky=3},
 		{"mapgen_sandstone.png"},
 		"Sandstone Stair",
 		"Sandstone Slab",
+		default.node_sound_stone_defaults())
+
+stairs.register_stair_and_slab("ice", "mapgen:ice",
+		{cracky=3},
+		{"mapgen_ice.png"},
+		"Solid Ice Stair",
+		"Solid Ice Slab",
 		default.node_sound_stone_defaults())

@@ -231,6 +231,66 @@ minetest.register_craftitem("ores:iron_lump", {
 	inventory_image = "ores_iron_lump.png",
 })
 
+minetest.register_node("ores:gold_ore", {
+	description = "Gold Ore",
+	sounds = default.node_sound_stone_defaults(),
+	drop = 'ores:gold_lump',
+	tiles = {"mapgen_stone.png^ores_gold.png"},
+	is_ground_content = true,
+	groups = {cracky=3},
+})
+
+minetest.register_craftitem("ores:gold_lump", {
+	description = "Gold Lump",
+	inventory_image = "ores_gold_lump.png",
+})
+
+minetest.register_node("ores:magma_stone", {
+	description = "Magma Stone",
+	sounds = default.node_sound_stone_defaults(),
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {''},
+			},
+			{
+				items = {'ores:iron_fragment'},
+				rarity = 23,
+			},
+			{
+				items = {'ores:tin_fragment'},
+				rarity = 78,
+			},
+			{
+				items = {'ores:copper_fragment'},
+				rarity = 18,
+			},
+			{
+				items = {'ores:iridium_fragment'},
+				rarity = 412,
+			},
+			{
+				items = {'ores:cobalt_fragment'},
+				rarity = 215,
+			},
+			{
+				items = {'ores:osmium_fragment'},
+				rarity = 370,
+			},
+			{
+				items = {'ores:bauxite_fragment'},
+				rarity = 280,
+			}
+		}
+	},
+	tiles = {"mapgen_magma_rock.png"},
+	is_ground_content = true,
+	groups = {cracky=1},
+})
+
+
+
 -- Liquids
 
 minetest.register_node("ores:oil_flowing", {

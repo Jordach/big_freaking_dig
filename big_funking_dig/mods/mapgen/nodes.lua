@@ -29,6 +29,13 @@ minetest.register_node("mapgen:long_grass_1", {
 	paramtype = "light",
 	walkable = false,
 	is_ground_content = true,
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {'farming:seed_wheat'},rarity = 5},
+			{items = {'mapgen:long_grass_1'}},
+		}
+	},
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -62,13 +69,19 @@ minetest.register_node("mapgen:long_grass_2", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
 	},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {'farming:seed_wheat'},rarity = 5},
+			{items = {'mapgen:long_grass_1'}},
+		}
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		-- place a random grass node
 		local stack = ItemStack("mapgen:long_grass_"..math.random(1,5))
 		local ret = minetest.item_place(stack, placer, pointed_thing)
 		return ItemStack("mapgen:long_grass_" .. math.random(1,5) .. " "..itemstack:get_count()-(1-ret:get_count()))
 	end,
-	drop = "mapgen:long_grass_1",
 })
 
 minetest.register_node("mapgen:long_grass_3", {
@@ -80,6 +93,13 @@ minetest.register_node("mapgen:long_grass_3", {
 	inventory_image = "mapgen_grass_3.png",
 	wield_image = "mapgen_grass_3.png",
 	paramtype = "light",
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {'farming:seed_wheat'},rarity = 5},
+			{items = {'mapgen:long_grass_1'}},
+		}
+	},
 	walkable = false,
 	is_ground_content = true,
 	buildable_to = true,
@@ -95,7 +115,6 @@ minetest.register_node("mapgen:long_grass_3", {
 		local ret = minetest.item_place(stack, placer, pointed_thing)
 		return ItemStack("mapgen:long_grass_" .. math.random(1,5) .. " "..itemstack:get_count()-(1-ret:get_count()))
 	end,
-	drop = "mapgen:long_grass_1",
 })
 
 minetest.register_node("mapgen:long_grass_4", {
@@ -109,6 +128,13 @@ minetest.register_node("mapgen:long_grass_4", {
 	paramtype = "light",
 	walkable = false,
 	is_ground_content = true,
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {'farming:seed_wheat'},rarity = 5},
+			{items = {'mapgen:long_grass_1'}},
+		}
+	},
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -122,7 +148,6 @@ minetest.register_node("mapgen:long_grass_4", {
 		local ret = minetest.item_place(stack, placer, pointed_thing)
 		return ItemStack("mapgen:long_grass_" .. math.random(1,5) .. " "..itemstack:get_count()-(1-ret:get_count()))
 	end,
-	drop = "mapgen:long_grass_1",
 })
 
 minetest.register_node("mapgen:long_grass_5", {
@@ -139,6 +164,13 @@ minetest.register_node("mapgen:long_grass_5", {
 	buildable_to = true,
 	groups = {snappy=3,flammable=3,flora=1,attached_node=1, waving=1},
 	sounds = default.node_sound_leaves_defaults(),
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {'farming:seed_wheat'},rarity = 5},
+			{items = {'mapgen:long_grass_1'}},
+		}
+	},
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
@@ -149,7 +181,6 @@ minetest.register_node("mapgen:long_grass_5", {
 		local ret = minetest.item_place(stack, placer, pointed_thing)
 		return ItemStack("mapgen:long_grass_" .. math.random(1,5) .. " "..itemstack:get_count()-(1-ret:get_count()))
 	end,
-	drop = "mapgen:long_grass_1",
 })
 
 --
@@ -260,12 +291,16 @@ minetest.register_node("mapgen:oak_leaves", {
 			{
 				-- player will get sapling with 1/20 chance
 				items = {'mapgen:oak_sapling'},
-				rarity = 40,
+				rarity = 32,
 			},
 			{
 				-- player will get leaves only if he get no saplings,
 				-- this is because max_items is 1
 				items = {'mapgen:oak_leaves'},
+			},
+			{
+				items = {'mapgen:apple'},
+				rarity = 20,
 			}
 		}
 	},
@@ -345,7 +380,7 @@ minetest.register_node("mapgen:cherry_blossom_leaves", {
 		items = {
 			{
 				items = {'mapgen:cherry_sapling'},
-				rarity = 40,
+				rarity = 32,
 			},
 			{
 				items = {'mapgen:cherry_blossom_leaves'},
@@ -373,10 +408,14 @@ minetest.register_node("mapgen:birch_leaves", {
 		items = {
 			{
 				items = {'mapgen:birch_sapling'},
-				rarity = 40,
+				rarity = 32,
 			},
 			{
 				items = {'mapgen:birch_leaves'},
+			},
+			{
+				items = {'mapgen:apple'},
+				rarity = 20,
 			}
 		}
 	},
@@ -456,7 +495,7 @@ minetest.register_node("mapgen:evergreen_leaves", {
 			{
 				-- player will get sapling with 1/20 chance
 				items = {'mapgen:evergreen_sapling'},
-				rarity = 40,
+				rarity = 32,
 			},
 			{
 				-- player will get leaves only if he get no saplings,
@@ -483,16 +522,11 @@ minetest.register_node("mapgen:evergreen_leaves_snowy", {
 			{
 				-- player will get sapling with 1/20 chance
 				items = {'mapgen:evergreen_sapling'},
-				rarity = 40,
+				rarity = 32,
 			},
 			{
 				items = {'mapgen:snow'},
 				rarity = 10,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {'mapgen:evergreen_leaves'},
 			}
 		}
 	},
@@ -590,3 +624,8 @@ minetest.register_node("mapgen:edens_grass", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
+minetest.register_craftitem("mapgen:apple", {
+	description = "Apple",
+	inventory_image = "mapgen_apple.png",
+	on_use = minetest.item_eat(2),
+})

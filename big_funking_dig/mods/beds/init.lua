@@ -19,7 +19,7 @@ for i in ipairs(beds_list) do
 	minetest.register_node("beds:bed_bottom_"..colour, {
 		description = beddesc,
 		drawtype = "nodebox",
-		tiles = {"beds_bed_top_bottom_"..colour..".png", "default_wood.png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png"},
+		tiles = {"beds_bed_top_bottom_"..colour..".png", "deco_wood_oak_planks.png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png"},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		stack_max = 1,
@@ -136,7 +136,7 @@ for i in ipairs(beds_list) do
 	
 	minetest.register_node("beds:bed_top_"..colour, {
 		drawtype = "nodebox",
-		tiles = {"beds_bed_top_top_"..colour..".png", "default_wood.png",  "beds_bed_side_top_r_"..colour..".png",  "beds_bed_side_top_l_"..colour..".png",  "beds_bed_top_front.png",  "beds_bed_side_"..colour..".png"},
+		tiles = {"beds_bed_top_top_"..colour..".png", "deco_wood_oak_planks.png",  "beds_bed_side_top_r_"..colour..".png",  "beds_bed_side_top_l_"..colour..".png",  "beds_bed_top_front.png",  "beds_bed_side_"..colour..".png"},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},

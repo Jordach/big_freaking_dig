@@ -33,4 +33,3 @@ function newtool(tool_name, tool_rod, tool_upgrade_1, tool_upgrade_2, tool_head,
 	})
 end
 
-newtool(
