@@ -164,6 +164,12 @@ minetest.register_node("deco:chest", {
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 	end,
+	after_place_node = function(pos, placer)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("owner", placer:get_player_name() or "")
+		meta:set_string("infotext", "Unlocked Chest (owned by "..
+				meta:get_string("owner")..")")
+	end,
 	can_dig = function(pos,player)
 		local meta = minetest.get_meta(pos);
 		local inv = meta:get_inventory()
@@ -610,57 +616,34 @@ minetest.register_craft({
 	}
 })
 
--- signs of things to come
-
-minetest.register_node("deco:sign", {
-	description = "Sign",
-	drawtype = "signlike",
-	tiles = {"deco_sign_wall.png"},
-	inventory_image = "deco_sign_wall.png",
-	wield_image = "deco_sign_wall.png",
-	paramtype = "light",
-	paramtype2 = "wallmounted",
-	sunlight_propagates = true,
-	is_ground_content = false,
-	walkable = false,
-	selection_box = {
-		type = "wallmounted",
-		--wall_top = <default>
-		--wall_bottom = <default>
-		--wall_side = <default>
-	},
-	groups = {choppy=2,dig_immediate=2,attached_node=1},
-	legacy_wallmounted = true,
-	sounds = default.node_sound_defaults(),
-	on_construct = function(pos)
-		--local n = minetest.get_node(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", "field[text;;${text}]")
-		meta:set_string("infotext", "\"\"")
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
-		if minetest.is_protected(pos, sender:get_player_name()) then
-			minetest.record_protection_violation(pos, sender:get_player_name())
-			return
-		end
-		local meta = minetest.get_meta(pos)
-		fields.text = fields.text or ""
-		minetest.log("action", (sender:get_player_name() or "").." wrote \""..fields.text..
-				"\" to sign at "..minetest.pos_to_string(pos))
-		meta:set_string("text", fields.text)
-		meta:set_string("infotext", '"'..fields.text..'"')
-	end,
-})
-
 minetest.register_craft({
-	output = 'deco:sign 3',
+	output = 'deco:sign_wall 3',
 	recipe = {
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'', 'tools:stick', ''},
 	}
 })
+
+-- on a rail!
+
+minetest.register_node("deco:rail", {
+	description = "Rail",
+	drawtype = "raillike",
+	tiles = {"deco_rail.png", "deco_rail_curved.png", "deco_rail_t_junction.png", "deco_rail_crossing.png"},
+	inventory_image = "deco_rail.png",
+	wield_image = "deco_rail.png",
+	paramtype = "light",
+	walkable = false,
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+                -- but how to specify the dimensions for curved and sideways rails?
+                fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+	},
+	groups = {bendy=2,dig_immediate=2,attached_node=1},
+})
+
 
 --
 -- Fuels

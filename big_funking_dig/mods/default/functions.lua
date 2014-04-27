@@ -165,7 +165,7 @@ minetest.register_abm({
 --
 
 minetest.register_abm({
-	nodenames = {"default:cactus"},
+	nodenames = {"mapgen:cactus"},
 	neighbors = {"group:sand"},
 	interval = 50,
 	chance = 20,
@@ -175,13 +175,13 @@ minetest.register_abm({
 		if minetest.get_item_group(name, "sand") ~= 0 then
 			pos.y = pos.y+1
 			local height = 0
-			while minetest.get_node(pos).name == "default:cactus" and height < 4 do
+			while minetest.get_node(pos).name == "mapgen:cactus" and height < 4 do
 				height = height+1
 				pos.y = pos.y+1
 			end
 			if height < 4 then
 				if minetest.get_node(pos).name == "air" then
-					minetest.set_node(pos, {name="default:cactus"})
+					minetest.set_node(pos, {name="mapgen:cactus"})
 				end
 			end
 		end

@@ -180,18 +180,19 @@ mobs:register_spawn("mobs:tree_monster", {"mapgen:oak_leaves", "mapgen:cherry_bl
 mobs:register_mob("mobs:sheep", {
 	type = "animal",
 	hp_max = 5,
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	collisionbox = {-0.4, -0.01, -0.6, 0.4, 0.9, 0.4},
 	textures = {"mobs_sheep.png"},
 	visual = "mesh",
 	mesh = "mobs_sheep.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
+	visual_size = {x=1, y=1},
 	armor = 200,
 	drops = {
-		{name = "mobs:meat_raw",
+		{name = "wool:wool_white",
 		chance = 1,
-		min = 2,
-		max = 3,},
+		min = 0,
+		max = 2,},
 	},
 	drawtype = "front",
 	water_damage = 1,
@@ -243,7 +244,7 @@ mobs:register_mob("mobs:sheep", {
 			end
 			self.object:set_properties({
 				textures = {"mobs_sheep_shaved.png"},
-				mesh = "mobs_sheep_shaved.x",
+				mesh = "mobs_sheep.x",
 			})
 		end
 	end,
@@ -322,7 +323,7 @@ minetest.register_craft({
 
 mobs:register_mob("mobs:oerkki", {
 	type = "monster",
-	hp_max = 8,
+	hp_max = 14,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_oerkki.x",
@@ -358,12 +359,12 @@ mobs:register_spawn("mobs:oerkki", {"mapgen:stone", "mapgen:crust_stone", "mapge
 
 mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
-	hp_max = 10,
-	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
+	hp_max = 35,
+	collisionbox = {-0.8, -1, -0.8, 0.8, 1, 0.8},
 	visual = "mesh",
-	mesh = "mobs_dungeon_master.x",
-	textures = {"mobs_dungeon_master.png"},
-	visual_size = {x=8, y=8},
+	mesh = "mobs_dm.b3d",
+	textures = {"mobs_dm.png"},
+	visual_size = {x=1, y=1},
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
@@ -398,6 +399,7 @@ mobs:register_mob("mobs:dungeon_master", {
 		speed_run = 15,
 	},
 })
+
 mobs:register_spawn("mobs:dungeon_master", {"mapgen:mese_stone"}, 7, -1, 3500, 1, -50)
 mobs:register_spawn("mobs:dungeon_master", {"mapgen:crust_stone"}, 2, -1, 7000, 1, -50)
 
@@ -445,6 +447,41 @@ mobs:register_arrow("mobs:fireball", {
 			end
 		end
 	end
+})
+
+
+
+mobs:register_mob("mobs:evergreen_tree", {
+	type = "animal",
+	hp_max = 20,
+	collisionbox = {-0.3, -1, -0.3, 0.3, 0.8, 0.3},
+	visual = "mesh",
+	mesh = "character.b3d",
+	textures = {"player_Evergreen.png"},
+	makes_footstep_sound = true,
+	view_range = 15,
+	walk_velocity = 1.2,
+	drops = {
+		{name = "mapgen:evergreen_sapling",
+		chance = 24,
+		min = 1,
+		max = 3,},
+		{name = "mapgen:evergreen_leaves",
+		chance = 1,
+		min = 1,
+		max = 8,},
+	},
+	water_damage = 1,
+	lava_damage = 10,
+	on_rightclick = nil,
+	armor = 100,
+	animation = {
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		speed_normal = 20,
+	}
 })
 
 if minetest.setting_get("log_mods") then

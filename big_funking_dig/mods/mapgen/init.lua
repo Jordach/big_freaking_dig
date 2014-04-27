@@ -86,26 +86,7 @@ minetest.register_node("mapgen:stone", {
 	description = "Stone",
 	tiles = {"mapgen_stone.png"},
 	--is_ground_content = true,
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				items = {'mapgen:cobble'},
-			},
-			{
-				items = {'ores:iron_fragment'},
-				rarity = 75,
-			},
-			{
-				items = {'ores:tin_fragment'},
-				rarity = 125,
-			},
-			{
-				items = {'ores:copper_fragment'},
-				rarity = 62,
-			}
-		}
-	},
+	drop = 'mapgen:cobble',
 	groups = {cracky=3, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -138,46 +119,7 @@ minetest.register_node("mapgen:crust_stone", {
 	description = "Crust Stone",
 	tiles = {"mapgen_crust_stone.png"},
 	is_ground_content = true,
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				items = {'mapgen:iron_fragment'},
-				rarity = 50,
-			},
-			{
-				items = {'mapgen:tin_fragment'},
-				rarity = 121,
-			},
-			{
-				items = {'mapgen:cobalt_fragment'},
-				rarity = 215,
-			},
-			{
-				items = {'mapgen:iridium_fragment'},
-				rarity = 960,
-			},
-			{
-				items = {'mapgen:osmium_fragment'},
-				rarity = 714,
-			},
-			{
-				items = {'mapgen:bauxite_fragment'},
-				rarity = 375,
-			},
-			{
-				items = {'mapgen:bone_meal'},
-				rarity = 75,
-			},
-			{
-				items = {'mapgen:copper_fragment'},
-				rarity = 38,
-			},
-			{
-				items = {'mapgen:crust_cobble'},
-			}
-		}
-	},
+	drop = 'mapgen:crust_cobble',
 	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=1, stone=1},
 })
@@ -436,9 +378,14 @@ minetest.register_abm({
 			return
 		end
 		
-		
-		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts", "random", {{"base:leaves", "mapgen:evergreen_leaves"}, {"base:tree", "mapgen:evergreen_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+		if math.random(1,4000) == 69 then
+			minetest.add_entity({x=pos.x, y=pos.y+1, z=pos.z}, "mobs:evergreen_tree")
+			minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
+		else
+			
+			minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
+			minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts", "random", {{"base:leaves", "mapgen:evergreen_leaves"}, {"base:tree", "mapgen:evergreen_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+		end
 	end,
 })
 

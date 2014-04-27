@@ -115,8 +115,8 @@ for i in ipairs(beds_list) do
 				meta:set_string("player", "")
 				player_in_bed = player_in_bed-1
 			elseif meta:get_string("player") == "" then
-				pos.y = pos.y-1
-				clicker:set_physics_override(0, 0, 0)
+				clicker:set_physics_override(0, 0, 0, false, false)
+				--pos.y = pos.y-0.75
 				clicker:setpos(pos)
 				if param2 == 0 then
 					clicker:set_look_yaw(math.pi)
