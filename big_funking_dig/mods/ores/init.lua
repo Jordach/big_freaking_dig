@@ -248,42 +248,6 @@ minetest.register_craftitem("ores:gold_lump", {
 minetest.register_node("ores:magma_stone", {
 	description = "Magma Stone",
 	sounds = default.node_sound_stone_defaults(),
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				items = {''},
-			},
-			{
-				items = {'ores:iron_fragment'},
-				rarity = 23,
-			},
-			{
-				items = {'ores:tin_fragment'},
-				rarity = 78,
-			},
-			{
-				items = {'ores:copper_fragment'},
-				rarity = 18,
-			},
-			{
-				items = {'ores:iridium_fragment'},
-				rarity = 412,
-			},
-			{
-				items = {'ores:cobalt_fragment'},
-				rarity = 215,
-			},
-			{
-				items = {'ores:osmium_fragment'},
-				rarity = 370,
-			},
-			{
-				items = {'ores:bauxite_fragment'},
-				rarity = 280,
-			}
-		}
-	},
 	tiles = {"mapgen_magma_rock.png"},
 	is_ground_content = true,
 	groups = {cracky=1},
@@ -319,6 +283,7 @@ minetest.register_node("ores:oil_flowing", {
 	buildable_to = true,
 	drop = "",
 	drowning = 1,
+	is_ground_content = true,
 	liquid_renewable = false,
 	liquidtype = "flowing",
 	liquid_alternative_flowing = "ores:oil_flowing",
@@ -349,6 +314,7 @@ minetest.register_node("ores:oil_source", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
+	is_ground_content = true,
 	liquid_renewable = false,
 	drop = "",
 	drowning = 1,

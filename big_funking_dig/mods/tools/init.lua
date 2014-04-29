@@ -335,8 +335,8 @@ minetest.register_tool("tools:axe_steel", {
 		full_punch_interval = 2.05,
 		max_drop_level = 0,
 		groupcaps = {
-			choppy = {times={[1]=9.8, [2]=4.2, [1]=3.1}, uses = 42, maxlevel=1},
-		},
+			choppy = {times={[1]=9.8, [2]=4.2, [3]=3.1}, uses = 42, maxlevel=1},
+		}, 
 		damage_groups = {fleshy=5},
 	}
 })
@@ -533,8 +533,46 @@ minetest.register_tool("tools:sword_bronze", {
 		full_punch_interval = 1.78,
 		max_drop_level = 0,
 		groupcaps = {
-			snappy = {times={[1]=0.6, [2]=0.3, [3]=0.15}, uses = 32, maxlevel=1},
+			snappy = {times={[1]=0.6/2, [2]=0.3/2, [3]=0.15/2}, uses = 32, maxlevel=1},
 		},
-		damage_groups = {fleshy = 7},
+		damage_groups = {fleshy = 10},
+	}
+})
+
+-- bronze tool crafting (it is very easy to bypass steel and go staight to bronze)
+
+minetest.register_craft({
+	output = 'tools:pick_bronze',
+	recipe = {
+		{'tools:bronze_ingot', 'tools:bronze_ingot', 'tools:bronze_ingot'},
+		{'', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:shovel_bronze',
+	recipe = {
+		{'tools:bronze_ingot'},
+		{'tools:stick'},
+		{'tools:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:axe_bronze',
+	recipe = {
+		{'tools:bronze_ingot', 'tools:bronze_ingot'},
+		{'tools:bronze_ingot', 'tools:stick'},
+		{'', 'tools:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:sword_bronze',
+	recipe = {
+		{'tools:bronze_ingot'},
+		{'tools:bronze_ingot'},
+		{'tools:stick'},
 	}
 })

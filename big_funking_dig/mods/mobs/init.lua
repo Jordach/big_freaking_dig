@@ -189,10 +189,10 @@ mobs:register_mob("mobs:sheep", {
 	visual_size = {x=1, y=1},
 	armor = 200,
 	drops = {
-		{name = "wool:wool_white",
+		{name = "mobs:meat_raw",
 		chance = 1,
-		min = 0,
-		max = 2,},
+		min = 2,
+		max = 3,},
 	},
 	drawtype = "front",
 	water_damage = 1,

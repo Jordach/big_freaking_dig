@@ -1,0 +1,4 @@
+1) Pools of oil that are rounded and somewhat sphere like (use ores:oil_source)
+2) Between ranges of depths: -256 <-> -4098 and -16392 <-> -31000
+3) Only spawn within stone, not to exposed air.
+4) Rare at -256 <-> -4098, 3x as common at the second layer.

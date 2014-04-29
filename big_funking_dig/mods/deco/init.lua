@@ -645,6 +645,179 @@ minetest.register_node("deco:rail", {
 })
 
 
+--desk chair :3
+
+minetest.register_node("deco:desk_chair", {
+	description = "Desk Chair",
+	drawtype = "nodebox",
+	paramtype = "light",
+	tiles = {"deco_wood_oak_planks.png"},
+	paramtype2 = "facedir",
+	groups = {choppy=3, oddly_breakable_by_hand=1},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1, -0.5, -0.5, 0.1, -0.4, -0.1},
+			{-0.1, -0.4, 0.1, -0.5, -0.5, -0.1},
+			{0.1, -0.4, 0.1, -0.1, -0.5, 0.5},
+			{-0.1, 0, 0.3, 0.1, 0.6, 0.4},
+			{0.5, -0.5, 0.1, 0.1, -0.4, -0.1},
+			{0.1, 0, -0.1, -0.1, -0.5, 0.1},
+			{0.3, 0.1, 0.3, -0.3, 0, -0.2},
+			{0.3, 0.4, 0.2, -0.3, 0.7, 0.3},
+		},		
+	},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	output = 'deco:desk_chair',
+	recipe = {
+		{'', 'group:wood', ''},
+		{'', 'group:wood', ''},
+		{'tools:stick', 'tools:stick', 'tools:stick'},
+	}
+})
+
+-- desk formspec stuff
+
+default.desk_formspec = 
+	"size[8,9]"..
+	"list[current_name;main;0,0;4,4;]"..
+	"list[current_player;main;0,5;8,4;]"
+
+--desks with micro amounts of storage :)
+
+minetest.register_node("deco:desk_2", {
+	description = "Desk",
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	tiles = {"deco_wood_oak_planks.png"},
+	groups = {choppy=3, oddly_breakable_by_hand=1},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.3, -0.4, -0.4, -0.5, -0.5},
+			{0.5, -0.3, -0.5, 0.4, -0.5, -0.4},
+			{-0.5, -0.3, -0.5, 0.5, 0.3, 0.2},
+			{0.5, 0.5, -0.5, -0.5, 0.3, 0.5},
+		},
+	},
+			
+		on_destruct = function(pos)
+			local node = minetest.env:get_node(pos)
+			local param2 = node.param2
+			if param2 == 0 then
+				pos.z = pos.z+1
+			elseif param2 == 1 then
+				pos.x = pos.x+1
+			elseif param2 == 2 then
+				pos.z = pos.z-1
+			elseif param2 == 3 then
+				pos.x = pos.x-1
+			end
+			if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).name == "deco:desk" ) then
+				if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
+					minetest.env:remove_node(pos)
+				end	
+			end
+		end,
+		
+		selection_box = {
+			type = "fixed",
+			fixed = {
+						{-0.5, 0.5, -0.5, 0.5, -0.5, 1.5},
+					}
+		},
+		
+		sounds = default.node_sound_wood_defaults(),
+		on_construct = function(pos)
+			local meta = minetest.get_meta(pos)
+			meta:set_string("formspec",default.desk_formspec)
+			meta:set_string("infotext", "Desk")
+			local inv = meta:get_inventory()
+			inv:set_size("main", 8*4)
+		end,
+		after_place_node = function(pos, placer)
+			local meta = minetest.get_meta(pos)
+			meta:set_string("owner", placer:get_player_name() or "")
+			meta:set_string("infotext", "Desk (owned by "..
+				meta:get_string("owner")..")")
+			local node = minetest.env:get_node(pos)
+			local p = {x=pos.x, y=pos.y, z=pos.z}
+			local param2 = node.param2
+			node.name = "deco:desk"
+			if param2 == 0 then
+				pos.z = pos.z+1
+			elseif param2 == 1 then
+				pos.x = pos.x+1
+			elseif param2 == 2 then
+				pos.z = pos.z-1
+			elseif param2 == 3 then
+				pos.x = pos.x-1
+			end
+			if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+				minetest.env:set_node(pos, node)
+			else
+				minetest.env:remove_node(p)
+				return true
+			end
+		end,
+		can_dig = function(pos,player)
+			local meta = minetest.get_meta(pos);
+			local inv = meta:get_inventory()
+			return inv:is_empty("main")
+		end,
+		on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+			minetest.log("action", player:get_player_name()..
+				" moves stuff in desk at "..minetest.pos_to_string(pos))
+		end,
+		on_metadata_inventory_put = function(pos, listname, index, stack, player)
+			minetest.log("action", player:get_player_name()..
+				" moves stuff to desk at "..minetest.pos_to_string(pos))
+		end,
+		on_metadata_inventory_take = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" takes stuff from desk at "..minetest.pos_to_string(pos))
+		end,
+})
+
+minetest.register_node("deco:desk", {
+		description = "Desk",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		groups = {choppy=3, oddly_breakable_by_hand=1},
+		tiles = {"deco_wood_oak_planks.png"},
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.4, 0.3, 0.5, -0.5, -0.5, 0.4},
+				{0.5, 0.3, 0.5, -0.5, 0.5, -0.5},
+				{0.4, 0.3, 0.5, 0.5, -0.5, 0.4},
+			},
+		},
+				
+		selection_box = {
+			type = "fixed",
+			fixed = {
+						{0, 0, 0, 0, 0, 0},
+					}
+		},
+		sounds = default.node_sound_wood_defaults(),
+})	
+
+--desk crafting
+
+minetest.register_craft({
+	output = 'deco:desk_2',
+	recipe = {
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'tools:stick', 'deco:chest', 'tools:stick'},
+	}
+})
+
 --
 -- Fuels
 --
@@ -653,6 +826,44 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "ores:coal_lump",
 	burntime = 60,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "bucket:bucket_lava",
+	burntime = 120,
+	replacements = {{"bucket:bucket_lava", "bucket:bucket_empty"}},
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "bucket:oil",
+	burntime = 360,
+	replacements = {{"bucket:oil", "bucket:bucket_empty"}},
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:leaves",
+	burntime = 5,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:tree",
+	burntime = 45,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:wood",
+	burntime = 7,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:flower",
+	burntime = 2,
 })
 
 --
