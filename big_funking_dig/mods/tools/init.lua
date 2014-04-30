@@ -540,6 +540,7 @@ minetest.register_tool("tools:sword_bronze", {
 })
 
 -- bronze tool crafting (it is very easy to bypass steel and go staight to bronze)
+-- remind me to nerf herd this!
 
 minetest.register_craft({
 	output = 'tools:pick_bronze',
