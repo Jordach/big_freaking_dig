@@ -51,28 +51,28 @@ minetest.register_node("deco:oak_plank", {
 	description = "Oak Planks",
 	tiles = {"deco_wood_oak_planks.png"},
 	sounds = default.node_sound_wood_defaults(),
-	groups = {oddly_breakable_by_hand=1, flammable=1, snappy=1, choppy=3, wood=1},
+	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
 })
 
 minetest.register_node("deco:birch_plank", {
 	description = "Birch Planks",
 	tiles = {"deco_wood_birch_planks.png"},
 	sounds = default.node_sound_wood_defaults(),
-	groups = {oddly_breakable_by_hand=1, flammable=1, snappy=1, choppy=3, wood=1},
+	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
 })
 
 minetest.register_node("deco:cherry_plank", {
 	description = "Cherry Planks",
 	tiles = {"deco_wood_cherry_planks.png"},
 	sounds = default.node_sound_wood_defaults(),
-	groups = {oddly_breakable_by_hand=1, flammable=1, snappy=1, choppy=3, wood=1},
+	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
 })
 
 minetest.register_node("deco:evergreen_plank", {
 	description = "Evergreen Planks",
 	tiles = {"deco_wood_evergreen_planks.png"},
 	sounds = default.node_sound_wood_defaults(),
-	groups = {oddly_breakable_by_hand=1, flammable=1, snappy=1, choppy=3, wood=1},
+	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
 })
 
 -- plank crafting
@@ -354,7 +354,7 @@ minetest.register_node("deco:furnace", {
 	tiles = {"deco_furnace_top.png", "deco_furnace_bottom.png", "deco_furnace_side.png",
 		"deco_furnace_side.png", "deco_furnace_side.png", "deco_furnace_front.png"},
 	paramtype2 = "facedir",
-	groups = {cracky=2},
+	groups = {cracky=3},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
 	sounds = default.node_sound_stone_defaults(),
@@ -440,7 +440,7 @@ minetest.register_node("deco:furnace_active", {
 	paramtype2 = "facedir",
 	light_source = 8,
 	drop = "deco:furnace",
-	groups = {cracky=2, not_in_creative_inventory=1,hot=1},
+	--groups = {cracky=2, not_in_creative_inventory=1,hot=1},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
 	sounds = default.node_sound_stone_defaults(),
@@ -683,7 +683,7 @@ minetest.register_craft({
 
 default.desk_formspec = 
 	"size[8,9]"..
-	"list[current_name;main;0,0;4,4;]"..
+	"list[current_name;main;2,0;4,4;]"..
 	"list[current_player;main;0,5;8,4;]"
 
 --desks with micro amounts of storage :)

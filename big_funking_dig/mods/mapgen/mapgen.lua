@@ -124,6 +124,21 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
+	name = "pasture",
+	
+	node_top = "mapgen:grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 1,
+	height_max = 60,
+	heat_point = 60,
+	humidity_point = 55,
+})
+
+minetest.register_biome({
 	name = "edens_garden",
 	
 	node_top = "mapgen:edens_grass",
@@ -487,4 +502,14 @@ minetest.register_decoration({
 		{"base:tree", "mapgen:birch_tree"},
 		{"base:dirt", "mapgen:dirt"},
 	},
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:grass",
+	sidelen = 8,
+	fill_ratio = 4,
+	decoration = {"mapgen:wheat_grass_1", "mapgen:wheat_grass_2", "mapgen:wheat_grass_3", "mapgen:wheat_grass_4", "mapgen:wheat_grass_5"},
+	biomes = {"pasture"},
+	height = 1,
 })

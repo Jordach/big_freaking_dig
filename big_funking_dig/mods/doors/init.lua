@@ -30,7 +30,7 @@ end
 
 function doors:register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
-	
+
 	local box = {{-0.5, -0.5, -0.5, 0.5, 0.5, -0.5+1.5/16}}
 	
 	if not def.node_box_bottom then
@@ -292,7 +292,7 @@ end
 doors:register_door("doors:door_wood", {
 	description = "Wooden Door",
 	inventory_image = "door_wood.png",
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
 	tiles_bottom = {"door_wood_b.png", "door_brown.png"},
 	tiles_top = {"door_wood_a.png", "door_brown.png"},
 	sounds = default.node_sound_wood_defaults(),
@@ -311,7 +311,7 @@ minetest.register_craft({
 doors:register_door("doors:door_steel", {
 	description = "Steel Door",
 	inventory_image = "door_steel.png",
-	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1},
+	groups = {bendy=2,cracky=1,melty=2,level=2,door=1},
 	tiles_bottom = {"door_steel_b.png", "door_grey.png"},
 	tiles_top = {"door_steel_a.png", "door_grey.png"},
 	only_placer_can_open = true,
@@ -331,7 +331,7 @@ minetest.register_craft({
 doors:register_door("doors:door_glass", {
 	description = "Glass Door",
 	inventory_image = "door_glass.png",
-	groups = {snappy=1,cracky=1,oddly_breakable_by_hand=3,door=1},
+	groups = {cracky=1,oddly_breakable_by_hand=3,door=1},
 	tiles_bottom = {"door_glass_b.png", "door_glass_side.png"},
 	tiles_top = {"door_glass_a.png", "door_glass_side.png"},
 	sounds = default.node_sound_glass_defaults(),
@@ -350,7 +350,7 @@ minetest.register_craft({
 doors:register_door("doors:door_obsidian_glass", {
 	description = "Obsidian Glass Door",
 	inventory_image = "door_obsidian_glass.png",
-	groups = {snappy=1,cracky=1,oddly_breakable_by_hand=3,door=1},
+	groups = {cracky=1,oddly_breakable_by_hand=3,door=1},
 	tiles_bottom = {"door_obsidian_glass_b.png", "door_obsidian_glass_side.png"},
 	tiles_top = {"door_obsidian_glass_b.png", "door_obsidian_glass_side.png"},
 	sounds = default.node_sound_glass_defaults(),
@@ -409,7 +409,7 @@ minetest.register_node("doors:trapdoor", {
 	tiles = {"door_trapdoor.png", "door_trapdoor.png",  "door_trapdoor_side.png",  "door_trapdoor_side.png", "door_trapdoor_side.png", "door_trapdoor_side.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
 	sounds = default.node_sound_wood_defaults(),
 	drop = "doors:trapdoor",
 	node_box = {
@@ -436,7 +436,7 @@ minetest.register_node("doors:trapdoor_open", {
 	paramtype2 = "facedir",
 	pointable = true,
 	stack_max = 0,
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
 	sounds = default.node_sound_wood_defaults(),
 	drop = "doors:trapdoor",
 	node_box = {
