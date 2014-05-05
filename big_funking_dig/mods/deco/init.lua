@@ -818,6 +818,41 @@ minetest.register_craft({
 	}
 })
 
+--stone square
+
+minetest.register_node("deco:stone_tile", {
+	description = "Stone Tile",
+	tiles = {"deco_stone_tile.png"},
+	groups = {cracky=3, stone=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craft({
+	output = 'deco:stone_tile 4',
+	recipe = {
+		{'mapgen:cobble', 'mapgen:cobble'},
+		{'mapgen:cobble', 'mapgen:cobble'},
+	}
+})
+
+-- stone brick
+
+minetest.register_node("deco:stone_brick", {
+	description = "Stone Brick",
+	tiles = {"deco_stone_brick.png"},
+	groups = {cracky=3, stone=1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craft({
+	output = 'deco:stone_brick 4',
+	recipe = {
+		{'mapgen:stone', 'mapgen:stone'},
+		{'mapgen:stone', 'mapgen:stone'},
+	}
+})
+
+
 --
 -- Fuels
 --
@@ -874,4 +909,16 @@ minetest.register_craft({
 	type = "cooking",
 	output = "deco:glass",
 	recipe = "mapgen:sand",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	recipe = 'mapgen:cobble',
+	output = 'mapgen:stone'
+})
+
+minetest.register_craft({
+	type = "cooking",
+	recipe = 'mapgen:crust_cobble',
+	output = 'mapgen:crust_stone'
 })

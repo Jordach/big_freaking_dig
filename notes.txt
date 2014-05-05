@@ -1,9 +1,0 @@
-notes.txt
-
-Mods such as default, textures and sounds of default, are licensed as the ones
-found at https://github.com/minetest/minetest_game
-
-Other mods, such as doors, fences, hud and player textures are licensed as
-WTFPL.
-
-Other mods may be licensed differently, and treat them as such.

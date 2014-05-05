@@ -274,3 +274,17 @@ stairs.register_stair_and_slab("ice", "mapgen:ice",
 		"Solid Ice Stair",
 		"Solid Ice Slab",
 		default.node_sound_stone_defaults())
+		
+stairs.register_stair_and_slab("stone_brick", "deco:stone_brick",
+		{cracky=3},
+		{"deco_stone_brick.png"},
+		"Stone Brick Stair",
+		"Stone Brick Slab",
+		default.node_sound_stone_defaults())
+		
+stairs.register_stair_and_slab("stone_tile", "deco:stone_tile",
+		{cracky=3},
+		{"deco_stone_tile.png"},
+		"Stone Tile Stair",
+		"Stone Tile Slab",
+		default.node_sound_stone_defaults())

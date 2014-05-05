@@ -2,7 +2,7 @@ dofile(minetest.get_modpath("mobs").."/api.lua")
 
 mobs:register_mob("mobs:dirt_monster", {
 	type = "monster",
-	hp_max = 5,
+	hp_max = 16,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.x",
@@ -43,7 +43,7 @@ mobs:register_spawn("mobs:dirt_monster", {"mapgen:grass", "mapgen:snowy_grass", 
 
 mobs:register_mob("mobs:stone_monster", {
 	type = "monster",
-	hp_max = 10,
+	hp_max = 30,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.x",
@@ -84,7 +84,7 @@ mobs:register_spawn("mobs:stone_monster", {"mapgen:stone", "mapgen:crust_stone"}
 
 mobs:register_mob("mobs:sand_monster", {
 	type = "monster",
-	hp_max = 3,
+	hp_max = 16,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_sand_monster.x",
@@ -125,7 +125,7 @@ mobs:register_spawn("mobs:sand_monster", {"mapgen:sand"}, 20, -1, 7000, 3, 31000
 
 mobs:register_mob("mobs:tree_monster", {
 	type = "monster",
-	hp_max = 5,
+	hp_max = 20,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_tree_monster.x",
@@ -179,7 +179,7 @@ mobs:register_spawn("mobs:tree_monster", {"mapgen:oak_leaves", "mapgen:cherry_bl
 
 mobs:register_mob("mobs:sheep", {
 	type = "animal",
-	hp_max = 5,
+	hp_max = 10,
 	collisionbox = {-0.4, -0.01, -0.6, 0.4, 0.9, 0.4},
 	textures = {"mobs_sheep.png"},
 	visual = "mesh",
@@ -318,12 +318,11 @@ minetest.register_craft({
 	type = "cooking",
 	output = "mobs:rat_cooked",
 	recipe = "mobs:rat",
-	cooktime = 5,
 })
 
 mobs:register_mob("mobs:oerkki", {
 	type = "monster",
-	hp_max = 14,
+	hp_max = 38,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_oerkki.x",
@@ -359,7 +358,7 @@ mobs:register_spawn("mobs:oerkki", {"mapgen:stone", "mapgen:crust_stone", "mapge
 
 mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
-	hp_max = 35,
+	hp_max = 80,
 	collisionbox = {-0.8, -1, -0.8, 0.8, 1, 0.8},
 	visual = "mesh",
 	mesh = "mobs_dm.b3d",

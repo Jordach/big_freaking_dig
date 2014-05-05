@@ -33,6 +33,13 @@ minetest.register_craftitem("tools:stick", {
 	inventory_image = "tool_stick.png",
 })
 
+-- get string from wool
+
+minetest.register_craft({
+	output = 'farming:string 9',
+	recipe = { {'group:wool'} }
+})
+
 -- tool rod crafts
 
 minetest.register_craft({
@@ -82,6 +89,12 @@ minetest.register_craft({
 	recipe = "ores:silver_lump",
 })
 
+minetest.register_craft({
+	type = "cooking",
+	output = "tools:gold_ingot",
+	recipe = "ores:gold_lump",
+})
+
 -- ingot defs
 
 minetest.register_craftitem("tools:steel_ingot", {
@@ -114,7 +127,10 @@ minetest.register_craftitem("tools:silver_ingot", {
 	inventory_image = "tools_silver_ingot.png",
 })
 
-
+minetest.register_craftitem("tools:gold_ingot", {
+	description = "Silver Ingot",
+	inventory_image = "tools_gold_ingot.png",
+})
 
 --basic wooden tools, upgrades can only be applied to iron and beyond; stone cannot have them either.
 
