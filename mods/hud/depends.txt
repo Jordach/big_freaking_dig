@@ -13,3 +13,5 @@ bushes_classic?
 mushroom?
 fruit?
 mush45?
+seaplants?
+mobfcooking?

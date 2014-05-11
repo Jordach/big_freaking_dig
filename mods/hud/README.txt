@@ -1,10 +1,10 @@
 Minetest mod "Better HUD"
 =========================
-version: 1.2
+Version: 1.3
 
 License of source code: WTFPL
 -----------------------------
-(c) Copyright BlockMen (2013)
+(c) Copyright BlockMen (2013-2014)
 
 
 License of textures:
@@ -46,21 +46,24 @@ This mod adds hunger to the game. You can disable this by setting "HUD_HUNGER_EN
 
 Currently supported food:
 - Apples (default)
-- Bread (default)
-- Drawves (beer and such)
-- Mooretrees
-- Simple mobs
 - Animalmaterials (mobf modpack)
-- Fishing
-- Glooptest
+- Bread (default)
 - Bushes
-- Docfarming
-- Farming plus
-- Mtfoods
 - bushes_classic
-- mushroom
+- Dwarves (beer and such)
+- Docfarming
+- Fishing
+- Farming plus
+- Food
 - fruit
+- Glooptest
+- Mobfcooking
+- Mooretrees
+- Mtfoods
+- mushroom
 - mush45
+- Seaplants (sea)
+- Simple mobs
 
 Example: 1 apple fills up the hunger bar by 1 bread, 1 bread (from farming) 2 breads in bar.
 
