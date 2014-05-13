@@ -7,7 +7,7 @@ fishing?
 glooptest?
 bushes?
 docfarming?
-farmingplus?
+farming_plus?
 mtfoods?
 bushes_classic?
 mushroom?

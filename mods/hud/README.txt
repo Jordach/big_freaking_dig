@@ -1,6 +1,6 @@
 Minetest mod "Better HUD"
 =========================
-Version: 1.3
+Version: 1.3.1
 
 License of source code: WTFPL
 -----------------------------

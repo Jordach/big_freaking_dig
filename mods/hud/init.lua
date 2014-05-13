@@ -16,6 +16,10 @@ local armor_hud = {}
 local armor_hud_bg = {}
 
 -- default settings
+
+HUD_SCALEABLE = false
+HUD_SIZE = ""
+
  -- statbar positions
 HUD_HEALTH_POS = {x=0.5,y=0.9}
 HUD_HEALTH_OFFSET = {x=-175, y=2}
@@ -26,7 +30,21 @@ HUD_AIR_OFFSET = {x=15,y=-15}
 HUD_ARMOR_POS = {x=0.5,y=0.9}
 HUD_ARMOR_OFFSET = {x=-175, y=-15}
 
-HUD_TICK = 0.2
+-- dirty way to check for new statbars
+if dump(minetest.hud_replace_builtin) ~= "nil" then
+	HUD_SCALEABLE = true
+	HUD_SIZE = {x=24, y=24}
+	HUD_HEALTH_POS = {x=0.5,y=1}
+	HUD_HEALTH_OFFSET = {x=-262, y=-87}
+	HUD_HUNGER_POS = {x=0.5,y=1}
+	HUD_HUNGER_OFFSET = {x=15, y=-87}
+	HUD_AIR_POS = {x=0.5,y=1}
+	HUD_AIR_OFFSET = {x=15,y=-110}
+	HUD_ARMOR_POS = {x=0.5,y=1}
+	HUD_ARMOR_OFFSET = {x=-262, y=-110}
+end
+
+HUD_TICK = 0.1
 HUD_HUNGER_TICK = 300
 
 HUD_ENABLE_HUNGER = minetest.setting_getbool("hud_hunger_enable")
@@ -46,7 +64,7 @@ if set then
 	set:close()
 else
 	if not HUD_ENABLE_HUNGER then
-		HUD_AIR_OFFSET = {x=15,y=0}
+		HUD_AIR_OFFSET = HUD_HUNGER_OFFSET
 	end
 end
 
@@ -70,7 +88,7 @@ local function custom_hud(player)
        	 player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_HUNGER_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_hunger_bg.png",
 		number = 20,
 		alignment = {x=-1,y=-1},
@@ -81,7 +99,7 @@ local function custom_hud(player)
 	 hunger_hud[name] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_HUNGER_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_hunger_fg.png",
 		number = h,
 		alignment = {x=-1,y=-1},
@@ -92,7 +110,7 @@ local function custom_hud(player)
         player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_HEALTH_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_heart_bg.png",
 		number = 20,
 		alignment = {x=-1,y=-1},
@@ -101,7 +119,7 @@ local function custom_hud(player)
 	health_hud[name] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_HEALTH_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_heart_fg.png",
 		number = player:get_hp(),
 		alignment = {x=-1,y=-1},
@@ -112,7 +130,7 @@ local function custom_hud(player)
 	air_hud[name] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_AIR_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_air_fg.png",
 		number = 0,
 		alignment = {x=-1,y=-1},
@@ -124,7 +142,7 @@ local function custom_hud(player)
        armor_hud_bg[name] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_ARMOR_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_armor_bg.png",
 		number = 0,
 		alignment = {x=-1,y=-1},
@@ -133,7 +151,7 @@ local function custom_hud(player)
 	armor_hud[name] = player:hud_add({
 		hud_elem_type = "statbar",
 		position = HUD_ARMOR_POS,
-		scale = {x=1, y=1},
+		size = HUD_SIZE,
 		text = "hud_armor_fg.png",
 		number = 0,
 		alignment = {x=-1,y=-1},
