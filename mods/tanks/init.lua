@@ -30,457 +30,121 @@ minetest.register_craft({
 	}
 })
 
+-- tank nodeboxes
+
+tank_level = {}
+
+tank_level[1] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+0.0625, -0.43750},
+}
+
+tank_level[2] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*3), -0.43750},
+}
+
+tank_level[3] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*5), -0.43750},
+}
+
+tank_level[4] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*7), -0.43750},
+}
+
+tank_level[5] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*9), -0.43750},
+}
+
+tank_level[6] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*11), -0.43750},
+}
+
+tank_level[7] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*13), -0.43750},
+}
+
+tank_level[8] = {
+	{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
+	{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
+	{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
+	{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
+	{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*15), -0.43750},
+}
+
+-- register tank function
+		
+function register_tank(name, light_min)
+	for level=1,8 do
+		textures = "nope.avi"
+		if name == "w" then
+			textures = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_"..level..".png^tankgauge.png"}
+			light = 0
+		elseif name == "l" then
+			textures = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_"..level..".png^tankgauge.png"}
+			light = light_min+level
+		elseif name == "o" then
+			textures = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_"..level..".png^tankgauge.png"}
+			light = 0
+		else
+			textures = {"tankgaugetop.png", "tankgaugetop.png", "tankgauge.png"}
+			light = 0
+		end
+
+		minetest.register_node("tanks:"..name.."_level_"..level, {
+			description = name .." Tank Level "..level,
+			drawtype = "nodebox",
+			paramtype = "light",
+			tiles = textures,
+			node_box = {
+				type = "fixed",
+				fixed = tank_level[level],
+			},
+			light_source = light,
+			groups = {impossible=1},
+		})
+	end
+end
+
 -- water tanks
 
-minetest.register_node("tanks:w_level_1", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+0.0625, -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_1.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:w_level_2", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*3), -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_2.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-})
-
-minetest.register_node("tanks:w_level_3", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*5), -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_3.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-})
-
-minetest.register_node("tanks:w_level_4", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*7), -0.43750},
-		},
-	},
-	paramtype = "light",
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_4.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:w_level_5", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*9), -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_5.png^tankgauge.png"},
-	paramtype = "light",
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:w_level_6", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*11), -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_6.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-})
-
-minetest.register_node("tanks:w_level_7", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*13), -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_7.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-})
-
-minetest.register_node("tanks:w_level_8", {
-	description = "Impossible Node ;)",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*15), -0.43750},
-		},
-	},
-	tiles = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgauge.png"},
-	paramtype = "light",
-	groups = {oddly_breakable_by_hand=1},
-})
+register_tank("w", 1)
 
 -- lava tanks
 
-minetest.register_node("tanks:l_level_1", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*1), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_1.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/8),
-})
-
-minetest.register_node("tanks:l_level_2", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*3), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_2.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/7),
-})
-
-minetest.register_node("tanks:l_level_3", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*5), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_3.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/6),
-})
-
-minetest.register_node("tanks:l_level_4", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*7), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_4.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/5),
-})
-
-minetest.register_node("tanks:l_level_5", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*9), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_5.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/4),
-})
-
-minetest.register_node("tanks:l_level_6", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*11), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_6.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/3),
-})
-
-minetest.register_node("tanks:l_level_7", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*13), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_7.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/2),
-})
-
-minetest.register_node("tanks:l_level_8", {
-	description = "Impossible Node ;)",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*15), -0.43750},
-		},
-	},
-	tiles = {"tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgaugetop.png", "tank_lava_level_8.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-	drawtype = "nodebox",
-	light_source = math.floor(14/1),
-})
+register_tank("l", 6)
 
 -- oil tanks
 
-minetest.register_node("tanks:o_level_1", {
-	description = "Impossible node - good try",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*1), -0.43750},
-		},
-	},
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_1.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	drawtype = "nodebox",
-	paramtype = "light",
-})
-
-minetest.register_node("tanks:o_level_2", {
-	description = "Impossible node - good try",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*3), -0.43750},
-		},
-	},
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_2.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-	paramtype = "light",
-})
-
-minetest.register_node("tanks:o_level_3", {
-	description = "Impossible node - good try",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*5), -0.43750},
-		},
-	},
-	paramtype = "light",
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_3.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:o_level_4", {
-	description = "Impossible node - good try",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*7), -0.43750},
-		},
-	},
-	drawtype = "nodebox",
-	paramtype = "light",
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_4.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:o_level_5", {
-	description = "Impossible node - good try",
-	drawtype = "nodebox",
-	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*9), -0.43750},
-		},
-	},
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_5.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:o_level_6", {
-	description = "Impossible node - good try",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*11), -0.43750},
-		},
-	},
-	paramtype = "light",
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_6.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:o_level_7", {
-	description = "Impossible node - good try",
-	drawtype = "nodebox",
-	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*13), -0.43750},
-		},
-	},
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_7.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("tanks:o_level_8", {
-	description = "Impossible node - good try",
-	drawtype = "nodebox",
-	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.5, 0.5, 0.5, -0.5, -0.5, 0.43750},
-			{-0.43750, 0.5, 0.43750, -0.5, -0.5, -0.5},
-			{0.5, -0.5, -0.5, -0.5, 0.5, -0.43750},
-			{0.5, -0.5, -0.43750, 0.43750, 0.5, 0.43750},
-			{-0.43750, -0.5, 0.43750, 0.43750, -0.43750+(0.0625*15), -0.43750},
-		},
-	},
-	tiles = {"tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgaugetop.png", "tank_oil_level_8.png^tankgauge.png"},
-	groups = {oddly_breakable_by_hand=1},
-})
+register_tank("o", 1)
 
 -- black magic here
-
-function tank_control(bucket_type, tank_type)
-	
-end
 
 minetest.register_on_punchnode(function(pos, node, puncher)
 	if not puncher then return end
