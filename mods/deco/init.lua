@@ -825,6 +825,7 @@ minetest.register_node("deco:stone_tile", {
 	tiles = {"deco_stone_tile.png"},
 	groups = {cracky=3, stone=1},
 	sounds = default.node_sound_stone_defaults(),
+	drop = 'deco:cobble',
 })
 
 minetest.register_craft({
@@ -852,6 +853,14 @@ minetest.register_craft({
 	}
 })
 
+-- decorative cobble
+
+minetest.register_node("deco:cobble", {
+	description = "Deco Cobble",
+	tiles = {"deco_cobble.png"},
+	groups = {cracky=3, stone=1},
+	sounds = default.node_sound_stone_defaults(),
+})
 
 --
 -- Fuels
