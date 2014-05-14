@@ -21,7 +21,7 @@ gs_tools.modpath = modpath
 
 --dofile(modpath.."/crafts.lua")
 
---dofile(modpath.."/axes.lua")
+dofile(modpath.."/axes.lua")
 --dofile(modpath.."/ladders.lua")
 dofile(modpath.."/sledges.lua")
 --dofile(modpath.."/workbench.lua")
@@ -100,39 +100,28 @@ end
 
 -- make a list of supported nodes that a chopped node has just dropped
 
-function gs_tools.get_chopped(pos, group)
-	local r = {}
-
-	-- did the chopped pos have a neighboring log node?
-	local b = 0
-	local p = {x=pos.x - 1,y=pos.y,z=pos.z}
-	if minetest.get_item_group(minetest.get_node(p).name, group) > 0 then b = 1 end
-	p.x = p.x + 2
-	if minetest.get_item_group(minetest.get_node(p).name, group) > 0 then b = 1 end
-	p.x = p.x - 1
-	p.z = p.z - 1
-	if minetest.get_item_group(minetest.get_node(p).name, group) > 0 then b = 1 end
-	p.z = p.z + 2
-	if minetest.get_item_group(minetest.get_node(p).name, group) > 0 then b = 1 end
-
-	-- if not, then proceed
-	local c = 1
-	while b == 0 do
-		p.y = p.y + 1
-		b = -1
-
-		-- 3x3s upward till we run out of tree
-		for x=-1,1 do
-		for z=-1,1 do
-			p.x = pos.x + x
-			p.z = pos.z + z
-			if minetest.get_item_group(minetest.get_node(p).name, group) > 0 then
-				b = 0
-				r[c] = {x=p.x, y=p.y, z=p.z}
-				c = c + 1
+function gs_tools.get_chopped(pos, group, digger)
+	-- check if the 8 surrounding it on the xyz pos are snappy (eg, grass and leaves in a 
+	local p = pos
+	local pos2 = p
+	for x1=-1,1 do
+		for z1=-1,1 do
+			print (x1 .. " " .. z1)
+			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 then
+				local node = minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1})
+				local def = ItemStack({name=node.name}):get_definition()
+				local wielded = digger
+				if not def.diggable or (def.can_dig and not def.can_dig(pos,digger)) then return end
+				if minetest.is_protected(pos, "player_that_wont_exist") then return end
+				rank=1
+				local level = minetest.get_item_group(node.name, "level")
+				if rank >= level then
+					local drops = minetest.get_node_drops(node.name, wielded:get_name())
+					minetest.handle_node_drops({x=p.x+x1, y=p.y, z=p.z+z1}, drops, digger)
+					minetest.remove_node({x=p.x+x1, y=p.y, z=p.z+z1})
+					print 'dug nodes'
+				end
 			end
 		end
-		end
 	end
-	return r
 end

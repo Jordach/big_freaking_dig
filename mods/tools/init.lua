@@ -624,7 +624,7 @@ minetest.register_craft({
 
 minetest.register_tool("tools:steel_sickle", {
 	description = "Steel Sickle",
-	groups = {sledge=1},
+	groups = {lumberaxe=1},
 	inventory_image = "tools_steel_sickle.png",
 	tool_capabilities = {
 		full_punch_interval = 2.34,
@@ -685,7 +685,7 @@ minetest.register_tool("tools:steel_dirt_mover", {
 })
 
 minetest.register_craft({
-	output = "tools:steel_dirt_mover", {
+	output = "tools:steel_dirt_mover",
 	recipe = {
 		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
 		{'tools:steel_ingot', 'tools:stick', 'tools:steel_ingot'},
