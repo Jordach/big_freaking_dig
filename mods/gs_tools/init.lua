@@ -108,19 +108,19 @@ function gs_tools.get_chopped(pos, group, digger)
 		for z1=-1,1 do
 			print (x1 .. " " .. z1)
 			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 then
-				local node = minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1})
-				local def = ItemStack({name=node.name}):get_definition()
-				local wielded = digger
-				if not def.diggable or (def.can_dig and not def.can_dig(pos,digger)) then return end
-				if minetest.is_protected(pos, "player_that_wont_exist") then return end
-				rank=1
-				local level = minetest.get_item_group(node.name, "level")
-				if rank >= level then
-					local drops = minetest.get_node_drops(node.name, wielded:get_name())
-					minetest.handle_node_drops({x=p.x+x1, y=p.y, z=p.z+z1}, drops, digger)
-					minetest.remove_node({x=p.x+x1, y=p.y, z=p.z+z1})
-					print 'dug nodes'
+				if minetest.is_protected(pos, digger:get_player_name()) then
+					minetest.record_protection_violation(pos, digger:get_player_name())
+					return
 				end
+				local node=minetest.env:get_node({x=p.x+x1, y=p.y, z=p.z+z1})
+				if node.name == "air" or node.name == "ignore" then return end
+				if node.name == "mapgen:lava_source" then return end
+				if node.name == "mapgen:lava_flowing" then return end
+				if node.name == "mapgen:water_source" then return end
+				if node.name == "mapgen:water_flowing" then return end
+				if node.name == "ores:oil_flowing" then return end
+				if node.name == "ores:oil_source" then return end
+				minetest.node_dig({x=p.x+x1, y=p.y, z=p.z+z1},node,digger)
 			end
 		end
 	end
