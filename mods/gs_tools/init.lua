@@ -101,13 +101,12 @@ end
 -- make a list of supported nodes that a chopped node has just dropped
 
 function gs_tools.get_chopped(pos, group, digger)
-	-- check if the 8 surrounding it on the xyz pos are snappy (eg, grass and leaves in a 
+	-- check if the 8 surrounding it on the xyz pos are snappy (eg, grass and leaves in a area)
 	local p = pos
 	local pos2 = p
 	for x1=-1,1 do
 		for z1=-1,1 do
-			print (x1 .. " " .. z1)
-			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 and minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, "leafdecay") > 0 then
+			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 and minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, "leafdecay") < 4 then
 				if minetest.is_protected(pos, digger:get_player_name()) then
 					minetest.record_protection_violation(pos, digger:get_player_name())
 					return
@@ -120,7 +119,7 @@ function gs_tools.get_chopped(pos, group, digger)
 				if node.name == "mapgen:water_flowing" then return end
 				if node.name == "ores:oil_flowing" then return end
 				if node.name == "ores:oil_source" then return end
-				minetest.node_dig({x=p.x+x1, y=p.y, z=p.z+z1},node,digger)
+				minetest.remove_node({x=p.x+x1, y=p.y, z=p.z+z1})
 			end
 		end
 	end

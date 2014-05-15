@@ -374,6 +374,10 @@ mobs:register_mob("mobs:dungeon_master", {
 		chance = 100,
 		min = 1,
 		max = 2,},
+		{name = "tools:sword_air",
+		chance = 16000,
+		min = 1,
+		max = 1,}
 	},
 	armor = 60,
 	drawtype = "front",
@@ -469,6 +473,10 @@ mobs:register_mob("mobs:evergreen_tree", {
 		chance = 1,
 		min = 1,
 		max = 8,},
+		{name = "tools:sword_air",
+		chance = 4000,
+		min = 1,
+		max = 1,}
 	},
 	water_damage = 1,
 	lava_damage = 10,

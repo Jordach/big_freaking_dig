@@ -132,6 +132,21 @@ minetest.register_craftitem("tools:gold_ingot", {
 	inventory_image = "tools_gold_ingot.png",
 })
 
+-- air sword!
+
+minetest.register_tool("tools:sword_air", {
+	description = "Air Sword",
+	inventory_image = "tool_air_sword.png",
+	tool_capabilities = {
+		full_punch_interval = 0.01,
+		max_drop_level = 0,
+		groupcaps = {
+			snappy = {times={[1]=0.05, [2]=0.005, [3]=0.0005}, uses = 1337, maxlevel=1},
+		},
+		damage_groups = {fleshy=100, immortal=100},
+	}
+})
+
 --basic wooden tools, upgrades can only be applied to iron and beyond; stone cannot have them either.
 
 minetest.register_tool("tools:pick_wood", {

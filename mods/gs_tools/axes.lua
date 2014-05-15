@@ -10,11 +10,8 @@ function gs_tools.after_axe(pos, oldnode, digger)
 	if digger then
 		local wielded = digger:get_wielded_item()
 		local rank = minetest.get_item_group(wielded:get_name(), "lumberaxe")
-		print 'checking rank of sickle'
 		if rank > 0 then 
-			print 'starting get chopped'
 			gs_tools.get_chopped(pos, "snappy", digger)
-			print 'stopping get chopped'
 		end
 	end
 end
