@@ -836,6 +836,14 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'deco:stone_tile 4',
+	recipe = {
+		{'deco:cobble', 'deco:cobble'},
+		{'deco:cobble', 'deco:cobble'},
+	}
+})
+
 -- stone brick
 
 minetest.register_node("deco:stone_brick", {
@@ -923,6 +931,12 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "cooking",
 	recipe = 'mapgen:cobble',
+	output = 'mapgen:stone'
+})
+
+minetest.register_craft({
+	type = "cooking",
+	recipe = 'deco:cobble',
 	output = 'mapgen:stone'
 })
 

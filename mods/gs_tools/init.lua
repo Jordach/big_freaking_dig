@@ -31,22 +31,43 @@ dofile(modpath.."/sledges.lua")
 
 -- break a node and give the default drops
 
-function gs_tools.drop_node(pos, digger, wielded, rank)
+function gs_tools.drop_node(pos, digger, wielded, rank, group)
+	tool_name = wielded:get_name()
+	
+	if tool_name:find("hammer", 1, true) then
 	-- check if we can drop this node
-	local node = minetest.get_node(pos)
-	local def = ItemStack({name=node.name}):get_definition()
+		local node = minetest.get_node(pos)
+		local def = ItemStack({name=node.name}):get_definition()
 
-	if not def.diggable or (def.can_dig and not def.can_dig(pos,digger)) then return end
-	if minetest.is_protected(pos, digger:get_player_name()) then return end
+		if not def.diggable or (def.can_dig and not def.can_dig(pos,digger)) then return end
+		if minetest.is_protected(pos, digger:get_player_name()) then return end
 
-	local level = minetest.get_item_group(node.name, "level")
-	if rank >= level then
+		local level = minetest.get_item_group(node.name, "level")
+		if rank >= level then
 
-		-- note that get_node_drops() is not future-safe
-		-- though no alternative currently exists
-		local drops = minetest.get_node_drops(node.name, wielded:get_name())
-		minetest.handle_node_drops(pos, drops, digger)
-		minetest.remove_node(pos)
+			-- note that get_node_drops() is not future-safe
+			-- though no alternative currently exists
+			local drops = minetest.get_node_drops(node.name, wielded:get_name())
+			minetest.handle_node_drops(pos, drops, digger)
+			if minetest.get_item_group(minetest.get_node(pos).name, "cracky") > 0 then minetest.remove_node(pos) end
+		end
+	elseif tool_name:find("dirt_mover", 1, true) then
+	-- check if we can drop this node
+		local node = minetest.get_node(pos)
+		local def = ItemStack({name=node.name}):get_definition()
+
+		if not def.diggable or (def.can_dig and not def.can_dig(pos,digger)) then return end
+		if minetest.is_protected(pos, digger:get_player_name()) then return end
+
+		local level = minetest.get_item_group(node.name, "level")
+		if rank >= level then
+
+			-- note that get_node_drops() is not future-safe
+			-- though no alternative currently exists
+			local drops = minetest.get_node_drops(node.name, wielded:get_name())
+			minetest.handle_node_drops(pos, drops, digger)
+			if minetest.get_item_group(minetest.get_node(pos).name, "crumbly") > 0 then minetest.remove_node(pos) end
+		end
 	end
 end
 
@@ -106,7 +127,7 @@ function gs_tools.get_chopped(pos, group, digger)
 	local pos2 = p
 	for x1=-1,1 do
 		for z1=-1,1 do
-			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 and minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, "leafdecay") < 4 then
+			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 and minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, "leafdecay") > 0 then
 				if minetest.is_protected(pos, digger:get_player_name()) then
 					minetest.record_protection_violation(pos, digger:get_player_name())
 					return

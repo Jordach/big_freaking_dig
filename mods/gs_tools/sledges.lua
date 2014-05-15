@@ -18,9 +18,10 @@ function gs_tools.after_sledge(pos, oldnode, digger)
 	if digger then
 		local wielded = digger:get_wielded_item()
 		local rank = minetest.get_item_group(wielded:get_name(), "sledge")
+		
 		if rank > 0 then
 			for _,k in ipairs(gs_tools.get_3x3s(pos, digger)) do
-				gs_tools.drop_node(k, digger, wielded, rank)
+				gs_tools.drop_node(k, digger, wielded, rank, groups)
 			end
 		end
 	end
