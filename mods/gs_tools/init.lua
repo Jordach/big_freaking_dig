@@ -127,7 +127,7 @@ function gs_tools.get_chopped(pos, group, digger)
 	local pos2 = p
 	for x1=-1,1 do
 		for z1=-1,1 do
-			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 and minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, "leafdecay") > 0 then
+			if minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, group) > 0 and minetest.get_item_group(minetest.get_node({x=p.x+x1, y=p.y, z=p.z+z1}).name, "leafdecay") ~=3 then
 				if minetest.is_protected(pos, digger:get_player_name()) then
 					minetest.record_protection_violation(pos, digger:get_player_name())
 					return
