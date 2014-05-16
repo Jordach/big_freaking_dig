@@ -190,11 +190,23 @@ minetest.register_node("mapgen:long_grass_5", {
 minetest.register_node("mapgen:cactus", {
 	description = "Cactus",
 	tiles = {"mapgen_cactus_top.png", "mapgen_cactus_top.png", "mapgen_cactus_side.png"},
-	paramtype2 = "facedir",
 	is_ground_content = true,
 	groups = {snappy=1,choppy=3,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	drawtype = "nodebox",
+	paramtype = "light",
+	damage_per_second = 1,
+	node_box = {
+		type = "fixed",
+		fixed = {{-7/16, -0.5, -7/16, 7/16, 0.5, 7/16}, {-8/16, -0.5, -7/16, -7/16, 0.5, -7/16},
+			 {7/16, -0.5, -7/16, 7/16, 0.5, -8/16},{-7/16, -0.5, 7/16, -7/16, 0.5, 8/16},{7/16, -0.5, 7/16, 8/16, 0.5, 7/16}}--
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-7/16, -0.5, -7/16, 7/16, 0.5, 7/16},
+				
+	},
 })
 
 minetest.register_node("mapgen:sand", {
@@ -305,6 +317,25 @@ minetest.register_node("mapgen:oak_leaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:oak_leaves_deco")
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:oak_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("mapgen:oak_leaves_deco", {
+	description = "Oak Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"mapgen_oak_leaves.png"},
+	paramtype = "light",
+	waving=1,
+	is_ground_content = false,
+	groups = {snappy=3, flammable=2, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	drop = {'mapgen:oak_leaves'},
 })
 
 minetest.register_node("mapgen:oak_sapling", {
