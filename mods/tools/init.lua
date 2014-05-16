@@ -143,7 +143,7 @@ minetest.register_tool("tools:sword_air", {
 		groupcaps = {
 			snappy = {times={[1]=0.05, [2]=0.005, [3]=0.0005}, uses = 1337, maxlevel=1},
 		},
-		damage_groups = {fleshy=100, immortal=100},
+		damage_groups = {fleshy=1000000, immortal=10000000},
 	}
 })
 

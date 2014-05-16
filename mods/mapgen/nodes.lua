@@ -193,7 +193,6 @@ minetest.register_node("mapgen:cactus", {
 	is_ground_content = true,
 	groups = {snappy=1,choppy=3,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node,
 	drawtype = "nodebox",
 	paramtype = "light",
 	damage_per_second = 1,
@@ -419,6 +418,25 @@ minetest.register_node("mapgen:cherry_blossom_leaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:cherry_leaves_deco")
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:cherry_blossom_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("mapgen:cherry_leaves_deco", {
+	description = "Cherry Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"mapgen_cherry_blossom_leaves.png"},
+	paramtype = "light",
+	waving=1,
+	is_ground_content = false,
+	groups = {snappy=3, flammable=2, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	drop = {'mapgen:cherry_blossom_leaves'},
 })
 
 --
@@ -451,6 +469,25 @@ minetest.register_node("mapgen:birch_leaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:birch_leaves_deco")
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:birch_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("mapgen:birch_leaves_deco", {
+	description = "Birch Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"mapgen_birch_leaves.png"},
+	paramtype = "light",
+	waving=1,
+	is_ground_content = false,
+	groups = {snappy=3, flammable=2, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	drop = {'mapgen:birch_leaves'},
 })
 
 minetest.register_node("mapgen:birch_sapling", {
@@ -536,6 +573,25 @@ minetest.register_node("mapgen:evergreen_leaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:evergreen_leaves_deco")
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:evergreen_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("mapgen:evergreen_leaves_deco", {
+	description = "Evergreen Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"mapgen_evergreen_leaves.png"},
+	paramtype = "light",
+	waving=1,
+	is_ground_content = false,
+	groups = {snappy=3, flammable=2, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	drop = {'mapgen:evergreen_leaves'},
 })
 
 minetest.register_node("mapgen:evergreen_leaves_snowy", {
