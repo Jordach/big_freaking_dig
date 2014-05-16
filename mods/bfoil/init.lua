@@ -2,7 +2,7 @@
 
 -- Parameters
 
-local YMAXU = 256
+local YMAXU = 16
 local YMINU = -4096
 local YMAXL = -16392
 local YMINL = -33000

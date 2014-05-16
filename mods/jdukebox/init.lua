@@ -1,5 +1,16 @@
 --init.lua
 
+-- jukebox crafting
+
+minetest.register_craft({
+	output = 'jdukebox:box',
+	recipe = {
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'ores:mese_crystal', 'ores:diamond', 'ores:mese_crystal'},
+		{'group:wood', 'group:wood', 'group:wood'},
+	}
+})
+
 --jdukebox
 
 minetest.register_node("jdukebox:box", {
@@ -130,6 +141,80 @@ minetest.register_craftitem("jdukebox:disc_8", {
 	stack_max = 1,
 })
 
+-- disc crafting
+
+minetest.register_craft({
+	output = 'jdukebox:disc_1',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:yellow', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jdukebox:disc_2',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:blue', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+
+minetest.register_craft({
+	output = 'jdukebox:disc_3',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:pink', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jdukebox:disc_4',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:green', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jdukebox:disc_5',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:red', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jdukebox:disc_6',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:white', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jdukebox:disc_7',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:cyan', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
+
+minetest.register_craft({
+	output = 'jdukebox:disc_8',
+	recipe = {
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+		{'ores:coal_lump', 'dye:violet', 'ores:coal_lump'},
+		{'ores:coal_lump', 'ores:coal_lump', 'ores:coal_lump'},
+	}
+})
 
 -- welcome to the jukebox, we got music and discs
 
