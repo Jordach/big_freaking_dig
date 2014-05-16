@@ -870,6 +870,51 @@ minetest.register_node("deco:cobble", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+-- ladders
+
+minetest.register_node("deco:ladder", {
+	description = "Ladder",
+	drawtype = "nodebox",
+	tiles = {"deco_ladder.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	walkable = false,
+	climbable = true,
+	is_ground_content = false,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -0.4, 0.5, 0.5, -0.3,-0.5, 0.4 },
+			{  0.3, 0.5, 0.4,  0.4,-0.5, 0.5 },
+	
+			{ -0.3, 0.42, 0.4,  0.4, 0.32, 0.5 },
+			{ -0.3, 0.17, 0.4,  0.4, 0.07, 0.5 },
+			{ -0.3,-0.07, 0.4,  0.4,-0.17, 0.5 },
+			{ -0.3,-0.32, 0.4,  0.4,-0.42, 0.5 },
+		},
+	},
+	
+	selection_box = {
+			type = "fixed",
+			fixed = {
+						{-0.4, 0.5, 0.4, 0.4, -0.5, 0.5},
+					}
+		},
+	groups = {oddly_breakable_by_hand=2},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+-- ladder crafting
+
+minetest.register_craft({
+	output = 'deco:ladder 4',
+	recipe = {
+		{'tools:stick', '', 'tools:stick'},
+		{'tools:stick', 'tools:stick', 'tools:stick'},
+		{'tools:stick', '', 'tools:stick'},
+	}
+})
+
 --
 -- Fuels
 --
