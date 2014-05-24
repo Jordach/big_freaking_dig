@@ -18,6 +18,11 @@
     -- You should have received a copy of the GNU General Public License
     -- along with BFD.  If not, see <http://www.gnu.org/licenses/>.
 
+-- ingot blocks.lua
+
+dofile(minetest.get_modpath("deco") .. "/ingotblocks.lua")
+	
+	
 deco = {}
 
 -- glass
