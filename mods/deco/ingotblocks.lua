@@ -19,11 +19,33 @@
 
 function IngotBlock(name, crackylevel)
 	local lowercase_name = string.lower(name)
+	
+	local qingotname = "tools:"..lowercase_name.."_ingot"
+	local qnodename = "tools:"..lowercase_name.."_ingot"
+	
 	minetest.register_node("deco:"..lowercase_name.."_block", {
 		description = name .. " Block",
 		tiles = {"deco_"..lowercase_name.."_block.png"},
 		sounds = default.node_sound_stone_defaults(),
 		groups = {cracky=crackylevel},
+	})
+	
+	minetest.register_craft({
+		output = qnodename .. " 1"
+		recipe = {
+			{qingotname, qingotname, qingotname},
+			{qingotname, qingotname, qingotname},
+			{qingotname, qingotname, qingotname},
+		}
+	}
+	
+	minetest.register_craft({
+		output = qingotname .. " 1"
+		recipe = {
+			{'', '', '',},			
+			{'', qnodename, '',},			
+			{'', '', '',},
+		}
 	})
 end
 
