@@ -21,7 +21,7 @@ function IngotBlock(name, crackylevel)
 	local lowercase_name = string.lower(name)
 	
 	local qingotname = "tools:"..lowercase_name.."_ingot"
-	local qnodename = "tools:"..lowercase_name.."_ingot"
+	local qnodename = "deco:"..lowercase_name.."_block"
 	
 	minetest.register_node("deco:"..lowercase_name.."_block", {
 		description = name .. " Block",
