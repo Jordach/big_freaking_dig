@@ -17,6 +17,27 @@
     -- You should have received a copy of the GNU General Public License
     -- along with BFD.  If not, see <http://www.gnu.org/licenses/>.
 
-minetest.register_node("deco:gold_block", {
-	description = "Gold Block",
-	tiles = {"
+function IngotBlock(name, crackylevel)
+	local lowercase_name = string.lower(name)
+	minetest.register_node("deco:"..lowercase_name.."_block", {
+		description = name .. " Block",
+		tiles = {"deco_"..lowercase_name.."_block.png"},
+		sounds = default.node_sound_stone_defaults(),
+		groups = {cracky=crackylevel},
+	})
+end
+
+IngotBlock("Aluminium", 2)
+IngotBlock("Bronze", 2)
+IngotBlock("Cobalt", 1)
+IngotBlock("Copper", 1)
+IngotBlock("Diamond", 1)
+IngotBlock("Gold", 2)
+IngotBlock("Iridium", 1)
+IngotBlock("Lead", 1)
+IngotBlock("Meteoric", 1)
+IngotBlock("Osmium", 1)
+IngotBlock("Platinum", 1)
+IngotBlock("Silver", 1)
+IngotBlock("Steel", 2)
+IngotBlock("Tin", 2)
