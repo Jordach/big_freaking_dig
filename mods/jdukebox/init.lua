@@ -1,4 +1,6 @@
 --init.lua
+active_tracks = {}
+
 
 -- jukebox crafting
 
@@ -228,7 +230,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_1" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box1"})
-			 track1 = minetest.sound_play("jukebox_track_1", {
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+			else
+				--dont die
+			end
+			active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_1", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -243,8 +250,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_1 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track1 ~= nil then
-				minetest.sound_stop(track1)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -255,7 +262,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_2" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box2"})
-				track2 = minetest.sound_play("jukebox_track_2", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_2", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -270,8 +282,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_2 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track2 ~= nil then
-				minetest.sound_stop(track2)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -282,7 +294,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_3" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box3"})
-				track3 = minetest.sound_play("jukebox_track_3", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_3", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -297,8 +314,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_3 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track3 ~= nil then
-				minetest.sound_stop(track3)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -309,7 +326,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_4" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box4"})
-				track4 = minetest.sound_play("jukebox_track_4", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_4", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -324,8 +346,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_4 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track4 ~= nil then
-				minetest.sound_stop(track4)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -336,7 +358,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_5" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box5"})
-				track5 = minetest.sound_play("jukebox_track_5", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_5", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -351,8 +378,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_5 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track5 ~= nil then
-				minetest.sound_stop(track5)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -363,7 +390,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_6" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box6"})
-				track6 = minetest.sound_play("jukebox_track_6", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_6", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -378,8 +410,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_6 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track6 ~= nil then
-				minetest.sound_stop(track6)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -390,7 +422,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_7" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box7"})
-				track7 = minetest.sound_play("jukebox_track_7", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_7", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -405,8 +442,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_7 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track7 ~= nil then
-				minetest.sound_stop(track7)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end
@@ -417,7 +454,12 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		if wield == "jdukebox:disc_8" then
 			puncher:set_wielded_item("")
 			minetest.set_node(pos, {name="jdukebox:box8"})
-				track8 = minetest.sound_play("jukebox_track_8", {
+				if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
+				else
+				--dont die
+				end
+				active_tracks[puncher:get_player_name()] = minetest.sound_play("jukebox_track_8", {
 				to_player = puncher:get_player_name(),
 				--max_hear_distance = 16,
 				gain = 1,
@@ -432,8 +474,8 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 			lz = pos.z
 			minetest.add_item({x=lx, y=ly, z=lz}, "jdukebox:disc_8 1")
 			minetest.set_node(pos, {name="jdukebox:box"})
-			if track8 ~= nil then
-				minetest.sound_stop(track8)
+			if active_tracks[puncher:get_player_name()] ~= nil then
+				minetest.sound_stop(active_tracks[puncher:get_player_name()])
 			else
 				--dont die
 			end

@@ -146,98 +146,98 @@ register_tank("o", 1)
 
 -- black magic here
 
-minetest.register_on_punchnode(function(pos, node, puncher)
-	if not puncher then return end
+-- minetest.register_on_punchnode(function(pos, node, puncher)
+	-- if not puncher then return end
 	
-	tnodename = minetest.get_node(pos)
-	bname = puncher:get_wielded_item():get_name()
+	-- tnodename = minetest.get_node(pos)
+	-- bname = puncher:get_wielded_item():get_name()
 	
-	for level=1,8 do
-		if tnodename.name == "tanks:level_0" then
-			if bname == "bucket:oil" then
-				puncher:set_wielded_item("bucket:bucket_empty 1")
-				minetest.set_node(pos, {name="tanks:o_level_1"})
-			end
-		end
+	-- for level=1,8 do
+		-- if tnodename.name == "tanks:level_0" then
+			-- if bname == "bucket:oil" then
+				-- puncher:set_wielded_item("bucket:bucket_empty 1")
+				-- minetest.set_node(pos, {name="tanks:o_level_1"})
+			-- end
+		-- end
 			
-		if tnodename.name == "tanks:o_level_"..level then
-			if bname == "bucket:bucket_empty" then
-				puncher:set_wielded_item("bucket:oil 1")
-				if tnodename.name == "tanks:o_level_1" then
-					minetest.set_node(pos, {name="tanks:level_0"})
-				else
-					minetest.set_node(pos, {name="tanks:o_level_"..level-1})
-				end
-			end
-			if bname == "bucket:oil" then
-				if tnodename.name == "tanks:o_level_8" then
-					--nothing
-				else
-					minetest.set_node(pos, {name="tanks:o_level_"..level+1})
-					puncher:set_wielded_item("bucket:bucket_empty 1")
-				end
-			end
-			--level = level + 1
-		end
-	end
+		-- if tnodename.name == "tanks:o_level_"..level then
+			-- if bname == "bucket:bucket_empty" then
+				-- puncher:set_wielded_item("bucket:oil 1")
+				-- if tnodename.name == "tanks:o_level_1" then
+					-- minetest.set_node(pos, {name="tanks:level_0"})
+				-- else
+					-- minetest.set_node(pos, {name="tanks:o_level_"..level-1})
+				-- end
+			-- end
+			-- if bname == "bucket:oil" then
+				-- if tnodename.name == "tanks:o_level_8" then
+					-- --nothing
+				-- else
+					-- minetest.set_node(pos, {name="tanks:o_level_"..level+1})
+					-- puncher:set_wielded_item("bucket:bucket_empty 1")
+				-- end
+			-- end
+			-- --level = level + 1
+		-- end
+	-- end
 	
-	for level=1,8 do
-		if tnodename.name == "tanks:level_0" then
-			if bname == "bucket:bucket_water" then
-				puncher:set_wielded_item("bucket:bucket_empty 1")
-				minetest.set_node(pos, {name="tanks:w_level_1"})
-			end
-		end
+	-- for level=1,8 do
+		-- if tnodename.name == "tanks:level_0" then
+			-- if bname == "bucket:bucket_water" then
+				-- puncher:set_wielded_item("bucket:bucket_empty 1")
+				-- minetest.set_node(pos, {name="tanks:w_level_1"})
+			-- end
+		-- end
 
-		if tnodename.name == "tanks:w_level_"..level then
-			if bname == "bucket:bucket_empty" then
-				puncher:set_wielded_item("bucket:bucket_water 1")
-				if tnodename.name == "tanks:w_level_1" then
-					minetest.set_node(pos, {name="tanks:level_0"})
-				else
-					minetest.set_node(pos, {name="tanks:w_level_"..level-1})
-				end
-			end
-		end
+		-- if tnodename.name == "tanks:w_level_"..level then
+			-- if bname == "bucket:bucket_empty" then
+				-- puncher:set_wielded_item("bucket:bucket_water 1")
+				-- if tnodename.name == "tanks:w_level_1" then
+					-- minetest.set_node(pos, {name="tanks:level_0"})
+				-- else
+					-- minetest.set_node(pos, {name="tanks:w_level_"..level-1})
+				-- end
+			-- end
+		-- end
 		
-			if bname == "bucket:bucket_water" then
-				if tnodename.name == "tanks:w_level_8" then
-					--do nothing
-				else
-					minetest.set_node(pos, {name="tanks:w_level_"..level+1})
-					puncher:set_wielded_item("bucket:bucket_empty 1")
-				end
-			end
-		end
-	end
+			-- if bname == "bucket:bucket_water" then
+				-- if tnodename.name == "tanks:w_level_8" then
+					-- --do nothing
+				-- else
+					-- minetest.set_node(pos, {name="tanks:w_level_"..level+1})
+					-- puncher:set_wielded_item("bucket:bucket_empty 1")
+				-- end
+			-- end
+		-- end
+	-- end
 	
-	for level=1,8 do
-		if tnodename.name == "tanks:level_0" then
-			if bname == "bucket:bucket_lava" then
-				puncher:set_wielded_item("bucket:bucket_empty 1")
-				minetest.set_node(pos, {name="tanks:l_level_1"})
-			end
-		end
+	-- for level=1,8 do
+		-- if tnodename.name == "tanks:level_0" then
+			-- if bname == "bucket:bucket_lava" then
+				-- puncher:set_wielded_item("bucket:bucket_empty 1")
+				-- minetest.set_node(pos, {name="tanks:l_level_1"})
+			-- end
+		-- end
 		
-		if tnodename.name == "tanks:l_level_"..level then
-			if bname == "bucket:bucket_empty" then
-				puncher:set_wielded_item("bucket:bucket_lava 1")
-				if tnodename.name == "tanks:l_level_1" then
-					minetest.set_node(pos, {name="tanks:level_0"})
-				else
-					minetest.set_node(pos, {name="tanks:l_level_"..level-1})
-				end
-			end
+		-- if tnodename.name == "tanks:l_level_"..level then
+			-- if bname == "bucket:bucket_empty" then
+				-- puncher:set_wielded_item("bucket:bucket_lava 1")
+				-- if tnodename.name == "tanks:l_level_1" then
+					-- minetest.set_node(pos, {name="tanks:level_0"})
+				-- else
+					-- minetest.set_node(pos, {name="tanks:l_level_"..level-1})
+				-- end
+			-- end
 			
-			if bname == "bucket:bucket_lava" then
-				if tnodename.name == "tanks:l_level_8" then
-					--do nothing
-				else
-					minetest.set_node(pos, {name="tanks:l_level_"..level+1})
-					puncher:set_wielded_item("bucket:bucket_empty 1")
-				end
-			end
-		end
-	end
+			-- if bname == "bucket:bucket_lava" then
+				-- if tnodename.name == "tanks:l_level_8" then
+					-- --do nothing
+				-- else
+					-- minetest.set_node(pos, {name="tanks:l_level_"..level+1})
+					-- puncher:set_wielded_item("bucket:bucket_empty 1")
+				-- end
+			-- end
+		-- end
+	-- end
 	
-end)
+-- end)

@@ -30,23 +30,23 @@ function IngotBlock(name, crackylevel)
 		groups = {cracky=crackylevel},
 	})
 	
-	minetest.register_craft({
-		output = qnodename .. " 1"
-		recipe = {
-			{qingotname, qingotname, qingotname},
-			{qingotname, qingotname, qingotname},
-			{qingotname, qingotname, qingotname},
-		}
-	}
+	-- minetest.register_craft({
+		-- output = qnodename .. " 1"
+		-- recipe = {
+			-- {qingotname, qingotname, qingotname},
+			-- {qingotname, qingotname, qingotname},
+			-- {qingotname, qingotname, qingotname},
+		-- }
+	-- }
 	
-	minetest.register_craft({
-		output = qingotname .. " 1"
-		recipe = {
-			{'', '', '',},			
-			{'', qnodename, '',},			
-			{'', '', '',},
-		}
-	})
+	-- minetest.register_craft({
+		-- output = qingotname .. " 1"
+		-- recipe = {
+			-- {'', '', '',},			
+			-- {'', qnodename, '',},			
+			-- {'', '', '',},
+		-- }
+	-- })
 end
 
 IngotBlock("Aluminium", 2)
