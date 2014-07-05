@@ -290,7 +290,7 @@ minetest.register_node("ores:oil_flowing", {
 	liquid_alternative_source = "ores:oil_source",
 	liquid_viscosity = 12,
 	post_effect_color = {a=250, r=10, g=10, b=10},
-	groups = {water=3, liquid=3, flammable=1},
+	groups = {liquid=3, flammable=1},
 })
 
 minetest.register_node("ores:oil_source", {
@@ -323,5 +323,5 @@ minetest.register_node("ores:oil_source", {
 	liquid_alternative_source = "ores:oil_source",
 	liquid_viscosity = 12,
 	post_effect_color = {a=250, r=10, g=10, b=10},
-	groups = {water=3, liquid=3, flammable=1},
+	groups = {liquid=3, flammable=1},
 })

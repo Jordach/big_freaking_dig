@@ -34,6 +34,21 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
+	name = "soapstone",
+	
+	node_top = "mapgen:grass",
+	depth_top = 1,
+	node_filler = "mapgen:soap_stone",
+	depth_filler = 40,
+	node_dust = "air",
+	
+	height_min = 10,
+	height_max = 30000,
+	heat_point = 35,
+	humidity_point = 34,
+})
+
+minetest.register_biome({
 	name = "snowy_plains",
 	
 	node_top = "mapgen:snowy_grass",

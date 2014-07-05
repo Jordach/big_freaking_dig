@@ -158,6 +158,17 @@ minetest.register_node("deco:chest", {
 	tiles = {"deco_chest_top.png", "deco_chest_top.png", "deco_chest_side.png",
 		"deco_chest_side.png", "deco_chest_side.png", "deco_chest_front.png"},
 	paramtype2 = "facedir",
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, 0.4375, 0.4375}, -- MainBody
+			{-0.125, -0.0625, -0.5, -0.0625, 0.0625, -0.4375}, -- LockingPinP1
+			{0.0625, -0.125, -0.4375, -0.0625, 0.0625, -0.5}, -- LockingPinP2
+			{0.0625, -0.0625, -0.5, 0.125, 0.0625, -0.4375}, -- LockingPinP3
+		}
+	},
 	groups = {choppy=2,oddly_breakable_by_hand=2},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
@@ -203,6 +214,17 @@ end
 
 minetest.register_node("deco:chest_locked", {
 	description = "Locked Chest",
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, 0.4375, 0.4375}, -- MainBody
+			{-0.125, -0.0625, -0.5, -0.0625, 0.25, -0.4375}, -- LockingPinP1
+			{0.0625, -0.125, -0.4375, -0.0625, 0.1875, -0.5}, -- LockingPinP2
+			{0.0625, -0.0625, -0.5, 0.125, 0.25, -0.4375}, -- LockingPinP3
+		}
+	},
 	tiles = {"deco_chest_top.png", "deco_chest_top.png", "deco_chest_side.png",
 		"deco_chest_side.png", "deco_chest_side.png", "deco_chest_lock.png"},
 	paramtype2 = "facedir",

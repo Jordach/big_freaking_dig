@@ -871,6 +871,18 @@ minetest.register_node("mapgen:wheat_grass_5", {
 	end,
 })
 
+--
+-- don't drop the *soap*stone
+--
+
+minetest.register_node("mapgen:soap_stone", {
+	description = "Soap Stone",
+	tiles = {"mapgen_soap_stone.png"},
+	groups = {cracky=2, stone=1},
+	is_ground_content = true,
+	sounds = default.node_sound_stone_defaults(),
+})
+
 ---
 --- Stuff
 ---

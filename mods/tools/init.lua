@@ -19,7 +19,7 @@
     -- You should have received a copy of the GNU General Public License
     -- along with BFD.  If not, see <http://www.gnu.org/licenses/>.
 
-dofile(minetest.get_modpath("tools").."/crafts.lua")
+--dofile(minetest.get_modpath("tools").."/custom_tools.lua")
 
 minetest.register_craft({
 	type = "toolrepair",
@@ -705,5 +705,100 @@ minetest.register_craft({
 		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
 		{'tools:steel_ingot', 'tools:stick', 'tools:steel_ingot'},
 		{'', 'tools:stick', ''},
+	}
+})
+
+-- mese stuff
+
+--mese pick
+
+minetest.register_tool("tools:pick_mese", {
+	description = "Mese Pickaxe",
+	inventory_image = "tool_mesepick.png",
+	tool_capabilities = {
+		full_punch_interval = 1.67,
+		max_drop_level = 0,
+		groupcaps = {
+			cracky = {times={[1]=1.7, [2]=1.7/2, [3]=1.7/4}, uses=128, maxlevel=1},
+			hardness = {times={[1]=27, [2]=18, [3]=9}, uses=64, maxlevel=1},
+		},
+		damage_groups = {fleshy=7},
+	}
+})
+
+minetest.register_tool("tools:shovel_mese", {
+	description = "Mese Shovel",
+	inventory_image = "tool_meseshovel.png^[transformR90",
+	tool_capabilities = {
+		full_punch_interval = 1.67,
+		max_drop_level = 0,
+		groupcaps = {
+			crumbly = {times={[1]=1.55/2, [2]=0.75/2, [3]=0.75/4}, uses = 122, maxlevel=1},
+		},
+		damage_groups = {fleshy=5},
+	}
+})
+
+minetest.register_tool("tools:axe_mese", {
+	description = "Mese Axe",
+	inventory_image = "tool_meseaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 1.67,
+		max_drop_level = 0,
+		groupcaps = {
+			choppy = {times={[1]=4.2/2, [2]=3.1/2, [1]=1.55/2}, uses = 42, maxlevel=1},
+		},
+		damage_groups = {fleshy=8},
+	}
+})
+
+minetest.register_tool("tools:sword_mese", {
+	description = "Mese Sword",
+	inventory_image = "tool_mesesword.png",
+	tool_capabilities = {
+		full_punch_interval = 1.78,
+		max_drop_level = 0,
+		groupcaps = {
+			snappy = {times={[1]=0.3/2, [2]=0.15/2, [3]=0.7/2}, uses = 32, maxlevel=1},
+		},
+		damage_groups = {fleshy = 12},
+	}
+})
+
+-- mese tool crafting
+
+minetest.register_craft({
+	output = 'tools:pick_mese',
+	recipe = {
+		{'ores:mese_crystal', 'ores:mese_crystal', 'ores:mese_crystal'},
+		{'', 'tools:stick', ''},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:shovel_mese',
+	recipe = {
+		{'ores:mese_crystal'},
+		{'tools:stick'},
+		{'tools:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:axe_mese',
+	recipe = {
+		{'ores:mese_crystal', 'ores:mese_crystal'},
+		{'ores:mese_crystal', 'tools:stick'},
+		{'', 'tools:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'tools:sword_mese',
+	recipe = {
+		{'ores:mese_crystal'},
+		{'ores:mese_crystal'},
+		{'tools:stick'},
 	}
 })
