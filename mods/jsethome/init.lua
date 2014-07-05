@@ -27,7 +27,7 @@ local changed = false
 minetest.register_chatcommand("home", {
     description = "Teleport you to your home point",
     func = function(name)
-        local player = minetest.env:get_player_by_name(name)
+        local player = minetest.get_player_by_name(name)
         if player == nil then
             -- just a check to prevent server death
             return false
@@ -44,7 +44,7 @@ minetest.register_chatcommand("home", {
 minetest.register_chatcommand("sethome", {
     description = "Set your home point",
     func = function(name)
-        local player = minetest.env:get_player_by_name(name)
+        local player = minetest.get_player_by_name(name)
         local pos = player:getpos()
         homepos[player:get_player_name()] = pos
         minetest.chat_send_player(name, "Home set!")
