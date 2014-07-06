@@ -162,6 +162,12 @@ minetest.register_node("deco:chest", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -234,6 +240,12 @@ minetest.register_node("deco:chest_locked", {
 	legacy_facedir_simple = true,
 	is_ground_content = false,
 	sounds = default.node_sound_wood_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
@@ -697,6 +709,12 @@ minetest.register_node("deco:desk_chair", {
 			{0.3, 0.1, 0.3, -0.3, 0, -0.2},
 			{0.3, 0.4, 0.2, -0.3, 0.7, 0.3},
 		},		
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.8, 0.5},
+		}
 	},
 	sounds = default.node_sound_wood_defaults(),
 })

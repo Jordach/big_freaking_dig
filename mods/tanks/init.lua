@@ -15,6 +15,12 @@ minetest.register_node("tanks:level_0", {
 	tiles = {"tankgaugetop.png", "tankgaugetop.png", "tankgauge.png"},
 	groups = {oddly_breakable_by_hand=1},
 	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
 	drawtype = "nodebox",
 })
 
@@ -127,6 +133,12 @@ function register_tank(name, light_min)
 				fixed = tank_level[level],
 			},
 			light_source = light,
+			selection_box = {
+				type = "fixed",
+				fixed = {
+						{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+				}
+			},
 			groups = {impossible=1},
 		})
 	end
