@@ -1040,3 +1040,184 @@ minetest.register_craft({
 	recipe = 'mapgen:crust_cobble',
 	output = 'mapgen:crust_stone'
 })
+
+-- mesh chest (testing)
+
+minetest.register_node("deco:chest_locked_mesh", {
+	description = "Locked Chest",
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, 0.1250, 0.4375}, -- MainBody
+		}
+	},
+	tiles = {"deco_chest_top.png", "deco_chest_top.png", "deco_chest_side.png",
+		"deco_chest_side.png", "deco_chest_side.png", "deco_chest_side.png"},
+	paramtype2 = "facedir",
+	groups = {choppy=2,oddly_breakable_by_hand=2},
+	legacy_facedir_simple = true,
+	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
+	after_place_node = function(pos, placer)
+		minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest_locked") --+(0.0625*10)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 1 then
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then
+				entity_remove[1]:setyaw((-3.142/2))
+			else
+				entity_remove[1]:setyaw(0)
+		end
+		local meta = minetest.get_meta(pos)
+		meta:set_string("owner", placer:get_player_name() or "")
+		meta:set_string("infotext", "Locked Chest (owned by "..
+				meta:get_string("owner")..")")
+	end,
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("infotext", "Locked Chest")
+		meta:set_string("owner", "")
+		local inv = meta:get_inventory()
+		inv:set_size("main", 8*4)
+	end,
+	on_punch = function(pos)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_remove[1] == nil then
+			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest_locked") --+(0.0625*10)
+			entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+			if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 1 then
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then
+				entity_remove[1]:setyaw((-3.142/2))
+			else
+				entity_remove[1]:setyaw(0)
+			end
+		end
+	end,
+	
+	can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		entity_remove[1]:remove()
+		return inv:is_empty("main") and has_locked_chest_privilege(meta, player)
+	end,
+	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		local meta = minetest.get_meta(pos)
+		if not has_locked_chest_privilege(meta, player) then
+			minetest.log("action", player:get_player_name()..
+					" tried to access a locked chest belonging to "..
+					meta:get_string("owner").." at "..
+					minetest.pos_to_string(pos))
+			return 0
+		end
+		return count
+	end,
+    allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+		local meta = minetest.get_meta(pos)
+		if not has_locked_chest_privilege(meta, player) then
+			minetest.log("action", player:get_player_name()..
+					" tried to access a locked chest belonging to "..
+					meta:get_string("owner").." at "..
+					minetest.pos_to_string(pos))
+			return 0
+		end
+		return stack:get_count()
+	end,
+    allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+		local meta = minetest.get_meta(pos)
+		if not has_locked_chest_privilege(meta, player) then
+			minetest.log("action", player:get_player_name()..
+					" tried to access a locked chest belonging to "..
+					meta:get_string("owner").." at "..
+					minetest.pos_to_string(pos))
+			return 0
+		end
+		return stack:get_count()
+	end,
+	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff in locked chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff to locked chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" takes stuff from locked chest at "..minetest.pos_to_string(pos))
+	end,
+	on_rightclick = function(pos, node, clicker)
+		local meta = minetest.get_meta(pos)
+		if has_locked_chest_privilege(meta, clicker) then
+			local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+			if entity_anim[1] == nil then
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest_locked") --+(0.0625*10)
+				entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+				if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+					entity_anim[1]:setyaw(3.142)
+				elseif minetest.get_node(pos).param2 == 1 then
+					entity_anim[1]:setyaw(3.142/2)
+				elseif minetest.get_node(pos).param2 == 3 then
+					entity_anim[1]:setyaw((-3.142/2))
+				else
+					entity_anim[1]:setyaw(0)
+				end
+			end
+			entity_anim[1]:set_animation({x=1,y=40}, 30, 0)
+			local timerlocked = minetest.get_node_timer(pos)
+			timerlocked:set(2,0.1)
+			--print (dump(minetest.get_objects_inside_radius(pos, 0.1)))
+			minetest.show_formspec(
+				clicker:get_player_name(),
+				"deco:chest_locked_mesh",
+				default.get_locked_chest_formspec(pos)
+			)
+		end
+	end,
+	on_timer = function(pos,elapsed)
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_anim[1] == nil then
+			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest_locked") --+(0.0625*10)
+			entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		end
+		entity_anim[1]:set_animation({x=40,y=40}, 1, 0)
+	end,
+		
+})
+
+-- helper function to close the chest lids.
+
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if fields.quit then
+		
+
+--mesh notes
+
+--[[
+
+animation is played at 30 fps, and is between the ranges of 0-40, and 40-80
+
+40 is open fully, 80 / 0 is closed fully.
+
+--]]
+
+minetest.register_entity("deco:mesh_chest_locked", {
+    collisionbox = { 0, 0, 0, 0, 0, 0 },
+    visual = "mesh",
+	mesh = "ChestLocked.b3d",
+    textures = {"chest_uv.png"},
+	visual_size = {x=10, y=10},
+})
