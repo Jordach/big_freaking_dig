@@ -11,7 +11,7 @@
     -- but WITHOUT ANY WARRANTY; without even the implied warranty of
     -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     -- GNU General Public License for more details.
-	
+
 	-- You may contact Jordach via the Minetest Forums PM service for help
 	-- or ask on the forum topic for which this game is set on.
 
@@ -21,8 +21,8 @@
 -- ingot blocks.lua
 
 dofile(minetest.get_modpath("deco") .. "/ingotblocks.lua")
-	
-	
+
+
 deco = {}
 
 -- glass
@@ -49,7 +49,7 @@ minetest.register_node("deco:glass", {
 	groups = {cracky=3,oddly_breakable_by_hand=3},
 })
 
-	
+
 -- wood planks
 
 minetest.register_node("deco:oak_plank", {
@@ -139,7 +139,7 @@ minetest.register_craft({
 
 --chests
 
-default.chest_formspec = 
+default.chest_formspec =
 	"size[8,9]"..
 	"list[current_name;main;0,0;8,4;]"..
 	"list[current_player;main;0,5;8,4;]"..
@@ -147,6 +147,7 @@ default.chest_formspec =
 
 function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
+	local lid_state = "neither"
 	local formspec =
 		"size[8,9]"..
 		"list[nodemeta:".. spos .. ";main;0,0;8,4;]"..
@@ -578,13 +579,13 @@ minetest.register_abm({
 		local srclist = inv:get_list("src")
 		local cooked = nil
 		local aftercooked
-		
+
 		if srclist then
 			cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 		end
-		
+
 		local was_active = false
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			was_active = true
 			meta:set_float("fuel_time", meta:get_float("fuel_time") + 1)
@@ -602,7 +603,7 @@ minetest.register_abm({
 				meta:set_string("src_time", 0)
 			end
 		end
-		
+
 		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 			local percent = math.floor(meta:get_float("fuel_time") /
 					meta:get_float("fuel_totaltime") * 100)
@@ -617,7 +618,7 @@ minetest.register_abm({
 		local cooked = nil
 		local fuellist = inv:get_list("fuel")
 		local srclist = inv:get_list("src")
-		
+
 		if srclist then
 			cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 		end
@@ -643,7 +644,7 @@ minetest.register_abm({
 
 		meta:set_string("fuel_totaltime", fuel.time)
 		meta:set_string("fuel_time", 0)
-		
+
 		inv:set_stack("fuel", 1, afterfuel.items[1])
 	end,
 })
@@ -708,7 +709,7 @@ minetest.register_node("deco:desk_chair", {
 			{0.1, 0, -0.1, -0.1, -0.5, 0.1},
 			{0.3, 0.1, 0.3, -0.3, 0, -0.2},
 			{0.3, 0.4, 0.2, -0.3, 0.7, 0.3},
-		},		
+		},
 	},
 	selection_box = {
 		type = "fixed",
@@ -730,7 +731,7 @@ minetest.register_craft({
 
 -- desk formspec stuff
 
-default.desk_formspec = 
+default.desk_formspec =
 	"size[8,9]"..
 	"list[current_name;main;2,0;4,4;]"..
 	"list[current_player;main;0,5;8,4;]"..
@@ -754,7 +755,7 @@ minetest.register_node("deco:desk_2", {
 			{0.5, 0.5, -0.5, -0.5, 0.3, 0.5},
 		},
 	},
-			
+
 		on_destruct = function(pos)
 			local node = minetest.env:get_node(pos)
 			local param2 = node.param2
@@ -770,17 +771,17 @@ minetest.register_node("deco:desk_2", {
 			if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).name == "deco:desk" ) then
 				if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
 					minetest.env:remove_node(pos)
-				end	
+				end
 			end
 		end,
-		
+
 		selection_box = {
 			type = "fixed",
 			fixed = {
 						{-0.5, 0.5, -0.5, 0.5, -0.5, 1.5},
 					}
 		},
-		
+
 		sounds = default.node_sound_wood_defaults(),
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
@@ -848,7 +849,7 @@ minetest.register_node("deco:desk", {
 				{0.4, 0.3, 0.5, 0.5, -0.5, 0.4},
 			},
 		},
-				
+
 		selection_box = {
 			type = "fixed",
 			fixed = {
@@ -856,7 +857,7 @@ minetest.register_node("deco:desk", {
 					}
 		},
 		sounds = default.node_sound_wood_defaults(),
-})	
+})
 
 --desk crafting
 
@@ -936,14 +937,14 @@ minetest.register_node("deco:ladder", {
 		fixed = {
 			{ -0.4, 0.5, 0.5, -0.3,-0.5, 0.4 },
 			{  0.3, 0.5, 0.4,  0.4,-0.5, 0.5 },
-	
+
 			{ -0.3, 0.42, 0.4,  0.4, 0.32, 0.5 },
 			{ -0.3, 0.17, 0.4,  0.4, 0.07, 0.5 },
 			{ -0.3,-0.07, 0.4,  0.4,-0.17, 0.5 },
 			{ -0.3,-0.32, 0.4,  0.4,-0.42, 0.5 },
 		},
 	},
-	
+
 	selection_box = {
 			type = "fixed",
 			fixed = {
@@ -1081,7 +1082,7 @@ minetest.register_node("deco:chest_locked_mesh", {
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
 		meta:set_string("infotext", "Locked Chest (owned by "..
-				meta:get_string("owner")..")")
+		meta:get_string("owner")..")")
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -1106,7 +1107,7 @@ minetest.register_node("deco:chest_locked_mesh", {
 			end
 		end
 	end,
-	
+
 	can_dig = function(pos,player)
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -1163,6 +1164,8 @@ minetest.register_node("deco:chest_locked_mesh", {
 		local meta = minetest.get_meta(pos)
 		if has_locked_chest_privilege(meta, clicker) then
 			local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+			local speedy_meta = minetest.get_meta(pos)
+			speedy_meta:set_string("lid_state", "open")
 			if entity_anim[1] == nil then
 				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest_locked") --+(0.0625*10)
 				entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
@@ -1182,27 +1185,48 @@ minetest.register_node("deco:chest_locked_mesh", {
 			--print (dump(minetest.get_objects_inside_radius(pos, 0.1)))
 			minetest.show_formspec(
 				clicker:get_player_name(),
-				"deco:chest_locked_mesh",
+				-- we need to pass the position here so the helper function knowns where the chest to close is
+				"deco:chest_locked_mesh_"..pos.x.."_"..pos.y.."_"..pos.z,
 				default.get_locked_chest_formspec(pos)
 			)
 		end
 	end,
 	on_timer = function(pos,elapsed)
 		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		local nodetimer = minetest.get_node_timer(pos)
+		nodetimer:stop()
 		if entity_anim[1] == nil then
 			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest_locked") --+(0.0625*10)
 			entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
 		end
-		entity_anim[1]:set_animation({x=40,y=40}, 1, 0)
+		if minetest.get_meta(pos):get_string("lid_state") == "open" then
+			entity_anim[1]:set_animation({x=40,y=40}, 1, 0)
+		elseif minetest.get_meta(pos):get_string("lid_state") == "shut" then
+			entity_anim[1]:set_animation({x=80,y=80}, 1, 0)
+		end
 	end,
-		
 })
 
 -- helper function to close the chest lids.
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if fields.quit then
+	if formname:find('deco:chest_locked_mesh_') == 1 then
+		if not fields.quit then return end
+		local x, y, z = formname:match('deco:chest_locked_mesh_(.-)_(.-)_(.*)')
+		local pos = {x=tonumber(x), y=tonumber(y), z=tonumber(z)}
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_anim[1] == nil then
+			minetest.log("error", "Did not find entity for chest at " .. minetest.pos_to_string(pos))
+		end
 		
+		entity_anim[1]:set_animation({x=40,y=80}, 30, 0) -- Play the close animation
+		local speedy_meta = minetest.get_meta(pos)
+		speedy_meta:set_string("lid_state", "shut")
+		local quicktime = minetest.get_node_timer(pos)
+		quicktime:start(1.9)
+	end
+end)
+
 
 --mesh notes
 
