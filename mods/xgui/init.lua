@@ -6,7 +6,7 @@ end
 
 local function setFormspec(player, formspec)
 	local size = getFormSize(formspec)
-	player:set_inventory_formspec(formspec.."background[-0.25,-0.5;8.5,8.5;"..default.."]")
+	player:set_inventory_formspec(formspec.."background[-0.5,-0.65;9,8.75;"..default.."]")
 end
 
 minetest.register_on_joinplayer(function(player)

@@ -142,14 +142,16 @@ minetest.register_craft({
 default.chest_formspec = 
 	"size[8,9]"..
 	"list[current_name;main;0,0;8,4;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,5;8,4;]"..
+	"background[-0.5,-0.65;9,10.35;".."chestui.png".."]"
 
 function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec =
 		"size[8,9]"..
 		"list[nodemeta:".. spos .. ";main;0,0;8,4;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"list[current_player;main;0,5;8,4;]"..
+		"background[-0.5,-0.65;9,10.35;".."chestui.png".."]"
 	return formspec
 end
 
@@ -364,7 +366,8 @@ function default.get_furnace_active_formspec(pos, percent)
 		"list[current_name;fuel;2,3;1,1;]"..
 		"list[current_name;src;2,1;1,1;]"..
 		"list[current_name;dst;5,1;2,2;]"..
-		"list[current_player;main;0,5;8,4;]"
+		"list[current_player;main;0,5;8,4;]"..
+		"background[-0.5,-0.65;9,10.35;".."furnace.png".."]"
 	return formspec
 end
 
@@ -374,7 +377,8 @@ default.furnace_inactive_formspec =
 	"list[current_name;fuel;2,3;1,1;]"..
 	"list[current_name;src;2,1;1,1;]"..
 	"list[current_name;dst;5,1;2,2;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,5;8,4;]"..
+	"background[-0.5,-0.5;9,10.15;".."furnace.png".."]"
 
 minetest.register_node("deco:furnace", {
 	description = "Furnace",
@@ -711,7 +715,8 @@ minetest.register_craft({
 default.desk_formspec = 
 	"size[8,9]"..
 	"list[current_name;main;2,0;4,4;]"..
-	"list[current_player;main;0,5;8,4;]"
+	"list[current_player;main;0,5;8,4;]"..
+	"background[-0.5,-0.65;9,10.35;".."chestui.png".."]"
 
 --desks with micro amounts of storage :)
 
