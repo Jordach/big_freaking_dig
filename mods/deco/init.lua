@@ -20,8 +20,9 @@
 
 -- ingot blocks.lua
 
-dofile(minetest.get_modpath("deco") .. "/ingotblocks.lua")
+--dofile(minetest.get_modpath("deco") .. "/ingotblocks.lua")
 
+-- testing a drawtype nodebox?
 
 deco = {}
 
@@ -1179,9 +1180,9 @@ minetest.register_node("deco:chest_locked_mesh", {
 					entity_anim[1]:setyaw(0)
 				end
 			end
-			entity_anim[1]:set_animation({x=1,y=40}, 30, 0)
+			entity_anim[1]:set_animation({x=1,y=220}, 15, 0)
 			local timerlocked = minetest.get_node_timer(pos)
-			timerlocked:set(2,0.1)
+			timerlocked:start(7.3)
 			--print (dump(minetest.get_objects_inside_radius(pos, 0.1)))
 			minetest.show_formspec(
 				clicker:get_player_name(),
@@ -1202,7 +1203,7 @@ minetest.register_node("deco:chest_locked_mesh", {
 		if minetest.get_meta(pos):get_string("lid_state") == "open" then
 			entity_anim[1]:set_animation({x=40,y=40}, 1, 0)
 		elseif minetest.get_meta(pos):get_string("lid_state") == "shut" then
-			entity_anim[1]:set_animation({x=80,y=80}, 1, 0)
+			entity_anim[1]:set_animation({x=440,y=440}, 1, 0)
 		end
 	end,
 })
@@ -1219,11 +1220,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			minetest.log("error", "Did not find entity for chest at " .. minetest.pos_to_string(pos))
 		end
 		
-		entity_anim[1]:set_animation({x=40,y=80}, 30, 0) -- Play the close animation
+		entity_anim[1]:set_animation({x=220,y=440}, 30, 0) -- Play the close animation
 		local speedy_meta = minetest.get_meta(pos)
 		speedy_meta:set_string("lid_state", "shut")
 		local quicktime = minetest.get_node_timer(pos)
-		quicktime:start(1.9)
+		quicktime:start(7.333333333333333)
 	end
 end)
 
@@ -1232,9 +1233,9 @@ end)
 
 --[[
 
-animation is played at 30 fps, and is between the ranges of 0-40, and 40-80
+animation is played at 30 fps, and is between the ranges of 0-40 40-130 is the open frames, and 130 - 260 is the closing down frames
 
-40 is open fully, 80 / 0 is closed fully.
+40 is open fully, 260 is closed fully.
 
 --]]
 
