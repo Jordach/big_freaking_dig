@@ -140,11 +140,16 @@ minetest.register_craft({
 
 --chests
 
-default.chest_formspec =
-	"size[8,9]"..
-	"list[current_name;main;0,0;8,4;]"..
-	"list[current_player;main;0,5;8,4;]"..
-	"background[-0.5,-0.65;9,10.35;".."chestui.png".."]"
+function default.chest_formspec(pos)
+	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
+	local lid_state = "neither"
+	local formspec = 
+		"size[8,9]"..
+		"list[nodemeta:"..spos..";main;0,0;8,4;]"..
+		"list[current_player;main;0,5;8,4;]"..
+		"background[-0.5,-0.65;9,10.35;".."chestui.png".."]"
+	return formspec
+end
 
 function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
@@ -157,63 +162,6 @@ function default.get_locked_chest_formspec(pos)
 	return formspec
 end
 
-minetest.register_node("deco:chest", {
-	description = "Chest",
-	tiles = {"deco_chest_top.png", "deco_chest_top.png", "deco_chest_side.png",
-		"deco_chest_side.png", "deco_chest_side.png", "deco_chest_front.png"},
-	paramtype2 = "facedir",
-	drawtype = "nodebox",
-	paramtype = "light",
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		}
-	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4375, -0.5, -0.4375, 0.4375, 0.4375, 0.4375}, -- MainBody
-			{-0.125, -0.0625, -0.5, -0.0625, 0.0625, -0.4375}, -- LockingPinP1
-			{0.0625, -0.125, -0.4375, -0.0625, 0.0625, -0.5}, -- LockingPinP2
-			{0.0625, -0.0625, -0.5, 0.125, 0.0625, -0.4375}, -- LockingPinP3
-		}
-	},
-	groups = {choppy=2,oddly_breakable_by_hand=2},
-	legacy_facedir_simple = true,
-	is_ground_content = false,
-	sounds = default.node_sound_wood_defaults(),
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec",default.chest_formspec)
-		meta:set_string("infotext", "Chest")
-		local inv = meta:get_inventory()
-		inv:set_size("main", 8*4)
-	end,
-	after_place_node = function(pos, placer)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", "Unlocked Chest (owned by "..
-				meta:get_string("owner")..")")
-	end,
-	can_dig = function(pos,player)
-		local meta = minetest.get_meta(pos);
-		local inv = meta:get_inventory()
-		return inv:is_empty("main")
-	end,
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name()..
-				" moves stuff in chest at "..minetest.pos_to_string(pos))
-	end,
-    on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name()..
-				" moves stuff to chest at "..minetest.pos_to_string(pos))
-	end,
-    on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name()..
-				" takes stuff from chest at "..minetest.pos_to_string(pos))
-	end,
-})
 
 local function has_locked_chest_privilege(meta, player)
 	if player:get_player_name() ~= meta:get_string("owner") then
@@ -221,107 +169,6 @@ local function has_locked_chest_privilege(meta, player)
 	end
 	return true
 end
-
-minetest.register_node("deco:chest_locked", {
-	description = "Locked Chest",
-	drawtype = "nodebox",
-	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4375, -0.5, -0.4375, 0.4375, 0.4375, 0.4375}, -- MainBody
-			{-0.125, -0.0625, -0.5, -0.0625, 0.25, -0.4375}, -- LockingPinP1
-			{0.0625, -0.125, -0.4375, -0.0625, 0.1875, -0.5}, -- LockingPinP2
-			{0.0625, -0.0625, -0.5, 0.125, 0.25, -0.4375}, -- LockingPinP3
-		}
-	},
-	tiles = {"deco_chest_top.png", "deco_chest_top.png", "deco_chest_side.png",
-		"deco_chest_side.png", "deco_chest_side.png", "deco_chest_lock.png"},
-	paramtype2 = "facedir",
-	groups = {choppy=2,oddly_breakable_by_hand=2},
-	legacy_facedir_simple = true,
-	is_ground_content = false,
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		}
-	},
-	after_place_node = function(pos, placer)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", "Locked Chest (owned by "..
-				meta:get_string("owner")..")")
-	end,
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Locked Chest")
-		meta:set_string("owner", "")
-		local inv = meta:get_inventory()
-		inv:set_size("main", 8*4)
-	end,
-	can_dig = function(pos,player)
-		local meta = minetest.get_meta(pos);
-		local inv = meta:get_inventory()
-		return inv:is_empty("main") and has_locked_chest_privilege(meta, player)
-	end,
-	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		local meta = minetest.get_meta(pos)
-		if not has_locked_chest_privilege(meta, player) then
-			minetest.log("action", player:get_player_name()..
-					" tried to access a locked chest belonging to "..
-					meta:get_string("owner").." at "..
-					minetest.pos_to_string(pos))
-			return 0
-		end
-		return count
-	end,
-    allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-		local meta = minetest.get_meta(pos)
-		if not has_locked_chest_privilege(meta, player) then
-			minetest.log("action", player:get_player_name()..
-					" tried to access a locked chest belonging to "..
-					meta:get_string("owner").." at "..
-					minetest.pos_to_string(pos))
-			return 0
-		end
-		return stack:get_count()
-	end,
-    allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-		local meta = minetest.get_meta(pos)
-		if not has_locked_chest_privilege(meta, player) then
-			minetest.log("action", player:get_player_name()..
-					" tried to access a locked chest belonging to "..
-					meta:get_string("owner").." at "..
-					minetest.pos_to_string(pos))
-			return 0
-		end
-		return stack:get_count()
-	end,
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name()..
-				" moves stuff in locked chest at "..minetest.pos_to_string(pos))
-	end,
-    on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name()..
-				" moves stuff to locked chest at "..minetest.pos_to_string(pos))
-	end,
-    on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name()..
-				" takes stuff from locked chest at "..minetest.pos_to_string(pos))
-	end,
-	on_rightclick = function(pos, node, clicker)
-		local meta = minetest.get_meta(pos)
-		if has_locked_chest_privilege(meta, clicker) then
-			minetest.show_formspec(
-				clicker:get_player_name(),
-				"deco:chest_locked",
-				default.get_locked_chest_formspec(pos)
-			)
-		end
-	end,
-})
 
 --torches
 
@@ -1045,7 +892,7 @@ minetest.register_craft({
 
 -- mesh chest (testing)
 
-minetest.register_node("deco:chest_locked_mesh", {
+minetest.register_node("deco:locked_chest", {
 	description = "Locked Chest",
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -1187,7 +1034,7 @@ minetest.register_node("deco:chest_locked_mesh", {
 			minetest.show_formspec(
 				clicker:get_player_name(),
 				-- we need to pass the position here so the helper function knowns where the chest to close is
-				"deco:chest_locked_mesh_"..pos.x.."_"..pos.y.."_"..pos.z,
+				"deco:locked_chest_"..pos.x.."_"..pos.y.."_"..pos.z,
 				default.get_locked_chest_formspec(pos)
 			)
 		end
@@ -1211,9 +1058,24 @@ minetest.register_node("deco:chest_locked_mesh", {
 -- helper function to close the chest lids.
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname:find('deco:chest_locked_mesh_') == 1 then
+	if formname:find('deco:locked_chest_') == 1 then
 		if not fields.quit then return end
-		local x, y, z = formname:match('deco:chest_locked_mesh_(.-)_(.-)_(.*)')
+		local x, y, z = formname:match('deco:locked_chest_(.-)_(.-)_(.*)')
+		local pos = {x=tonumber(x), y=tonumber(y), z=tonumber(z)}
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_anim[1] == nil then
+			minetest.log("error", "Did not find entity for chest at " .. minetest.pos_to_string(pos))
+		end
+		
+		entity_anim[1]:set_animation({x=220,y=440}, 30, 0) -- Play the close animation
+		local speedy_meta = minetest.get_meta(pos)
+		speedy_meta:set_string("lid_state", "shut")
+		local quicktime = minetest.get_node_timer(pos)
+		quicktime:start(7.333333333333333)
+	end
+	if formname:find('deco:chest_') == 1 then
+		if not fields.quit then return end
+		local x, y, z = formname:match('deco:chest_(.-)_(.-)_(.*)')
 		local pos = {x=tonumber(x), y=tonumber(y), z=tonumber(z)}
 		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
 		if entity_anim[1] == nil then
@@ -1245,4 +1107,140 @@ minetest.register_entity("deco:mesh_chest_locked", {
 	mesh = "ChestLocked.b3d",
     textures = {"chest_uv.png"},
 	visual_size = {x=10, y=10},
+})
+
+minetest.register_entity("deco:mesh_chest", {
+    collisionbox = { 0, 0, 0, 0, 0, 0 },
+    visual = "mesh",
+	mesh = "ChestUnlocked.b3d",
+    textures = {"chest_uv.png"},
+	visual_size = {x=10, y=10},
+})
+
+minetest.register_node("deco:chest", {
+	description = "Chest",
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, 0.1250, 0.4375}, -- MainBody
+		}
+	},
+	tiles = {"deco_chest_top.png", "deco_chest_top.png", "deco_chest_side.png",
+		"deco_chest_side.png", "deco_chest_side.png", "deco_chest_side.png"},
+	paramtype2 = "facedir",
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
+	
+	groups = {choppy=2,oddly_breakable_by_hand=2},
+	legacy_facedir_simple = true,
+	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
+	after_place_node = function(pos, placer)
+		local meta = minetest.get_meta(pos)
+		minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest") --+(0.0625*10)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 1 then
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then
+				entity_remove[1]:setyaw((-3.142/2))
+			else
+				entity_remove[1]:setyaw(0)
+		end
+		meta:set_string("owner", placer:get_player_name() or "")
+		meta:set_string("infotext", "Unlocked Chest (owned by "..
+		meta:get_string("owner")..")")
+	end,
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec",default.chest_formspec)
+		meta:set_string("infotext", "Chest")
+		local inv = meta:get_inventory()
+		inv:set_size("main", 8*4)
+	end,
+	on_punch = function(pos)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_remove[1] == nil then
+			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest") --+(0.0625*10)
+			entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+			if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 1 then
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then
+				entity_remove[1]:setyaw((-3.142/2))
+			else
+				entity_remove[1]:setyaw(0)
+			end
+		end
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory()
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		entity_remove[1]:remove()
+		return inv:is_empty("main")
+	end,
+	
+	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff in chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" moves stuff to chest at "..minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name()..
+				" takes stuff from chest at "..minetest.pos_to_string(pos))
+	end,
+	on_rightclick = function(pos, node, clicker)
+		local meta = minetest.get_meta(pos)
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+			local speedy_meta = minetest.get_meta(pos)
+			speedy_meta:set_string("lid_state", "open")
+			if entity_anim[1] == nil then
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest") --+(0.0625*10)
+				entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+				if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+					entity_anim[1]:setyaw(3.142)
+				elseif minetest.get_node(pos).param2 == 1 then
+					entity_anim[1]:setyaw(3.142/2)
+				elseif minetest.get_node(pos).param2 == 3 then
+					entity_anim[1]:setyaw((-3.142/2))
+				else
+					entity_anim[1]:setyaw(0)
+				end
+			end
+		entity_anim[1]:set_animation({x=1,y=220}, 15, 0)
+		local timerlocked = minetest.get_node_timer(pos)
+		timerlocked:start(7.3)
+		minetest.show_formspec(
+				clicker:get_player_name(),
+				-- we need to pass the position here so the helper function knowns where the chest to close is
+				"deco:chest_"..pos.x.."_"..pos.y.."_"..pos.z,
+				default.chest_formspec(pos)
+		)
+	end,
+	on_timer = function(pos,elapsed)
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		local nodetimer = minetest.get_node_timer(pos)
+		nodetimer:stop()
+		if entity_anim[1] == nil then
+			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_chest") --+(0.0625*10)
+			entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		end
+		if minetest.get_meta(pos):get_string("lid_state") == "open" then
+			entity_anim[1]:set_animation({x=40,y=40}, 1, 0)
+		elseif minetest.get_meta(pos):get_string("lid_state") == "shut" then
+			entity_anim[1]:set_animation({x=440,y=440}, 1, 0)
+		end
+	end,
 })
