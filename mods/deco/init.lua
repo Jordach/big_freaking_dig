@@ -135,7 +135,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'deco:chest_locked',
+	output = 'deco:locked_chest',
 	recipe = {
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'group:wood', 'tools:steel_ingot', 'group:wood'},
