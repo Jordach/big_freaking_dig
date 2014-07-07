@@ -22,7 +22,12 @@
 
 --dofile(minetest.get_modpath("deco") .. "/ingotblocks.lua")
 
--- testing a drawtype nodebox?
+minetest.register_node("deco:invis", {
+	description = "invis node",
+	drawtype = "glasslike",
+	tiles = {"xfences_space.png"},
+	groups = {crumbly=1},
+})
 
 deco = {}
 
