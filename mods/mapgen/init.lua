@@ -352,7 +352,7 @@ minetest.register_abm({
 		end
 		if minetest.get_node_light(pos) > 9 then
 			pos.y = pos.y - 1
-			rotationrand = math.random(1,4)
+			local rotationrand = math.random(1,4)
 			if rotationrand == 1 then
 				minetest.env:add_node(pos,{name="mapgen:grass1"})
 			elseif rotationrand == 2 then
@@ -511,8 +511,7 @@ minetest.register_abm({
 		minetest.sound_play("mapgen_lava", {pos = pos, gain = 0.05, max_hear_distance = 1.5})
 			if math.random(1,13) == 8 then
 				local rnd = math.random(0,1)*-1
-				minetest.add_particle(pos, {x=0.1*rnd, y=0.8, z=-0.1*rnd}, {x=-0.5*rnd, y=0.2, z=0.5*rnd}, 1.7,
-   				1.2, true, "mapgen_lava_particle.png")
+				--minetest.add_particle(pos, {x=0.1*rnd, y=0.8, z=-0.1*rnd}, {x=-0.5*rnd, y=0.2, z=0.5*rnd}, 1.7,1.2, true, "mapgen_lava_particle.png")
 			end
 end})
 

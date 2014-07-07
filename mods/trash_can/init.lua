@@ -27,7 +27,8 @@ minetest.register_node("trash_can:trash_can_wooden",{
 				"button[0,0;2,1;empty;Empty Trash]"..
                                 "list[current_name;main;3,1;2,3;]"..
                                 "list[current_player;main;0,5;8,4;]"..
-								"background[-0.5,-0.55;9,10.25;".."trashcan.png".."]")
+								"background[-0.5,-0.55;9,10.25;".."trashcan.png".."]"..
+								"listcolors[#664620;#f9ca93;#ffffff;#c69c6a;#ffffff]")
                 meta:set_string("infotext", "Trash Can")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
