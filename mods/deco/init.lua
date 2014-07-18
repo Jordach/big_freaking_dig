@@ -22,13 +22,6 @@
 
 --dofile(minetest.get_modpath("deco") .. "/ingotblocks.lua")
 
-minetest.register_node("deco:invis", {
-	description = "invis node",
-	drawtype = "glasslike",
-	tiles = {"xfences_space.png"},
-	groups = {crumbly=1},
-})
-
 deco = {}
 
 -- glass
@@ -1171,7 +1164,7 @@ minetest.register_node("deco:chest", {
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec",default.chest_formspec)
+		meta:set_string("formspec",default.chest_formspec(pos))
 		meta:set_string("infotext", "Chest")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
@@ -1253,5 +1246,95 @@ minetest.register_node("deco:chest", {
 		elseif minetest.get_meta(pos):get_string("lid_state") == "shut" then
 			entity_anim[1]:set_animation({x=440,y=440}, 1, 0)
 		end
+	end,
+})
+
+-- desk fans
+
+function deco.desk_fan()
+	local active = "false"
+end
+
+minetest.register_entity("deco:mesh_desk_fan", {
+    collisionbox = { 0, 0, 0, 0, 0, 0 },
+    visual = "mesh",
+	mesh = "desk_fan.b3d",
+    textures = {"fan_uv.png"},
+	visual_size = {x=10, y=10},
+})
+
+minetest.register_node("deco:desk_fan", {
+	description = "Desk Fan",
+	drawtype = "nodebox",
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,
+	paramtype = "light",
+	groups = {oddly_breakable_by_hand=2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, -0.375, 0.1875}, -- NodeBox1
+		}
+	},
+	tiles = {"deco_fan_body.png"},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		}
+	},
+	on_construct = function(pos)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("active", "no")
+		print (meta:get_string("active"))
+		if entity_remove[1] == nil then
+			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_desk_fan") --+(0.0625*10)
+			entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+			if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 1 then
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then
+				entity_remove[1]:setyaw((-3.142/2))
+			else
+				entity_remove[1]:setyaw(0)
+			end
+		end
+	end,
+	on_punch = function(pos)
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		local speedy_meta = minetest.get_meta(pos)
+		if speedy_meta:get_string("active") == "no" then
+			speedy_meta:set_string("active", "yes")
+			print (speedy_meta:get_string("active"))
+		elseif speedy_meta:get_string("active") == "yes" then
+			speedy_meta:set_string("active", "no")
+			print (speedy_meta:get_string("active"))
+		end
+		
+		if entity_anim[1] == nil then
+			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_desk_fan") --+(0.0625*10)
+			local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+			if minetest.get_node(pos).param2 == 0 then --list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 1 then
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then
+				entity_remove[1]:setyaw((-3.142/2))
+			else
+				entity_remove[1]:setyaw(0)
+			end
+		end
+		local entity_anim = minetest.get_objects_inside_radius(pos, 0.1)
+		if minetest.get_meta(pos):get_string("active") == "no" then
+			entity_anim[1]:set_animation({x=0,y=0}, 1, 0)
+		elseif minetest.get_meta(pos):get_string("active") == "yes" then
+			entity_anim[1]:set_animation({x=0,y=96}, 24, 0)
+		end
+	end,
+	after_dig_node = function(pos)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		entity_remove[1]:remove()
 	end,
 })
