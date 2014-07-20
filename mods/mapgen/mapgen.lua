@@ -49,6 +49,76 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
+	name = "deathly_plains",
+	
+	node_top = "mapgen:deathly_grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 1,
+	height_max = 160,
+	heat_point = 35,
+	humidity_point = 34,
+})
+
+minetest.register_biome({
+	name = "deathly_forest",
+	
+	node_top = "mapgen:deathly_grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 1,
+	height_max = 160,
+	heat_point = 39,
+	humidity_point = 38,
+})
+
+minetest.register_biome({
+	name = "deathly_gplains",
+	
+	node_top = "mapgen:deathly_grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 3,
+	node_dust = "air",
+	
+	height_min = 1,
+	height_max = 160,
+	heat_point = 31,
+	humidity_point = 30,
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:deathly_grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	sidelen = 8,
+	fill_ratio = 0.034,
+	biomes = {"deathly_forest"},
+	flags = "place_center_x, place_center_z",
+	replacements = {
+		{"base:leaves", "mapgen:deathly_leaves"},
+		{"base:tree", "mapgen:deathly_tree"},
+		{"base:dirt", "mapgen:dirt"},
+	},
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:deathly_grass",
+	sidelen = 8,
+	fill_ratio = 0.047,
+	decoration = {"mapgen:deathly_long_grass_1", "mapgen:deathly_long_grass_2", "mapgen:deathly_long_grass_3"},
+	biomes = {"deathly_gplains"},
+	height = 1,
+})
+
+minetest.register_biome({
 	name = "snowy_plains",
 	
 	node_top = "mapgen:snowy_grass",

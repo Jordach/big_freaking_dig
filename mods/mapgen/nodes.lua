@@ -883,6 +883,222 @@ minetest.register_node("mapgen:soap_stone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+--
+-- deathly stuff
+--
+
+minetest.register_node("mapgen:deathly_grass", {
+	description = "Deathly Grass",
+	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side.png"},
+	groups = {crumbly=1},
+	is_ground_content = true,
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("mapgen:deathly_grass_1", {
+	description = "Deathly Grass",
+	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side.png"},
+	groups = {crumbly=1},
+	drops = "mapgen:dirt",
+	is_ground_content = true,
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("mapgen:deathly_grass_2", {
+	description = "Deathly Grass",
+	tiles = {"mapgen_deathly_grass_2.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side.png"},
+	groups = {crumbly=1},
+	drops = "mapgen:dirt",
+	is_ground_content = true,
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("mapgen:deathly_grass_3", {
+	description = "Deathly Grass",
+	tiles = {"mapgen_deathly_grass_3.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side.png"},
+	groups = {crumbly=1},
+	drops = "mapgen:dirt",
+	is_ground_content = true,
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("mapgen:deathly_grass_4", {
+	description = "Deathly Grass",
+	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side.png"},
+	groups = {crumbly=1},
+	drops = "mapgen:dirt",
+	is_ground_content = true,
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("mapgen:deathly_long_grass_1", {
+	description = "Deathly Long Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_deathly_long_grass_1.png"},
+	-- use a bigger inventory image
+	inventory_image = "mapgen_deathly_long_grass_1.png",
+	wield_image = "mapgen_deathly_long_grass_1.png",
+	waving = 1,
+	paramtype = "light",
+	walkable = false,
+	is_ground_content = true,
+	drop = 'mapgen:deathly_long_grass_1',
+	buildable_to = true,
+	groups = {snappy=3,flammable=3,attached_node=1, waving=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+	},
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:deathly_long_grass_"..math.random(1,5))
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:deathly_long_grass_" .. math.random(1,5) .. " "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("mapgen:deathly_long_grass_2", {
+	description = "Deathly Long Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_deathly_long_grass_2.png"},
+	-- use a bigger inventory image
+	inventory_image = "mapgen_deathly_long_grass_2.png",
+	wield_image = "mapgen_deathly_long_grass_2.png",
+	waving = 1,
+	paramtype = "light",
+	walkable = false,
+	is_ground_content = true,
+	drop = 'mapgen:deathly_long_grass_1',
+	buildable_to = true,
+	groups = {snappy=3,flammable=3,attached_node=1, waving=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+	},
+})
+
+minetest.register_node("mapgen:deathly_long_grass_3", {
+	description = "Deathly Long Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_deathly_long_grass_3.png"},
+	-- use a bigger inventory image
+	inventory_image = "mapgen_deathly_long_grass_3.png",
+	wield_image = "mapgen_deathly_long_grass_3.png",
+	waving = 1,
+	paramtype = "light",
+	walkable = false,
+	is_ground_content = true,
+	drop = 'mapgen:deathly_long_grass_1',
+	buildable_to = true,
+	groups = {snappy=3,flammable=3,attached_node=1, waving=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+	},
+})
+
+-- deathly random
+
+minetest.register_abm({
+	nodenames = {"mapgen:deathly_grass"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		local rotationrand = math.random(1,4)
+		minetest.env:add_node(pos,{name="mapgen:deathly_grass_"..rotationrand})
+	end,
+})
+
+-- deathly spread
+
+
+
+-- deathly trees
+
+minetest.register_node("mapgen:deathly_tree", {
+	description = "Deathly Log",
+	tiles = {"mapgen_deathly_log_top.png", "mapgen_deathly_log_top.png", "mapgen_deathly_log.png"},
+	is_ground_content = false,
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2,tree=1},
+	drop = "mapgen:evergreen_log",
+})
+
+minetest.register_node("mapgen:deathly_log", {
+	description = "Deathly Log",
+	paramtype2 = "facedir",
+	tiles = {"mapgen_deathly_log_top.png", "mapgen_deathly_log_top.png", "mapgen_deathly_log.png"},
+	is_ground_content = false,
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	on_place = minetest.rotate_node,
+})
+
+minetest.register_node("mapgen:deathly_leaves", {
+	description = "Deathly Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"mapgen_deathly_leaves.png"},
+	paramtype = "light",
+	waving = 1,
+	is_ground_content = false,
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				-- player will get sapling with 1/20 chance
+				items = {'mapgen:deathly_sapling'},
+				rarity = 32,
+			},
+			{
+				-- player will get leaves only if he get no saplings,
+				-- this is because max_items is 1
+				items = {'mapgen:deathly_leaves'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:deathly_leaves_deco")
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:deathly_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("mapgen:deathly_leaves_deco", {
+	description = "Deathly Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"mapgen_deathly_leaves.png"},
+	paramtype = "light",
+	waving=1,
+	is_ground_content = false,
+	groups = {snappy=3, flammable=2, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	drop = {'mapgen:deathly_leaves'},
+})
+
+minetest.register_node("mapgen:deathly_sapling", {
+	description = "Deathly Sapling",
+	waving = 1,
+	visual_scale = 1.0,
+	drawtype = "plantlike",
+	tiles = {"mapgen_deathly_sapling.png"},
+	inventory_image = "mapgen_deathly_sapling.png",
+	wield_image = "mapgen_deathly_sapling.png",
+	walkable = false,
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
+	},
+	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
 ---
 --- Stuff
 ---
