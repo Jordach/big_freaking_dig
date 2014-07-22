@@ -80,7 +80,7 @@ minetest.register_node("mapgen:grass1", {
 
 minetest.register_node("mapgen:grass2", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot2.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
@@ -89,7 +89,7 @@ minetest.register_node("mapgen:grass2", {
 
 minetest.register_node("mapgen:grass3", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot3.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
@@ -98,7 +98,7 @@ minetest.register_node("mapgen:grass3", {
 
 minetest.register_node("mapgen:grass4", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot4.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
