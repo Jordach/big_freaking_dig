@@ -1164,7 +1164,7 @@ minetest.register_node("deco:chest", {
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec",default.chest_formspec(pos))
+		--meta:set_string("formspec",default.chest_formspec(pos))
 		meta:set_string("infotext", "Chest")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
