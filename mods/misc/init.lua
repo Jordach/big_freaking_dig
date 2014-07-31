@@ -15,10 +15,7 @@ end
 
 liquids = {
 "mapgen:water_flowing",
-"mapgen:water_source",
 "mapgen:lava_flowing",
-"mapgen:lava_source",
-"ores:oil_source",
 "ores:oil_flowing"
 }
 
