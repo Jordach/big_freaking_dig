@@ -1185,6 +1185,6 @@ minetest.register_craft({
 	output = 'bucket:edens_water 1',
 	recipe = {
 		{'mapgen:edens_grass'},
-		{'bucket:water'},
+		{'bucket:bucket_water'},
 	}
 })
