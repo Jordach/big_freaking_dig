@@ -188,32 +188,32 @@ minetest.register_abm({
 	end,
 })
 
-minetest.register_abm({
-	nodenames = {"default:papyrus"},
-	neighbors = {"default:dirt", "default:dirt_with_grass"},
-	interval = 50,
-	chance = 20,
-	action = function(pos, node)
-		pos.y = pos.y-1
-		local name = minetest.get_node(pos).name
-		if name == "default:dirt" or name == "default:dirt_with_grass" then
-			if minetest.find_node_near(pos, 3, {"group:water"}) == nil then
-				return
-			end
-			pos.y = pos.y+1
-			local height = 0
-			while minetest.get_node(pos).name == "default:papyrus" and height < 4 do
-				height = height+1
-				pos.y = pos.y+1
-			end
-			if height < 4 then
-				if minetest.get_node(pos).name == "air" then
-					minetest.set_node(pos, {name="default:papyrus"})
-				end
-			end
-		end
-	end,
-})
+-- minetest.register_abm({
+	-- nodenames = {"default:papyrus"},
+	-- neighbors = {"default:dirt", "default:dirt_with_grass"},
+	-- interval = 50,
+	-- chance = 20,
+	-- action = function(pos, node)
+		-- pos.y = pos.y-1
+		-- local name = minetest.get_node(pos).name
+		-- if name == "default:dirt" or name == "default:dirt_with_grass" then
+			-- if minetest.find_node_near(pos, 3, {"group:water"}) == nil then
+				-- return
+			-- end
+			-- pos.y = pos.y+1
+			-- local height = 0
+			-- while minetest.get_node(pos).name == "default:papyrus" and height < 4 do
+				-- height = height+1
+				-- pos.y = pos.y+1
+			-- end
+			-- if height < 4 then
+				-- if minetest.get_node(pos).name == "air" then
+					-- minetest.set_node(pos, {name="default:papyrus"})
+				-- end
+			-- end
+		-- end
+	-- end,
+-- })
 
 --
 -- Leafdecay
