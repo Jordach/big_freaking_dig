@@ -1182,7 +1182,7 @@ minetest.register_abm({
 })
 
 minetest.register_craft({
-	output = 'bucket:edens_water 1',
+	output = 'bucket:bucket_edens_water 1',
 	recipe = {
 		{'mapgen:edens_grass'},
 		{'bucket:bucket_water'},
