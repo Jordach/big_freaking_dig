@@ -39,7 +39,7 @@ mobs:register_mob("mobs:dirt_monster", {
 		punch_end = 63,
 	}
 })
-mobs:register_spawn("mobs:dirt_monster", {"mapgen:grass", "mapgen:snowy_grass", "mapgen:dirt", "mapgen:perma_dirt"}, 3, -1, 7000, 3, 31000)
+mobs:register_spawn("mobs:dirt_monster", {"mapgen:grass_1", "mapgen:grass_2", "mapgen:grass_3", "mapgen:grass_4", "mapgen:snowy_grass", "mapgen:dirt", "mapgen:perma_dirt"}, 3, -1, 7000, 3, 31000)
 
 mobs:register_mob("mobs:stone_monster", {
 	type = "monster",
@@ -80,7 +80,7 @@ mobs:register_mob("mobs:stone_monster", {
 		punch_end = 63,
 	}
 })
-mobs:register_spawn("mobs:stone_monster", {"mapgen:stone", "mapgen:crust_stone"}, 3, -1, 7000, 3, 0)
+mobs:register_spawn("mobs:stone_monster", {"mapgen:stone_1", "mapgen:stone_2", "mapgen:stone_3", "mapgen:stone_4", "mapgen:crust_stone"}, 3, -1, 7000, 3, 0)
 
 mobs:register_mob("mobs:sand_monster", {
 	type = "monster",

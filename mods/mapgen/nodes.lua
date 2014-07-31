@@ -1018,7 +1018,7 @@ minetest.register_abm({
 -- deathly spread
 
 minetest.register_abm({
-	nodenames = {"mapgen:grass_1","mapgen:grass_2","mapgen:grass_3","mapgen:grass_4"},
+	nodenames = {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4","mapgen:dirt"},
 	neighbors = {"mapgen:deathly_grass_1","mapgen:deathly_grass_2","mapgen:deathly_grass_3","mapgen:deathly_grass_4","mapgen:deathly_long_grass_1","mapgen:deathly_long_grass_2","mapgen:deathly_long_grass_3","mapgen:deathly_tree","mapgen:deathly_log","mapgen:deathly_leaves","mapgen:deathly_leaves_deco","mapgen:deathly_sapling"},
 	interval = 180,
 	chance = 2,
