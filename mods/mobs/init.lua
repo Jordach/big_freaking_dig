@@ -249,7 +249,7 @@ mobs:register_mob("mobs:sheep", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:sheep", {"mapgen:grass"}, 20, 8, 9000, 1, 31000)
+mobs:register_spawn("mobs:sheep", {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4",}, 20, 8, 9000, 1, 31000)
 
 minetest.register_craftitem("mobs:meat_raw", {
 	description = "Raw Meat",
@@ -292,7 +292,7 @@ mobs:register_mob("mobs:rat", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:rat", {"mapgen:grass", "mapgen:stone"}, 20, -1, 7000, 1, 31000)
+mobs:register_spawn("mobs:rat", {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4", "mapgen:stone"}, 20, -1, 7000, 1, 31000)
 
 minetest.register_craftitem("mobs:rat", {
 	description = "Rat",
@@ -354,7 +354,7 @@ mobs:register_mob("mobs:oerkki", {
 		speed_run = 15,
 	},
 })
-mobs:register_spawn("mobs:oerkki", {"mapgen:stone", "mapgen:crust_stone", "mapgen:mese_stone"}, 2, -1, 7000, 3, -10)
+mobs:register_spawn("mobs:oerkki", {"mapgen:stone_1", "mapgen:stone_2", "mapgen:stone_3", "mapgen:stone_4", "mapgen:crust_stone", "mapgen:mese_stone"}, 2, -1, 7000, 3, -10)
 
 mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",

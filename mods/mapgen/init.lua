@@ -405,7 +405,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"mapgen:dirt",},
-	neighbors = {"mapgen:edens_grass", "mapgen:grass_1", "mapgen:grass_2", "mapgen:grass_3", "mapgen:grass_4"},
+	neighbors = {"mapgen:edens_grass", "mapgen:grass1", "mapgen:grass2", "mapgen:grass3", "mapgen:grass4"},
 	interval = 60,
 	chance = 2,
 	action = function(pos)
@@ -430,7 +430,7 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	nodenames = {"mapgen:grass_1", "mapgen:grass_2", "mapgen:grass_3", "mapgen:grass_4", "mapgen:snowy_grass", "mapgen:deathly_grass_1", "mapgen:deathly_grass_2", "mapgen:deathly_grass_3", "mapgen:deathly_grass_4"},
+	nodenames = {"mapgen:grass1", "mapgen:grass2", "mapgen:grass3", "mapgen:grass4", "mapgen:snowy_grass", "mapgen:deathly_grass_1", "mapgen:deathly_grass_2", "mapgen:deathly_grass_3", "mapgen:deathly_grass_4"},
 	interval = 60,
 	chance = 2,
 	action = function(pos)
@@ -590,3 +590,69 @@ minetest.register_abm({
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		minetest.sound_play("mapgen_water", {pos = pos, gain = 0.025, max_hear_distance = 5})
 end})
+
+
+minetest.register_node("mapgen:edens_water_flowing", {
+	description = "Flowing Water",
+	inventory_image = minetest.inventorycube("mapgen_edens_water.png"),
+	drawtype = "flowingliquid",
+	tiles = {"mapgen_water.png"},
+	special_tiles = {
+		{
+			image="mapgen_edens_water_flowing_animated.png",
+			backface_culling=false,
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.8}
+		},
+		{
+			image="mapgen_edens_water_flowing_animated.png",
+			backface_culling=true,
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.8}
+		},
+	},
+	alpha = 160,
+	paramtype = "light",
+	paramtype2 = "flowingliquid",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	drop = "",
+	drowning = 1,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "mapgen:edens_water_flowing",
+	liquid_alternative_source = "mapgen:edens_water_source",
+	liquid_viscosity = 1,
+	post_effect_color = {a=64, r=100, g=100, b=200},
+	groups = {water=3, liquid=3, puts_out_fire=1},
+})
+
+minetest.register_node("mapgen:edens_water_source", {
+	description = "Water Source",
+	inventory_image = minetest.inventorycube("mapgen_edens_water.png"),
+	drawtype = "liquid",
+	tiles = {
+		{name="mapgen_edens_water_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}
+	},
+	special_tiles = {
+		-- New-style water source material (mostly unused)
+		{
+			name="mapgen_edens_water_source_animated.png",
+			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0},
+			backface_culling = false,
+		}
+	},
+	alpha = 160,
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	drop = "",
+	drowning = 1,
+	liquidtype = "source",
+	liquid_alternative_flowing = "mapgen:edens_water_flowing",
+	liquid_alternative_source = "mapgen:edens_water_source",
+	liquid_viscosity = 1,
+	post_effect_color = {a=64, r=100, g=100, b=200},
+	groups = {water=3, liquid=3, puts_out_fire=1},
+})

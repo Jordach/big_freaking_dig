@@ -1018,10 +1018,10 @@ minetest.register_abm({
 -- deathly spread
 
 minetest.register_abm({
-	nodenames = {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4","mapgen:dirt"},
+	nodenames = {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4",},
 	neighbors = {"mapgen:deathly_grass_1","mapgen:deathly_grass_2","mapgen:deathly_grass_3","mapgen:deathly_grass_4","mapgen:deathly_long_grass_1","mapgen:deathly_long_grass_2","mapgen:deathly_long_grass_3","mapgen:deathly_tree","mapgen:deathly_log","mapgen:deathly_leaves","mapgen:deathly_leaves_deco","mapgen:deathly_sapling"},
-	interval = 180,
-	chance = 2,
+	interval = 180*4,
+	chance = 4,
 	action = function(pos)
 		minetest.add_node(pos,{name="mapgen:deathly_grass_"..math.random(1,4)})
 	end,
@@ -1126,4 +1126,65 @@ minetest.register_craftitem("mapgen:apple", {
 	description = "Apple",
 	inventory_image = "mapgen_apple.png",
 	on_use = minetest.item_eat(2),
+})
+
+-- eden's restoration liquids abm
+
+minetest.register_abm({
+	nodenames = {"mapgen:deathly_grass_1","mapgen:deathly_grass_2","mapgen:deathly_grass_3","mapgen:deathly_grass_4"},
+	neighbors = {"mapgen:edens_water_source", "mapgen:edens_water_flowing"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.set_node(pos,{name="mapgen:grass"})		
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:deathly_long_grass_1","mapgen:deathly_long_grass_2","mapgen:deathly_long_grass_3"},
+	neighbors = {"mapgen:edens_water_source", "mapgen:edens_water_flowing"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		local rand = math.random(1,3)
+		minetest.set_node(pos,{name="mapgen:long_grass_"..rand})
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:deathly_tree", "mapgen:deathly_log"},
+	neighbors = {"mapgen:edens_water_source", "mapgen:edens_water_flowing"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.set_node(pos,{name="mapgen:oak_log_tree"})
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:deathly_leaves","mapgen:deathly_leaves_deco"},
+	neighbors = {"mapgen:edens_water_source", "mapgen:edens_water_flowing"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.set_node(pos,{name="mapgen:oak_leaves"})
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:deathly_sapling"},
+	neighbors = {"mapgen:edens_water_source", "mapgen:edens_water_flowing"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.set_node(pos,{name="mapgen:oak_sapling"})
+	end,
+})
+
+minetest.register_craft({
+	output = 'bucket:edens_water 1',
+	recipe = {
+		{'mapgen:edens_grass'},
+		{'bucket:water'},
+	}
 })

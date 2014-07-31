@@ -68,7 +68,7 @@ node_list = {
 minetest.register_abm({
 	nodenames = node_list,
 	neighbors = liquids,
-	interval = 1,
+	interval = 2,
 	chance = 2,
 	action = function(pos)
 		attached_node(pos)

@@ -176,6 +176,14 @@ bucket.register_liquid(
 )
 
 bucket.register_liquid(
+	"mapgen:edens_water_source",
+	"mapgen:edens_water_flowing",
+	"bucket:bucket_edens_water",
+	"bucket_edens_water.png",
+	"Eden's Water Bucket"
+)
+
+bucket.register_liquid(
 	"mapgen:lava_source",
 	"mapgen:lava_flowing",
 	"bucket:bucket_lava",
