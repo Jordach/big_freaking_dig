@@ -1017,15 +1017,17 @@ minetest.register_abm({
 
 -- deathly spread
 
-minetest.register_abm({
-	nodenames = {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4",},
-	neighbors = {"mapgen:deathly_grass_1","mapgen:deathly_grass_2","mapgen:deathly_grass_3","mapgen:deathly_grass_4","mapgen:deathly_long_grass_1","mapgen:deathly_long_grass_2","mapgen:deathly_long_grass_3","mapgen:deathly_tree","mapgen:deathly_log","mapgen:deathly_leaves","mapgen:deathly_leaves_deco","mapgen:deathly_sapling"},
-	interval = 180*4,
-	chance = 4,
-	action = function(pos)
-		minetest.add_node(pos,{name="mapgen:deathly_grass_"..math.random(1,4)})
-	end,
-})
+--NOTICE: TURNED OFF FOR NOW AS IT IS COMPLETELY OVERPOWERED. BIOMES NEED TO BE LIMITED SOMEHOW.
+
+-- minetest.register_abm({
+	-- nodenames = {"mapgen:grass1","mapgen:grass2","mapgen:grass3","mapgen:grass4",},
+	-- neighbors = {"mapgen:deathly_grass_1","mapgen:deathly_grass_2","mapgen:deathly_grass_3","mapgen:deathly_grass_4","mapgen:deathly_long_grass_1","mapgen:deathly_long_grass_2","mapgen:deathly_long_grass_3","mapgen:deathly_tree","mapgen:deathly_log","mapgen:deathly_leaves","mapgen:deathly_leaves_deco","mapgen:deathly_sapling"},
+	-- interval = 180*4,
+	-- chance = 4,
+	-- action = function(pos)
+		-- minetest.add_node(pos,{name="mapgen:deathly_grass_"..math.random(1,4)})
+	-- end,
+-- })
 	
 -- deathly trees
 
