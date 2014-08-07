@@ -4,14 +4,14 @@ local file = world_path .. "/beds_spawns"
 local bkwd = false
 local writing = true
 
--- check for PA's beds mod spawns
-local cf = io.open(world_path .. "/beds_player_spawns", "r")
-if cf ~= nil then
-	io.close(cf)
-	file = world_path .. "/beds_player_spawns"
-	bkwd = true
-end
-writing = false
+-- -- check for PA's beds mod spawns
+-- local cf = io.open(world_path .. "/beds_player_spawns", "r")
+-- if cf ~= nil then
+	-- io.close(cf)
+	-- file = world_path .. "/beds_player_spawns"
+	-- bkwd = true
+-- end
+-- writing = false
 
 
 function beds.read_spawns()
