@@ -655,7 +655,7 @@ minetest.register_craft({
 	output = "tools:steel_sickle",
 	recipe = {
 		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
-		{'tools:stee_ingot', '', 'tools:steel_ingot'},
+		{'tools:steel_ingot', '', 'tools:steel_ingot'},
 		{'', '', 'tools:stick'},
 	}
 })

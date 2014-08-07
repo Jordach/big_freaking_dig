@@ -892,7 +892,7 @@ d_grass_max = 4
 
 minetest.register_node("mapgen:deathly_grass", {
 	description = "Deathly Grass",
-	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathlgrass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
+	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
 	groups = {crumbly=1},
 	is_ground_content = true,
 	sounds = default.node_sound_dirt_defaults(),
@@ -900,7 +900,7 @@ minetest.register_node("mapgen:deathly_grass", {
 
 minetest.register_node("mapgen:deathly_grass_1", {
 	description = "Deathly Grass",
-	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathlgrass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
+	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
 	groups = {crumbly=1},
 	drops = "mapgen:dirt",
 	is_ground_content = true,
@@ -909,7 +909,7 @@ minetest.register_node("mapgen:deathly_grass_1", {
 
 minetest.register_node("mapgen:deathly_grass_2", {
 	description = "Deathly Grass",
-	tiles = {"mapgen_deathly_grass_2.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathlgrass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
+	tiles = {"mapgen_deathly_grass_2.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
 	groups = {crumbly=1},
 	drops = "mapgen:dirt",
 	is_ground_content = true,
@@ -918,7 +918,7 @@ minetest.register_node("mapgen:deathly_grass_2", {
 
 minetest.register_node("mapgen:deathly_grass_3", {
 	description = "Deathly Grass",
-	tiles = {"mapgen_deathly_grass_3.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathlgrass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
+	tiles = {"mapgen_deathly_grass_3.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
 	groups = {crumbly=1},
 	drops = "mapgen:dirt",
 	is_ground_content = true,
@@ -927,7 +927,7 @@ minetest.register_node("mapgen:deathly_grass_3", {
 
 minetest.register_node("mapgen:deathly_grass_4", {
 	description = "Deathly Grass",
-	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathlgrass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
+	tiles = {"mapgen_deathly_grass_1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png", "mapgen_dirt.png^mapgen_deathly_grass_side_"..math.random(d_grass_min,d_grass_max)..".png"},
 	groups = {crumbly=1},
 	drops = "mapgen:dirt",
 	is_ground_content = true,
