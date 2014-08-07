@@ -448,9 +448,9 @@ function mobs:register_mob(name, def)
 					self.tamed = tmp.tamed
 				end
 			end
-			if self.lifetimer <= 0 and not self.tamed then
-				self.object:remove()
-			end
+			--if self.lifetimer <= 0 and not self.tamed then
+				--self.object:remove()
+			--end
 		end,
 		
 		get_staticdata = function(self)

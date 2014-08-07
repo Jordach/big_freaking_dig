@@ -536,9 +536,18 @@ minetest.register_node("deco:rail", {
                 -- but how to specify the dimensions for curved and sideways rails?
                 fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
-	groups = {bendy=2,dig_immediate=2,attached_node=1},
+	groups = {bendy=2,snappy=1,dig_immediate=2,attached_node=1,rail=1,connect_to_raillike=1},
 })
 
+
+minetest.register_craft({
+	output = 'deco:rail 20',
+	recipe = {
+		{'tools:steel_ingot','','tools:steel_ingot'},
+		{'tools:steel_ingot','tools:stick','tools:steel_ingot'},
+		{'tools:steel_ingot','','tools:steel_ingot'}
+	}
+})
 
 --desk chair :3
 

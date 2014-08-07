@@ -82,6 +82,7 @@ minetest.register_chatcommand("player_female", {
 
 minetest.register_on_joinplayer(function(player)
 	loadgenders()
+	default.player_attached[player:get_player_name()] = false
 	if genders[player:get_player_name()] == 1 then
 		default.player_set_model(player, "character.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
