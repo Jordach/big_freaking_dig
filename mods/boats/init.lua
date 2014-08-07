@@ -54,6 +54,8 @@ function boat.on_rightclick(self, clicker)
 		default.player_attached[name] = false
 		default.player_set_animation(clicker, "stand" , 30)
 		clicker:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
+		clicker:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
+		clicker:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
 	elseif not self.driver then
 		self.driver = clicker
 		clicker:set_attach(self.object, "", {x = 0, y = 6, z = -3}, {x = 0, y = 0, z = 0})
@@ -132,8 +134,8 @@ function boat.on_step(self, dtime)
 		self.v = 0
 		return
 	end
-	if math.abs(self.v) > 4.5 then
-		self.v = 4.5 * get_sign(self.v)
+	if math.abs(self.v) > 10 then
+		self.v = 10 * get_sign(self.v)
 	end
 
 	local p = self.object:getpos()

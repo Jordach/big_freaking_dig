@@ -18,7 +18,7 @@ local cart = {
 	old_pos = nil,
 	old_velocity = nil,
 	pre_stop_dir = nil,
-	MAX_V = 8, -- Limit of the velocity
+	MAX_V = 20, -- Limit of the velocity
 }
 
 function cart:on_rightclick(clicker)
