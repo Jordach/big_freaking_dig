@@ -1,0 +1,6 @@
+1.0.1 beta
+----------
+- Add backwards compatibility with PilzAdam's beds mod
+- Fix placement
+- Fix small bugs
+- Prevent possible crash

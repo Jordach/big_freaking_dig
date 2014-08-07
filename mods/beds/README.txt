@@ -1,47 +1,35 @@
-===BEDS MOD for MINETEST-C55===
-by PilzAdam & thefamilygrog66
+Minetest mod "Beds"
+===================
+by BlockMen (c) 2014
 
-Introduction:
-This mods brings beds to Minetest. You can use them to sleep at night
-to prevent attacks by evil mobs.
+Version: 1.0.1 Beta
 
-How to install:
-Unzip the archive an place it in minetest-base-directory/mods/minetest/
-if you have a windows client or a linux run-in-place client. If you have
-a linux system-wide instalation place it in ~/.minetest/mods/minetest/.
-If you want to install this mod only in one world create the folder
-worldmods/ in your worlddirectory.
-For further information or help see:
-http://wiki.minetest.com/wiki/Installing_Mods
+About
+~~~~~
+This mod a bed to Minetest which helps to skip the night. To sleep rightclick the bed, if playing 
+in singleplayer mode the night gets skipped imideatly. If playing on server you get shown how many other
+players are in bed too. If all players are sleeping the night gets skipped aswell.
 
-How to use the mod:
-Craft a bed like this:
-white wool  white wool   white wool
-stick                    stick
-After placing it anywhere you can go to sleep with a leftklick with your
-hand on the bed. If it is night a chatmessage wishs you "Good night" and
-you sleep until the next morning. To go outside the bed it is recommended
-to hit the bed again with a leftklick (it also works if you just go away
-but its not so safe).
-After dying the player will respawn at the last bed he has slept.
+Another feature is a controled respawning. If you have slept in bed (not just lying in it) your respawn point
+is set to the beds location. If dying you will respawn there.
 
-License:
-Sourcecode: WTFPL (see below)
-Graphics: WTFPL (see below)
 
-See also:
-http://minetest.net/
+To craft a bed you need 3 wood and 3 wool and place it in following shape:
 
-         DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
+wool wool wool
+wood wood wood
 
- Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+Notice: You can use any color of wood or wool, mixing different is also possible.
 
- Everyone is permitted to copy and distribute verbatim or modified
- copies of this license document, and changing it is allowed as long
- as the name is changed.
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+License of source code, textures: WTFPL
+---------------------------------------
+(c) Copyright BlockMen (2014)
 
-  0. You just DO WHAT THE FUCK YOU WANT TO. 
+
+
+This program is free software. It comes without any warranty, to
+the extent permitted by applicable law. You can redistribute it
+and/or modify it under the terms of the Do What The Fuck You Want
+To Public License, Version 2, as published by Sam Hocevar. See
+http://sam.zoy.org/wtfpl/COPYING for more details.

@@ -1,237 +1,196 @@
+beds = {}
+beds.player = {}
+beds.pos = {}
+beds.spawn = {}
+
+local form = 	"size[8,15;true]"..
+		"bgcolor[#080808BB; true]"..
+		"button_exit[2,12;4,0.75;leave;Leave Bed]"
 local player_in_bed = 0
 
-local beds_list = {
-	{ "Red Bed", "red"},
-	{ "Orange Bed", "orange"},	
-	{ "Yellow Bed", "yellow"},
-	{ "Green Bed", "green"},
-	{ "Blue Bed", "blue"},
-	{ "Violet Bed", "violet"},
-	{ "Black Bed", "black"},
-	{ "Grey Bed", "grey"},
-	{ "White Bed", "white"},
-}
 
-for i in ipairs(beds_list) do
-	local beddesc = beds_list[i][1]
-	local colour = beds_list[i][2]
+-- help functions
 
-	minetest.register_node("beds:bed_bottom_"..colour, {
-		description = beddesc,
-		drawtype = "nodebox",
-		tiles = {"beds_bed_top_bottom_"..colour..".png", "deco_wood_oak_planks.png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png",  "beds_bed_side_"..colour..".png"},
-		paramtype = "light",
-		paramtype2 = "facedir",
-		stack_max = 1,
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-		sounds = default.node_sound_wood_defaults(),
-		node_box = {
-			type = "fixed",
-			fixed = {
-						-- bed
-						{-0.5, 0.0, -0.5, 0.5, 0.3125, 0.5},
-						
-						-- legs
-						{-0.5, -0.5, -0.5, -0.4, 0.0, -0.4},
-						{0.4, 0.0, -0.4, 0.5, -0.5, -0.5},
-					}
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-						{-0.5, -0.5, -0.5, 0.5, 0.3125, 1.5},
-					}
-		},
+local function get_look_yaw(pos)
+	local n = minetest.get_node(pos)
+	if n.param2 == 1 then
+		return 7.9, n.param2
+	elseif n.param2 == 3 then
+		return 4.75, n.param2
+	elseif n.param2 == 0 then
+		return 3.15, n.param2
+	else
+		return 6.28, n.param2
+	end
+end
 
-		after_place_node = function(pos, placer, itemstack)
-			local node = minetest.env:get_node(pos)
-			local p = {x=pos.x, y=pos.y, z=pos.z}
-			local param2 = node.param2
-			node.name = "beds:bed_top_"..colour
-			if param2 == 0 then
-				pos.z = pos.z+1
-			elseif param2 == 1 then
-				pos.x = pos.x+1
-			elseif param2 == 2 then
-				pos.z = pos.z-1
-			elseif param2 == 3 then
-				pos.x = pos.x-1
-			end
-			if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
-				minetest.env:set_node(pos, node)
-			else
-				minetest.env:remove_node(p)
-				return true
-			end
-		end,
-			
-		on_destruct = function(pos)
-			local node = minetest.env:get_node(pos)
-			local param2 = node.param2
-			if param2 == 0 then
-				pos.z = pos.z+1
-			elseif param2 == 1 then
-				pos.x = pos.x+1
-			elseif param2 == 2 then
-				pos.z = pos.z-1
-			elseif param2 == 3 then
-				pos.x = pos.x-1
-			end
-			if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).name == "beds:bed_top_"..colour ) then
-				if( minetest.env:get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
-					minetest.env:remove_node(pos)
-				end	
-			end
-		end,
-		
-		on_rightclick = function(pos, node, clicker)
-			if not clicker:is_player() then
-				return
-			end
-			local meta = minetest.env:get_meta(pos)
-			local param2 = node.param2
-			if param2 == 0 then
-				pos.z = pos.z+1
-			elseif param2 == 1 then
-				pos.x = pos.x+1
-			elseif param2 == 2 then
-				pos.z = pos.z-1
-			elseif param2 == 3 then
-				pos.x = pos.x-1
-			end
-			if clicker:get_player_name() == meta:get_string("player") then
-				if param2 == 0 then
-					pos.x = pos.x-1
-				elseif param2 == 1 then
-					pos.z = pos.z+1
-				elseif param2 == 2 then
-					pos.x = pos.x+1
-				elseif param2 == 3 then
-					pos.z = pos.z-1
-				end
-				pos.y = pos.y-0.5
-				clicker:set_physics_override(1, 1, 1)
-				clicker:setpos(pos)
-				meta:set_string("player", "")
-				player_in_bed = player_in_bed-1
-			elseif meta:get_string("player") == "" then
-				clicker:set_physics_override(0, 0, 0, false, false)
-				--pos.y = pos.y-0.75
-				clicker:setpos(pos)
-				if param2 == 0 then
-					clicker:set_look_yaw(math.pi)
-				elseif param2 == 1 then
-					clicker:set_look_yaw(0.5*math.pi)
-				elseif param2 == 2 then
-					clicker:set_look_yaw(0)
-				elseif param2 == 3 then
-					clicker:set_look_yaw(1.5*math.pi)
-				end
-				
-				meta:set_string("player", clicker:get_player_name())
-				player_in_bed = player_in_bed+1
-			end
+
+local function check_in_beds(players)
+	local in_bed = beds.player
+	if not players then
+		players = minetest.get_connected_players()
+	end
+
+	for n, player in ipairs(players) do
+		local name = player:get_player_name()
+		if not in_bed[name] then
+			return false
 		end
-	})
-	
-	minetest.register_node("beds:bed_top_"..colour, {
-		drawtype = "nodebox",
-		tiles = {"beds_bed_top_top_"..colour..".png", "deco_wood_oak_planks.png",  "beds_bed_side_top_r_"..colour..".png",  "beds_bed_side_top_l_"..colour..".png",  "beds_bed_top_front.png",  "beds_bed_side_"..colour..".png"},
-		paramtype = "light",
-		paramtype2 = "facedir",
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-		sounds = default.node_sound_wood_defaults(),
-		node_box = {
-			type = "fixed",
-			fixed = {
-						-- bed
-						{-0.5, 0.0, -0.5, 0.5, 0.3125, 0.5},
-						{-0.4375, 0.3125, 0.1, 0.4375, 0.4375, 0.5},
-						
-						-- legs
-						{-0.4, 0.0, 0.4, -0.5, -0.5, 0.5},
-						{0.5, -0.5, 0.5, 0.4, 0.0, 0.4},
-					}
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-						{0, 0, 0, 0, 0, 0},
-					}
-		},
-	})
-	
-	minetest.register_alias("beds:bed_"..colour, "beds:bed_bottom_"..colour)
-	
-	minetest.register_craft({
-		output = "beds:bed_"..colour,
-		recipe = {
-			{"wool:"..colour, "wool:"..colour, "wool:white", },
-			{"tools:stick", "", "tools:stick", }
-		}
-	})
-	
-	minetest.register_craft({
-		output = "beds:bed_"..colour,
-		recipe = {
-			{"wool:white", "wool:"..colour, "wool:"..colour, },
-			{"tools:stick", "", "tools:stick", }
-		}
-	})
-	
+	end
+
+	return true
 end
 
-minetest.register_alias("beds:bed_bottom", "beds:bed_bottom_blue")
-minetest.register_alias("beds:bed_top", "beds:bed_top_blue")
-minetest.register_alias("beds:bed", "beds:bed_bottom_blue")
+local function lay_down(player, pos, bed_pos, state)
+	local name = player:get_player_name()
+	local hud_flags = player:hud_get_flags()
 
-beds_player_spawns = {}
-local file = io.open(minetest.get_worldpath().."/beds_player_spawns", "r")
-if file then
-	beds_player_spawns = minetest.deserialize(file:read("*all"))
-	file:close()
-end
-
-local timer = 0
-local wait = false
-minetest.register_globalstep(function(dtime)
-	if timer<2 then
-		timer = timer+dtime
+	if not player or not name then
 		return
 	end
-	timer = 0
-	
-	local players = #minetest.get_connected_players()
-	if players == player_in_bed and players ~= 0 then
-		if minetest.env:get_timeofday() < 0.2 or minetest.env:get_timeofday() > 0.805 then
-			if not wait then
-				minetest.chat_send_all("Good night!!!")
-				minetest.after(2, function()
-					minetest.env:set_timeofday(0.23)
-					wait = false
-				end)
-				wait = true
-				for _,player in ipairs(minetest.get_connected_players()) do
-					beds_player_spawns[player:get_player_name()] = player:getpos()
-				end
-				local file = io.open(minetest.get_worldpath().."/beds_player_spawns", "w")
-				if file then
-					file:write(minetest.serialize(beds_player_spawns))
-					file:close()
-				end
-			end
+
+	-- stand up
+	if state ~= nil and not state then
+		local p = beds.pos[name] or nil
+		if beds.player[name] ~= nil then
+			beds.player[name] = nil
+			player_in_bed = player_in_bed - 1
 		end
+		if p then 
+			player:setpos(p)
+		end
+
+		-- physics, eye_offset, etc
+		player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
+		player:set_look_yaw(math.random(1, 180)/100)
+		default.player_attached[name] = false
+		player:set_physics_override(1, 1, 1)
+		hud_flags.wielditem = true
+		default.player_set_animation(player, "stand" , 30)
+
+	-- lay down
+	else
+		beds.player[name] = 1
+		beds.pos[name] = pos
+		player_in_bed = player_in_bed + 1
+
+		-- physics, eye_offset, etc
+		player:set_eye_offset({x=0,y=-13,z=0}, {x=0,y=0,z=0})
+		local yaw, param2 = get_look_yaw(bed_pos)
+		player:set_look_yaw(yaw)
+		local dir = minetest.facedir_to_dir(param2)
+		local p = {x=bed_pos.x+dir.x/2,y=bed_pos.y,z=bed_pos.z+dir.z/2}
+		player:set_physics_override(0, 0, 0)
+		player:setpos(p)
+		default.player_attached[name] = true
+		hud_flags.wielditem = false
+		default.player_set_animation(player, "lay" , 0)
 	end
+
+	player:hud_set_flags(hud_flags)
+end
+
+local function update_formspecs(finished)
+	local ges = #minetest.get_connected_players()
+	local form_n = ""
+
+	if finished then
+		form_n = form ..
+			"label[2.7,11; Good morning.]"
+	else
+		form_n = form ..
+			"label[2.2,11;"..tostring(player_in_bed).." of "..tostring(ges).." players are in bed]"
+	end
+	
+	for name,_ in pairs(beds.player) do
+		minetest.show_formspec(name, "beds_form", form_n)
+	end
+end
+
+
+-- public functions
+
+function beds.kick_players()
+	for name,_ in pairs(beds.player) do
+		local player = minetest.get_player_by_name(name)
+		lay_down(player, nil, nil, false)
+	end
+end
+
+function beds.skip_night()
+	minetest.set_timeofday(0.23)
+	beds.set_spawns()
+end
+
+function beds.on_rightclick(pos, player)
+	local name = player:get_player_name()
+	local ppos = player:getpos()
+	local tod = minetest.get_timeofday()
+
+	if tod > 0.2 and tod < 0.805 then
+		minetest.chat_send_player(name, "You can only sleep at night.")
+		return
+	end
+
+	-- move to bed
+	if not beds.player[name] then
+		lay_down(player, ppos, pos)
+	else
+		lay_down(player, nil, nil, false)
+	end
+
+	update_formspecs(false)
+
+	-- skip the night and let all stand up
+	if check_in_beds() then
+		minetest.after(2, function()
+			beds.skip_night()
+			update_formspecs(true)
+			beds.kick_players()
+		end)
+	end
+end
+
+
+-- callbacks
+
+minetest.register_on_joinplayer(function(player)
+	beds.read_spawns()
 end)
 
 minetest.register_on_respawnplayer(function(player)
 	local name = player:get_player_name()
-	if beds_player_spawns[name] then
-		player:setpos(beds_player_spawns[name])
+	local pos = beds.spawn[name] or nil
+	if pos then
+		player:setpos(pos)
 		return true
 	end
 end)
 
-if minetest.setting_get("log_mods") then
-	minetest.log("action", "beds loaded")
-end
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	lay_down(player, nil, nil, false)
+	beds.player[name] = nil
+	if check_in_beds() then
+		minetest.after(2, function()
+			beds.skip_night()
+			update_formspecs(true)
+			beds.kick_players()
+		end)
+	end
+end)
+
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	if formname ~= "beds_form" then
+		return
+	end
+	if fields.quit or fields.leave then
+		lay_down(player, nil, nil, false)
+		update_formspecs(false)
+	end
+end)
+
+
+-- nodes and respawn function
+dofile(minetest.get_modpath("beds").."/nodes.lua")
+dofile(minetest.get_modpath("beds").."/spawns.lua")
