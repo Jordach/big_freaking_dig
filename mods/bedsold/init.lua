@@ -64,7 +64,9 @@ for i in ipairs(beds_list) do
 				return true
 			end
 		end,
-			
+		on_rightclick = function(pos, node, clicker)
+			beds.on_rightclick(pos, clicker)
+		end,
 		on_destruct = function(pos)
 			local node = minetest.env:get_node(pos)
 			local param2 = node.param2
