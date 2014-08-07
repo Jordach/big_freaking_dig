@@ -288,3 +288,26 @@ stairs.register_stair_and_slab("stone_tile", "deco:stone_tile",
 		"Stone Tile Stair",
 		"Stone Tile Slab",
 		default.node_sound_stone_defaults())
+		
+-- soap stone
+
+stairs.register_stair_and_slab("soapstone", "mapgen:soap_stone",
+		{cracky=2},
+		{"mapgen_soap_stone.png"},
+		"Soapstone Stair",
+		"Soapstone Slab",
+		default.node_sound_stone_defaults())
+
+stairs.register_stair_and_slab("soapstone_tile", "deco:soapstone_tile",
+		{cracky=2},
+		{"deco_soapstone_tile.png"},
+		"Soapstone Tile Stair",
+		"Soapstone Tile Slab",
+		default.node_sound_stone_defaults())
+
+stairs.register_stair_and_slab("soapstone_brick", "deco:soapstone_brick",
+		{cracky=2},
+		{"deco_soapstone_brick.png"},
+		"Soapstone Brick Stair",
+		"Soapstone Brick Slab",
+		default.node_sound_stone_defaults())

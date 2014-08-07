@@ -1347,3 +1347,47 @@ minetest.register_node("deco:desk_fan", {
 		entity_remove[1]:remove()
 	end,
 })
+
+--
+
+-- soapstone
+
+minetest.register_node("deco:soapstone_tile", {
+	description = "Soapstone Tile",
+	tiles = {"deco_soapstone_tile.png"},
+	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=2, stone=1},
+})
+
+minetest.register_node("deco:soapstone_brick", {
+	description = "Soapstone Brick",
+	tiles = {"deco_soapstone_brick.png"},
+	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=2, stone=1},
+})
+
+-- crafting
+
+minetest.register_craft({
+	output = 'deco:soapstone_tile 4',
+	recipe = {
+		{'mapgen:soap_stone', 'mapgen:soap_stone'},
+		{'mapgen:soap_stone', 'mapgen:soap_stone'},
+	}
+})
+
+minetest.register_craft({
+	output = 'deco:soapstone_brick 4',
+	recipe = {
+		{'deco:soapstone_tile', 'deco:soapstone_tile'},
+		{'deco:soapstone_tile', 'deco:soapstone_tile'},
+	}
+})
+
+minetest.register_craft({
+	output = 'mapgen:soap_stone 4',
+	recipe = {
+		{'deco:soapstone_brick', 'deco:soapstone_brick'},
+		{'deco:soapstone_brick', 'deco:soapstone_brick'},
+	}
+})

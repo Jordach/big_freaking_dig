@@ -471,8 +471,8 @@ minetest.register_craft({
 	output = "carts:cart",
 	recipe = {
 		{"", "group:wood", ""},
-		{"default:steel_ingot", "group:wool", "default:steel_ingot"},
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"tools:steel_ingot", "group:wool", "tools:steel_ingot"},
+		{"tools:steel_ingot", "tools:steel_ingot", "tools:steel_ingot"},
 	},
 })
 
