@@ -423,6 +423,101 @@ minetest.register_craft({
 	}
 })
 
+-- steel super tools
+
+minetest.register_tool("tools:steel_hammer", {
+	description = "Steel Dighammer",
+	groups = {sledge=1},
+	inventory_image = "tools_steel_hammer.png",
+	tool_capabilities = {
+		full_punch_interval = 4.1,
+		max_drop_level=0,
+		groupcaps={
+			cracky = {times={[1]=3.7*2.5, [2]=3.7*2.5, [3]=1.7*2.5}, uses=34, maxlevel=1},
+		},
+		damage_groups = {fleshy=4},
+	},
+})
+
+
+minetest.register_craft({
+	output = "tools:steel_hammer",
+	recipe = {
+		{"tools:steel_ingot", "tools:steel_ingot","tools:steel_ingot"},
+		{"tools:steel_ingot", "tools:steel_ingot","tools:steel_ingot"},
+		{"", "tools:stick",""}
+	}
+})
+
+
+minetest.register_tool("tools:steel_sickle", {
+	description = "Steel Sickle",
+	groups = {lumberaxe=1},
+	inventory_image = "tools_steel_sickle.png",
+	tool_capabilities = {
+		full_punch_interval = 2.34,
+		max_drop_level=0,
+		groupcaps = {
+			snappy = {times={[1]=0.6, [2]=0.3, [3]=0.15}, uses = 36, maxlevel=1},
+		},
+		damage_groups = {fleshy=6},
+	},
+})
+
+minetest.register_craft({
+	output = "tools:steel_sickle",
+	recipe = {
+		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
+		{'tools:steel_ingot', '', 'tools:steel_ingot'},
+		{'', '', 'tools:stick'},
+	}
+})
+
+
+minetest.register_tool("tools:steel_battleaxe", {
+	description = "Steel Battle Axe",
+	inventory_image = "tools_steel_battleaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 2.05*2,
+		max_drop_level = 0,
+		groupcaps = {
+			choppy = {times={[1]=9.8*1.5, [2]=4.2*1.5, [3]=3.1*1.5}, uses = 42*2, maxlevel=1},
+		}, 
+		damage_groups = {fleshy=9},
+	},
+})
+
+minetest.register_craft({
+	output = 'tools:steel_battleaxe',
+	recipe = {
+		{'tools:axe_steel', 'farming:string', 'tools:axe_steel'},
+		{'', 'tools:stick', ''},
+	}
+})
+
+minetest.register_tool("tools:steel_dirt_mover", {
+	description = "Steel Dirt Mover",
+	groups = {sledge=1},
+	inventory_image = "tools_steel_dirt_mover.png",
+	tool_capabilities = {
+		full_punch_interval = 2.55,
+		max_drop_level = 0,
+		groupcaps = {
+			crumbly = {times={[1]=4.1, [2]=2.55, [3]=1.75}, uses = 40, maxlevel=1},
+		},
+		damage_groups = {fleshy=3},
+	},
+})
+
+minetest.register_craft({
+	output = "tools:steel_dirt_mover",
+	recipe = {
+		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
+		{'tools:steel_ingot', 'tools:stick', 'tools:steel_ingot'},
+		{'', 'tools:stick', ''},
+	}
+})
+
 -- tin tools
 
 minetest.register_tool("tools:pick_tin", {
@@ -609,7 +704,7 @@ minetest.register_craft({
 	}
 })
 
--- steel extra tools
+-- bronze extra tools
 
 minetest.register_tool("tools:steel_hammer", {
 	description = "Steel Dighammer",
@@ -635,7 +730,6 @@ minetest.register_craft({
 	}
 })
 
--- steel sickle
 
 minetest.register_tool("tools:steel_sickle", {
 	description = "Steel Sickle",
@@ -660,7 +754,6 @@ minetest.register_craft({
 	}
 })
 
--- steel battleaxe
 
 minetest.register_tool("tools:steel_battleaxe", {
 	description = "Steel Battle Axe",
@@ -682,8 +775,6 @@ minetest.register_craft({
 		{'', 'tools:stick', ''},
 	}
 })
-
--- dirt mover
 
 minetest.register_tool("tools:steel_dirt_mover", {
 	description = "Steel Dirt Mover",
