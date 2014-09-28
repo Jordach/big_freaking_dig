@@ -51,6 +51,35 @@ minetest.register_chatcommand("player_male", {
 	end,
 })
 
+minetest.register_chatcommand("player_cloth", {
+	description = "Sets your player model to the Minecraft 1.8 one",
+	func = function(name)
+		local player = minetest.env:get_player_by_name(name)
+		if player == nil then
+			return false
+		end
+		if true then
+			default.player_set_model(player, "character_18.b3d")
+			local filename = minetest.get_modpath("player_textures").."/textures/player_"..player:get_player_name()
+			local f = io.open(filename..".png")
+			if f then
+				f:close()
+				player:set_properties({
+				textures = {"player_"..player:get_player_name()..".png"},
+				})
+			end
+			player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
+			minetest.chat_send_player(name, "Set player model to 1.8 compat!")
+			changed = true
+			if changed then
+				local output = io.open(gender_file, "w")
+				output:write("2".." "..player:get_player_name().."\n")
+			end
+			changed = false
+		end
+	end,
+})
+
 minetest.register_chatcommand("player_female", {
 	description = "Sets your player model to the female one",
 	func = function(name)
@@ -89,9 +118,17 @@ minetest.register_on_joinplayer(function(player)
 	elseif genders[player:get_player_name()] == 0 then
 		default.player_set_model(player, "characterfemale.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
+	elseif genders[player:get_player_name()] == 2 then
+		default.player_set_model(player, "character_18.b3d")
+		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
+	elseif player:get_player_name() == "Jordach" then
+		default.player_set_model(player, "character_jordach.b3d")
+		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 	else
 		default.player_set_model(player, "character.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
-		minetest.chat_send_player(player:get_player_name(), "Please set your gender via /player_male or /player_female, thank you. You can also ignore this message and use the default male model. This message will be shown again when you rejoin.")
+		minetest.chat_send_player(player:get_player_name(), "Please set your gender via /player_male or /player_female, thank you. You can also ignore this message and use the ")
+		minetest.chat_send_player(player:get_player_name(), "default male model. This message will be shown again when you rejoin.")
+		minetest.chat_send_player(player:get_player_name(), "If you have a 1.8 skin, please make sure the model is 1.8 compatible. Use can use /player_cloth to ensure it works as expected.")
 	end
 end)
