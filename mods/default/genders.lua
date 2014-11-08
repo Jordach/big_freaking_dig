@@ -125,7 +125,15 @@ minetest.register_on_joinplayer(function(player)
 		default.player_set_model(player, "character_jordach.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 	else
-		if read_image_size(player) == 1 then
+		local filename = minetest.get_modpath("player_textures").."/textures/player_"..player:get_player_name()
+		local filenameb = minetest.get_modpath("default").."/models/character"
+		local f = io.open(filename..".png")
+		if f then
+			f:close()
+			player:set_properties({textures = {"player_"..player:get_player_name()..".png"},})
+		else
+			player:set_properties({textures = {filenameb..".png"},})
+		if read_image_size(player) == 1 and  then
 			default.player_set_model(player, "character_18.b3d")
 			player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 			minetest.chat_send_player(player:get_player_name(), "Model automatically set to 1.8 compatible.")

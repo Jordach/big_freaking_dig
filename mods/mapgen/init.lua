@@ -22,11 +22,15 @@ dofile(minetest.get_modpath("mapgen").."/mapgen.lua")
 dofile(minetest.get_modpath("mapgen").."/nodes.lua")
 dofile(minetest.get_modpath("mapgen").."/flowers.lua")
 
+
+minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
 minetest.register_alias("mapgen_water_source", "mapgen:water_source")
 minetest.register_alias("mapgen_lava_source", "mapgen:lava_source")
 minetest.register_alias("mapgen_stone", "mapgen:stone")
 minetest.register_alias("mapgen_dirt", "mapgen:dirt")
 minetest.register_alias("mapgen_dirt_with_grass", "mapgen:grass")
+
+
 
 minetest.register_item(":", {
 	type = "none",
@@ -44,16 +48,18 @@ minetest.register_item(":", {
 	}
 })
 
-minetest.register_on_mapgen_init(function(params)
-	minetest.set_mapgen_params({
-		mgname = "v7",
-		seed = params.seed,
-		water_level = 1,
-		flags = "caves",
-		--flagmask = "trees, caves, flat, v6_biome_blend, v6_jungles, dungeons, nolight",
-		-- ^ stops that annoying error message, but i kinda like it!
-	})
-end)
+-- vnum = 5 or 7
+
+-- minetest.register_on_mapgen_init(function(params)
+	-- minetest.set_mapgen_params({
+		-- mgname = "v"..vnum,
+		-- seed = params.seed,
+		-- water_level = 1,
+		-- flags = "caves",
+		-- --flagmask = "trees, caves, flat, v6_biome_blend, v6_jungles, dungeons, nolight",
+		-- -- ^ stops that annoying error message, but i kinda like it!
+	-- })
+-- end)
 
 minetest.register_node("mapgen:grass", {
 	description = "Dirt with Grass",
