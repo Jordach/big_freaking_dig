@@ -656,3 +656,32 @@ minetest.register_node("mapgen:edens_water_source", {
 	post_effect_color = {a=64, r=100, g=100, b=200},
 	groups = {water=3, liquid=3, puts_out_fire=1},
 })
+
+-- fair warning, bullshit ahead
+
+minetest.register_node(":base:dirt", {
+	description = "bullshit from the api",
+	tiles = {"mapgen_dirt.png"},
+	is_ground_content = true,
+	drop = 'mapgen:dirt',
+	groups = {crumbly=3, soil=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node(":base:tree", {
+	description = "bullshit from the api",
+	tiles = {"mapgen_oak_tree.png"},
+	is_ground_content = true,
+	drop = 'mapgen:dirt',
+	groups = {crumbly=3, soil=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node(":base:leaves", {
+	description = "bullshit from the api",
+	tiles = {"mapgen_oak_leaves.png"},
+	is_ground_content = true,
+	drop = 'mapgen:dirt',
+	groups = {crumbly=3, soil=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_dirt_defaults(),
+})
