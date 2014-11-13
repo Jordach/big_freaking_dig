@@ -366,6 +366,15 @@ minetest.register_node("mapgen:lava_source", {
 })
 
 minetest.register_abm({
+	nodenames = {"ignore", "content_ignore"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.env:add_node(pos,{name="air"})
+	end
+})
+
+minetest.register_abm({
 	nodenames = {"mapgen:grass"},
 	interval = 1,
 	chance = 1,
