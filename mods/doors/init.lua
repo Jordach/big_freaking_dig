@@ -290,11 +290,11 @@ function doors:register_door(name, def)
 end
 
 doors:register_door("doors:door_wood", {
-	description = "Wooden Door",
-	inventory_image = "door_wood.png",
+	description = "Oak Door",
+	inventory_image = "door_wood_oak.png",
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
-	tiles_bottom = {"door_wood_b.png", "door_brown.png"},
-	tiles_top = {"door_wood_a.png", "door_brown.png"},
+	tiles_bottom = {"door_wood_oak_b.png", "deco_wood_oak_planks.png"},
+	tiles_top = {"door_wood_oak_a.png", "deco_wood_oak_planks.png"},
 	sounds = default.node_sound_wood_defaults(),
 	sunlight = false,
 })
@@ -302,11 +302,88 @@ doors:register_door("doors:door_wood", {
 minetest.register_craft({
 	output = "doors:door_wood",
 	recipe = {
-		{"group:wood", "group:wood"},
-		{"group:wood", "group:wood"},
-		{"group:wood", "group:wood"}
+		{"deco:oak_plank", "deco:oak_plank"},
+		{"deco:oak_plank", "deco:oak_plank"},
+		{"deco:oak_plank", "deco:oak_plank"}
 	}
 })
+
+doors:register_door("doors:door_birch", {
+	description = "Birch Door",
+	inventory_image = "door_wood_birch.png",
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	tiles_bottom = {"door_wood_birch_b.png", "deco_wood_birch_planks.png"},
+	tiles_top = {"door_wood_birch_a.png", "deco_wood_birch_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
+
+minetest.register_craft({
+	output = "doors:door_birch",
+	recipe = {
+		{"deco:birch_plank", "deco:birch_plank"},
+		{"deco:birch_plank", "deco:birch_plank"},
+		{"deco:birch_plank", "deco:birch_plank"}
+	}
+})
+
+doors:register_door("doors:door_cherry", {
+	description = "Cherry Door",
+	inventory_image = "door_wood_cherry.png",
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	tiles_bottom = {"door_wood_cherry_b.png", "deco_wood_cherry_planks.png"},
+	tiles_top = {"door_wood_cherry_a.png", "deco_wood_cherry_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
+
+minetest.register_craft({
+	output = "doors:door_cherry",
+	recipe = {
+		{"deco:cherry_plank", "deco:cherry_plank"},
+		{"deco:cherry_plank", "deco:cherry_plank"},
+		{"deco:cherry_plank", "deco:cherry_plank"}
+	}
+})
+
+doors:register_door("doors:door_evergreen", {
+	description = "Evergreen Door",
+	inventory_image = "door_wood_evergreen.png",
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	tiles_bottom = {"door_wood_evergreen_b.png", "deco_wood_evergreen_planks.png"},
+	tiles_top = {"door_wood_evergreen_a.png", "deco_wood_evergreen_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
+
+minetest.register_craft({
+	output = "doors:door_evergreen",
+	recipe = {
+		{"deco:evergreen_plank", "deco:evergreen_plank"},
+		{"deco:evergreen_plank", "deco:evergreen_plank"},
+		{"deco:evergreen_plank", "deco:evergreen_plank"}
+	}
+})
+
+doors:register_door("doors:door_deathly", {
+	description = "Deathly Wood Door",
+	inventory_image = "door_wood_deathly.png",
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	tiles_bottom = {"door_wood_deathly_b.png", "deco_wood_deathly_planks.png"},
+	tiles_top = {"door_wood_deathly_a.png", "deco_wood_deathly_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
+
+minetest.register_craft({
+	output = "doors:door_deathly",
+	recipe = {
+		{"deco:deathly_plank", "deco:deathly_plank"},
+		{"deco:deathly_plank", "deco:deathly_plank"},
+		{"deco:deathly_plank", "deco:deathly_plank"}
+	}
+})
+
 
 doors:register_door("doors:door_steel", {
 	description = "Steel Door",

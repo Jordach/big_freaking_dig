@@ -79,6 +79,13 @@ minetest.register_node("deco:evergreen_plank", {
 	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
 })
 
+minetest.register_node("deco:deathly_plank", {
+	description = "Deathly Planks",
+	tiles = {"deco_wood_deathly_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
+})
+
 -- plank crafting
 
 minetest.register_craft({
@@ -113,6 +120,13 @@ minetest.register_craft({
 	output = 'deco:evergreen_plank 6',
 	recipe = {
 		{'mapgen:evergreen_log'},
+	}
+})
+
+minetest.register_craft({
+	output = 'deco:deathly_plank 6',
+	recipe = {
+		{'mapgen:deathly_log'},
 	}
 })
 
