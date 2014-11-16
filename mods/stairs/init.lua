@@ -311,3 +311,21 @@ stairs.register_stair_and_slab("soapstone_brick", "deco:soapstone_brick",
 		"Soapstone Brick Stair",
 		"Soapstone Brick Slab",
 		default.node_sound_stone_defaults())
+
+--mother fuckin wool
+
+stairs.register_stair_and_slab("black_wool",      "wool:black",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_black.png"},      "Black Wool Stair",      "Black Wool Slab")
+stairs.register_stair_and_slab("blue_wool",       "wool:blue",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_blue.png"},       "Blue Wool Stair",       "Blue Wool Slab")
+stairs.register_stair_and_slab("brown_wool",      "wool:brown",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_black.png"},      "Brown Wool Stair",      "Brown Wool Slab")
+stairs.register_stair_and_slab("cyan_wool",       "wool:cyan",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_cyan.png"},       "Cyan Wool Stair",       "Cyan Wool Slab")
+stairs.register_stair_and_slab("dark_green_wool", "wool:dark_green", {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_dark_green.png"}, "Dark Green Wool Stair", "Dark Green Wool Slab")
+stairs.register_stair_and_slab("dark_grey_wool",  "wool:dark_grey",  {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_dark_grey.png"},  "Dark Grey Wool Stair",  "Dark Grey Wool Slab")
+stairs.register_stair_and_slab("green_wool",      "wool:green",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_green.png"},      "Green Wool Stair",      "Green Wool Slab")
+stairs.register_stair_and_slab("grey_wool",       "wool:grey",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_grey.png"},       "Grey Wool Stair",       "Grey Wool Slab")
+stairs.register_stair_and_slab("magenta_wool",    "wool:magenta",    {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_magenta.png"},    "Magenta Wool Stair",    "Magenta Wool Slab")
+stairs.register_stair_and_slab("orange_wool",     "wool:orange",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_orange.png"},     "Orange Wool Stair",     "Orange Wool Slab")
+stairs.register_stair_and_slab("pink_wool",       "wool:pink",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_pink.png"},       "Pink Wool Stair",       "Pink Wool Slab")
+stairs.register_stair_and_slab("red_wool",        "wool:red",        {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_red.png"},        "Red Wool Stair",        "Red Wool Slab")
+stairs.register_stair_and_slab("violet_wool",     "wool:violet",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_violet.png"},     "Violet Wool Stair",     "Violet Wool Slab")
+stairs.register_stair_and_slab("white_wool",      "wool:white",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_white.png"},      "White Wool Stair",      "White Wool Slab")
+stairs.register_stair_and_slab("yellow_wool",     "wool:yellow",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_yellow.png"},     "Yellow Wool Stair",     "Yellow Wool Slab")
