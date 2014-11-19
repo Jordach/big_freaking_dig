@@ -70,14 +70,10 @@ minetest.register_node("mapgen:grass", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
--- rotated grass
-
-grass_tex_min = 1
-grass_tex_max = 4
-
 minetest.register_node("mapgen:grass1", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_1.png", "mapgen_dirt.png^mapgen_grass_side_2.png", 
+		"mapgen_dirt.png^mapgen_grass_side_3.png", "mapgen_dirt.png^mapgen_grass_side_4.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
@@ -86,7 +82,8 @@ minetest.register_node("mapgen:grass1", {
 
 minetest.register_node("mapgen:grass2", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot2.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_2.png", "mapgen_dirt.png^mapgen_grass_side_3.png", 
+		"mapgen_dirt.png^mapgen_grass_side_4.png", "mapgen_dirt.png^mapgen_grass_side_1.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
@@ -95,7 +92,8 @@ minetest.register_node("mapgen:grass2", {
 
 minetest.register_node("mapgen:grass3", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot3.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_3.png", "mapgen_dirt.png^mapgen_grass_side_4.png", 
+		"mapgen_dirt.png^mapgen_grass_side_1.png", "mapgen_dirt.png^mapgen_grass_side_2.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
@@ -104,7 +102,8 @@ minetest.register_node("mapgen:grass3", {
 
 minetest.register_node("mapgen:grass4", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot4.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png", "mapgen_dirt.png^mapgen_grass_side_"..math.random(grass_tex_min,grass_tex_max)..".png"},
+	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_4.png", "mapgen_dirt.png^mapgen_grass_side_1.png", 
+		"mapgen_dirt.png^mapgen_grass_side_2.png", "mapgen_dirt.png^mapgen_grass_side_3.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
