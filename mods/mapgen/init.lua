@@ -82,7 +82,7 @@ minetest.register_node("mapgen:grass1", {
 
 minetest.register_node("mapgen:grass2", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_2.png", "mapgen_dirt.png^mapgen_grass_side_3.png", 
+	tiles = {"mapgen_grass_rot2.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_2.png", "mapgen_dirt.png^mapgen_grass_side_3.png", 
 		"mapgen_dirt.png^mapgen_grass_side_4.png", "mapgen_dirt.png^mapgen_grass_side_1.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
@@ -92,7 +92,7 @@ minetest.register_node("mapgen:grass2", {
 
 minetest.register_node("mapgen:grass3", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_3.png", "mapgen_dirt.png^mapgen_grass_side_4.png", 
+	tiles = {"mapgen_grass_rot3.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_3.png", "mapgen_dirt.png^mapgen_grass_side_4.png", 
 		"mapgen_dirt.png^mapgen_grass_side_1.png", "mapgen_dirt.png^mapgen_grass_side_2.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
@@ -102,7 +102,7 @@ minetest.register_node("mapgen:grass3", {
 
 minetest.register_node("mapgen:grass4", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_4.png", "mapgen_dirt.png^mapgen_grass_side_1.png", 
+	tiles = {"mapgen_grass_rot4.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_4.png", "mapgen_dirt.png^mapgen_grass_side_1.png", 
 		"mapgen_dirt.png^mapgen_grass_side_2.png", "mapgen_dirt.png^mapgen_grass_side_3.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
