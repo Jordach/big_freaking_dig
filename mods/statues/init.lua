@@ -137,7 +137,7 @@ male_statue_names = {"Adarqet",
 					 "Zephyrus1497",
 					 "legendofexodia",
 					 "Sam",
-					 "Hoodedice",
+					 --"Hoodedice",
 					 }
 
 female_statue_names = {"abigail",
