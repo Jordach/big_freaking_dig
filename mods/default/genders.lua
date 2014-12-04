@@ -124,7 +124,7 @@ minetest.register_on_joinplayer(function(player)
 	elseif player:get_player_name() == "Jordach" then
 		default.player_set_model(player, "character_jordach.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
-	elseif player:get_player_by_name) == "Hoodedice" then
+	elseif player:get_player_name() == "Hoodedice" then
 		default.player_set_model(player, "characterfemale.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 	else
