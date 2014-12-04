@@ -136,6 +136,7 @@ male_statue_names = {"Adarqet",
 					 "Zeg9",
 					 "Zephyrus1497",
 					 "legendofexodia",
+					 "Sam",
 					 }
 
 female_statue_names = {"abigail",
@@ -233,6 +234,36 @@ minetest.register_node("statues:default_skin", {
 			{-0.5, -0.5, -0.5, 0.5, 1.29, 0.5}
 		},
 	},
+	on_punch = function(pos, node, puncher)
+		if not puncher then return end
+	
+		-- chance of model choosing (m,f have 40%, cloth has 20%)
+	
+		local model_cha = math.random(1,100)
+	
+	
+		if model_cha <= 80 then
+			model_set = math.random(1,2)
+		end
+		if model_cha > 80 then
+			model_set = 3
+		end
+	
+		local toolname = puncher:get_wielded_item():get_name()
+	
+		if toolname == "tools:chisel" then
+			if model_set == 1 then
+				local choice = math.random(1,#male_statue_names)
+				minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
+			elseif model_set == 2 then
+				local choice = math.random(1,#female_statue_names)
+				minetest.set_node(pos, {name="statues:"..string.lower(female_statue_names[choice])})
+			else
+				local choice = math.random(1,#cloth_statue_names)
+				minetest.set_node(pos, {name="statues:"..string.lower(cloth_statue_names[choice])})
+			end
+		end
+	end
 })
 
 -- create a loop the length of each table
@@ -258,6 +289,36 @@ for i=1, #male_statue_names do
 				{-0.4, -0.5, -0.21, 0.4, 1.29, 0.2}
 			},
 		},
+		on_punch = function(pos, node, puncher)
+			if not puncher then return end
+	
+			-- chance of model choosing (m,f have 40%, cloth has 20%)
+	
+			local model_cha = math.random(1,100)
+	
+	
+			if model_cha <= 80 then
+				model_set = math.random(1,2)
+			end
+			if model_cha > 80 then
+				model_set = 3
+			end
+	
+			local toolname = puncher:get_wielded_item():get_name()
+	
+			if toolname == "tools:chisel" then
+				if model_set == 1 then
+					local choice = math.random(1,#male_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
+				elseif model_set == 2 then
+					local choice = math.random(1,#female_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(female_statue_names[choice])})
+				else
+					local choice = math.random(1,#cloth_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(cloth_statue_names[choice])})
+				end
+			end
+		end
 	})
 end
 
@@ -284,6 +345,36 @@ for j=1, #female_statue_names do
 				{-0.5, -0.5, -0.5, 0.5, 1.29, 0.5}
 			},
 		},
+		on_punch = function(pos, node, puncher)
+			if not puncher then return end
+	
+			-- chance of model choosing (m,f have 40%, cloth has 20%)
+	
+			local model_cha = math.random(1,100)
+	
+	
+			if model_cha <= 80 then
+				model_set = math.random(1,2)
+			end
+			if model_cha > 80 then
+				model_set = 3
+			end
+	
+			local toolname = puncher:get_wielded_item():get_name()
+	
+			if toolname == "tools:chisel" then
+				if model_set == 1 then
+					local choice = math.random(1,#male_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
+				elseif model_set == 2 then
+					local choice = math.random(1,#female_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(female_statue_names[choice])})
+				else
+					local choice = math.random(1,#cloth_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(cloth_statue_names[choice])})
+				end
+			end
+		end
 	})
 end
 
@@ -310,5 +401,42 @@ for k=1, #cloth_statue_names do
 				{-0.5, -0.5, -0.5, 0.5, 1.29, 0.5}
 			},
 		},
+		on_punch = function(pos, node, puncher)
+			if not puncher then return end
+	
+			-- chance of model choosing (m,f have 40%, cloth has 20%)
+	
+			local model_cha = math.random(1,100)
+	
+	
+			if model_cha <= 80 then
+				model_set = math.random(1,2)
+			end
+			if model_cha > 80 then
+				model_set = 3
+			end
+	
+			local toolname = puncher:get_wielded_item():get_name()
+	
+			if toolname == "tools:chisel" then
+				if model_set == 1 then
+					local choice = math.random(1,#male_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
+				elseif model_set == 2 then
+					local choice = math.random(1,#female_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(female_statue_names[choice])})
+				else
+					local choice = math.random(1,#cloth_statue_names)
+					minetest.set_node(pos, {name="statues:"..string.lower(cloth_statue_names[choice])})
+				end
+			end
+		end
 	})
 end
+
+-- randomise the statue from using the chisel
+
+minetest.register_on_punchnode(function(pos, node, puncher)
+	
+	
+end)

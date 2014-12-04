@@ -33,6 +33,13 @@ minetest.register_craftitem("tools:stick", {
 	inventory_image = "tool_stick.png",
 })
 
+-- chisel, for randomising the statues
+
+minetest.register_craftitem("tools:chisel", {
+	description = "Chisel",
+	inventory_image = "tool_chisel.png",
+})
+
 -- get string from wool
 
 minetest.register_craft({
