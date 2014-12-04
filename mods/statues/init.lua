@@ -137,6 +137,7 @@ male_statue_names = {"Adarqet",
 					 "Zephyrus1497",
 					 "legendofexodia",
 					 "Sam",
+					 "Hoodedice",
 					 }
 
 female_statue_names = {"abigail",
@@ -209,6 +210,7 @@ female_statue_names = {"abigail",
 					   "WarriorCatslove",
 					   "wonderwomen",
 					   "YunaMaria",
+					   "Hoodedice",
 					  }
 
 cloth_statue_names = {"18_test", "Sokomine"}
