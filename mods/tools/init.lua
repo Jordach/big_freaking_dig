@@ -37,6 +37,7 @@ minetest.register_craftitem("tools:stick", {
 
 minetest.register_craftitem("tools:chisel", {
 	description = "Chisel",
+	stack_max = 1,
 	inventory_image = "tool_chisel.png",
 })
 
