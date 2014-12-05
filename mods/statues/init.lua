@@ -221,7 +221,7 @@ minetest.register_node("statues:default_skin", {
 	tiles = {"character.png"},
 	drawtype = "mesh",
 	mesh = "male_statue.b3d",
-	groups = {choppy=3},
+	groups = {oddly_breakable_by_hand=3},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	collision_box = {
@@ -277,7 +277,7 @@ for i=1, #male_statue_names do
 		tiles = {co..male_statue_names[i]..".png"},
 		drawtype = "mesh",
 		mesh = "male_statue.b3d",
-		groups = {choppy=3, not_in_creative_inventory=1},
+		groups = {oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		collision_box = {
@@ -334,7 +334,7 @@ for j=1, #female_statue_names do
 		tiles = {co..female_statue_names[j]..".png"},
 		drawtype = "mesh",
 		mesh = "female_statue.b3d",
-		groups = {choppy=3, not_in_creative_inventory=1},
+		groups = {oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		collision_box = {
@@ -391,7 +391,7 @@ for k=1, #cloth_statue_names do
 		tiles = {co..cloth_statue_names[k]..".png"},
 		drawtype = "mesh",
 		mesh = "male-18-statue.b3d",
-		groups = {choppy=3, not_in_creative_inventory=1},
+		groups = {oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		collision_box = {
