@@ -254,6 +254,7 @@ minetest.register_node("statues:default_skin", {
 		local toolname = puncher:get_wielded_item():get_name()
 	
 		if toolname == "tools:chisel" then
+		puncher:set_wielded_item("")
 			if model_set == 1 then
 				local choice = math.random(1,#male_statue_names)
 				minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
@@ -309,6 +310,7 @@ for i=1, #male_statue_names do
 			local toolname = puncher:get_wielded_item():get_name()
 	
 			if toolname == "tools:chisel" then
+				puncher:set_wielded_item("")
 				if model_set == 1 then
 					local choice = math.random(1,#male_statue_names)
 					minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
@@ -365,6 +367,7 @@ for j=1, #female_statue_names do
 			local toolname = puncher:get_wielded_item():get_name()
 	
 			if toolname == "tools:chisel" then
+				puncher:set_wielded_item("")
 				if model_set == 1 then
 					local choice = math.random(1,#male_statue_names)
 					minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
@@ -421,6 +424,7 @@ for k=1, #cloth_statue_names do
 			local toolname = puncher:get_wielded_item():get_name()
 	
 			if toolname == "tools:chisel" then
+				puncher:set_wielded_item("")
 				if model_set == 1 then
 					local choice = math.random(1,#male_statue_names)
 					minetest.set_node(pos, {name="statues:"..string.lower(male_statue_names[choice])})
