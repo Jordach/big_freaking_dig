@@ -108,7 +108,8 @@ tank_level[8] = {
 		
 function register_tank(name, light_min)
 	for level=1,8 do
-		textures = "nope.avi"
+		local textures = "nope.avi"
+		local light = 0
 		if name == "w" then
 			textures = {"tank_water_level_8.png^tankgaugetop.png", "tank_water_level_8.png^tankgaugetop.png", "tank_water_level_"..level..".png^tankgauge.png"}
 			light = 0

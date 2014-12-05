@@ -53,7 +53,7 @@ male_statue_names = {"Adarqet",
 					 "GreenDimond",
 					 "GtX",
 					 "hampa16",
-					 "Herobrine",
+					 "HeroBrine",
 					 "hippoHIH",
 					 "HoboGaming",
 					 "John",
@@ -76,7 +76,7 @@ male_statue_names = {"Adarqet",
 					 "marioaka47",
 					 "markveidemanis",
 					 "Mcc457",
-					 "MichealEh",
+					 "MichaelEh",
 					 "Microchip",
 					 "minergamergogo",
 					 "Mr_Meep",
@@ -99,7 +99,7 @@ male_statue_names = {"Adarqet",
 					 "ProBoy",
 					 "Rancon",
 					 "Razor",
-					 "Recker",
+					 "recker",
 					 "RedDog",
 					 "Rhys",
 					 "Rick2",
@@ -111,7 +111,7 @@ male_statue_names = {"Adarqet",
 					 "ShadowNinja",
 					 "Shaheer",
 					 "silly1089",
-					 "SkyDoesMinecraft",
+					 "SkyDoesMineCraft",
 					 "solidus_1602",
 					 "Sonic",
 					 "Tails",
@@ -141,7 +141,7 @@ male_statue_names = {"Adarqet",
 					 }
 
 female_statue_names = {"abigail",
-					   "AmyLee",
+					   "AmyLee33",
 					   "Angels_den",
 					   "babe",
 					   "Bearbar123",
@@ -179,7 +179,7 @@ female_statue_names = {"abigail",
 					   "lolol",
 					   "Memow",
 					   "mercedes1978",
-					   "mercedes",
+					   "merecedes",
 					   "Miki",
 					   "Misty",
 					   "NeonSkyz",
@@ -194,7 +194,7 @@ female_statue_names = {"abigail",
 					   "ProGirl",
 					   "Pudding_Warrior",
 					   "RayRay",
-					   "RedLoxx",
+					   "Redloxx",
 					   "rommiekerova",
 					   "Salems_Lady_MC",
 					   "Selah",
@@ -207,7 +207,7 @@ female_statue_names = {"abigail",
 					   "UmmerShamma",
 					   "VanessaEzekowitz",
 					   "WarriorCatlove",
-					   "WarriorCatslove",
+					   "WarriorCatsLove",
 					   "wonderwomen",
 					   "YunaMaria",
 					   "Hoodedice",
@@ -242,7 +242,7 @@ minetest.register_node("statues:default_skin", {
 		-- chance of model choosing (m,f have 40%, cloth has 20%)
 	
 		local model_cha = math.random(1,100)
-	
+		local model_set = 4
 	
 		if model_cha <= 80 then
 			model_set = math.random(1,2)
@@ -297,7 +297,7 @@ for i=1, #male_statue_names do
 			-- chance of model choosing (m,f have 40%, cloth has 20%)
 	
 			local model_cha = math.random(1,100)
-	
+			local model_set = 4
 	
 			if model_cha <= 80 then
 				model_set = math.random(1,2)
@@ -353,7 +353,7 @@ for j=1, #female_statue_names do
 			-- chance of model choosing (m,f have 40%, cloth has 20%)
 	
 			local model_cha = math.random(1,100)
-	
+			local model_set = 4
 	
 			if model_cha <= 80 then
 				model_set = math.random(1,2)
@@ -409,7 +409,7 @@ for k=1, #cloth_statue_names do
 			-- chance of model choosing (m,f have 40%, cloth has 20%)
 	
 			local model_cha = math.random(1,100)
-	
+			local model_set = 4
 	
 			if model_cha <= 80 then
 				model_set = math.random(1,2)
