@@ -617,7 +617,7 @@ minetest.register_node("mapgen:evergreen_leaves_snowy", {
 			}
 		}
 	},
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_snow_defaults(),
 })
 
 minetest.register_node("mapgen:evergreen_sapling", {
@@ -659,10 +659,7 @@ minetest.register_node("mapgen:snow", {
 		},
 	},
 	groups = {crumbly=3,falling_node=1},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_snow_footstep", gain=0.25},
-		dug = {name="default_snow_footstep", gain=0.75},
-	}),
+	sounds = default.node_sound_snow_defaults(),
 	on_construct = function(pos)
 		pos.y = pos.y - 1
 		if minetest.get_node(pos).name == "mapgen:grass" then
@@ -676,10 +673,7 @@ minetest.register_node("mapgen:snowblock", {
 	tiles = {"mapgen_snow.png"},
 	is_ground_content = true,
 	groups = {crumbly=3},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_snow_footstep", gain=0.25},
-		dug = {name="default_snow_footstep", gain=0.75},
-	}),
+	sounds = default.node_sound_snow_defaults(),
 })
 
 minetest.register_craft({

@@ -30,7 +30,20 @@ minetest.register_alias("mapgen_stone", "mapgen:stone")
 minetest.register_alias("mapgen_dirt", "mapgen:dirt")
 minetest.register_alias("mapgen_dirt_with_grass", "mapgen:grass")
 
+local function player_join_sounds()
+	minetest.register_on_joinplayer(function()
+		minetest.sound_play("player_join", {gain = 0.75})
+	end)
+end
 
+local function player_leave_sounds()
+	minetest.register_on_leaveplayer(function()
+		minetest.sound_play("player_leave", {gain = 1})
+	end)
+end
+
+minetest.after(5, player_join_sounds)
+minetest.after(5, player_leave_sounds)
 
 minetest.register_item(":", {
 	type = "none",
@@ -116,7 +129,7 @@ minetest.register_node("mapgen:snowy_grass", {
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
-	sounds = default.node_sound_dirt_defaults(),
+	sounds = default.node_sound_snow_defaults(),
 })
 
 
@@ -578,20 +591,6 @@ local function crustymese(old, new)
 end
 
 crustymese("mapgen:stone", "mapgen:mese_stone")
-
--- liquid sounds
-
-minetest.register_abm({
-	nodenames = {"mapgen:lava_source", "mapgen:lava_flowing"},
-	interval = 2,
-	chance = 2,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.sound_play("mapgen_lava", {pos = pos, gain = 0.05, max_hear_distance = 1.5})
-			if math.random(1,13) == 8 then
-				local rnd = math.random(0,1)*-1
-				--minetest.add_particle(pos, {x=0.1*rnd, y=0.8, z=-0.1*rnd}, {x=-0.5*rnd, y=0.2, z=0.5*rnd}, 1.7,1.2, true, "mapgen_lava_particle.png")
-			end
-end})
 
 --
 -- Flowing water sound

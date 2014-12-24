@@ -501,6 +501,105 @@ mobs:register_mob("mobs:evergreen_tree", {
 	}
 })
 
+mobs:register_mob("mobs:kitten_striped", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
+	visual = "mesh",
+	visual_size = {x=0.5, y=0.5},
+	mesh = "mobs_kitten.b3d",
+	textures = {"mobs_kitten_striped.png"},
+	makes_footstep_sound = false,
+	view_range = 15,
+	walk_velocity = 0.6,
+	drops = {
+		{name = "tools:sword_air",
+		chance = 400000,
+		min = 1,
+		max = 1,}
+	},
+	water_damage = 1,
+	lava_damage = 10,
+	on_rightclick = nil,
+	armor = 100,
+	sounds = {
+		random = "mobs_kitten",
+	},
+	animation = {
+		stand_start = 97,
+		stand_end = 192,
+		walk_start = 0,
+		walk_end = 96,
+		speed_normal = 42,
+	}
+})
+
+mobs:register_mob("mobs:kitten_splotchy", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
+	visual = "mesh",
+	visual_size = {x=0.5, y=0.5},
+	mesh = "mobs_kitten.b3d",
+	textures = {"mobs_kitten_splotchy.png"},
+	makes_footstep_sound = false,
+	view_range = 15,
+	walk_velocity = 0.6,
+	drops = {
+		{name = "tools:sword_air",
+		chance = 400000,
+		min = 1,
+		max = 1,}
+	},
+	water_damage = 1,
+	lava_damage = 10,
+	on_rightclick = nil,
+	armor = 100,
+	sounds = {
+		random = "mobs_kitten",
+	},
+	animation = {
+		stand_start = 97,
+		stand_end = 192,
+		walk_start = 0,
+		walk_end = 96,
+		speed_normal = 42,
+	}
+})
+
+mobs:register_mob("mobs:kitten_ginger", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
+	visual = "mesh",
+	visual_size = {x=0.5, y=0.5},
+	mesh = "mobs_kitten.b3d",
+	textures = {"mobs_kitten_ginger.png"},
+	makes_footstep_sound = false,
+	view_range = 15,
+	walk_velocity = 0.6,
+	drops = {
+		{name = "tools:sword_air",
+		chance = 400000,
+		min = 1,
+		max = 1,}
+	},
+	water_damage = 1,
+	lava_damage = 10,
+	on_rightclick = nil,
+	armor = 100,
+	sounds = {
+		random = "mobs_kitten",
+	},
+	animation = {
+		stand_start = 97,
+		stand_end = 192,
+		walk_start = 0,
+		walk_end = 96,
+		speed_normal = 42,
+	}
+})
+
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "mobs loaded")
 end

@@ -9,15 +9,42 @@ local function is_owner(pos, name)
 	return false
 end
 
+local death_strings = {}
+
+death_strings[1] =  " didn't check their health bar."
+death_strings[2] =  " didn't bring a sword."
+death_strings[3] =  " should have ate more often."
+death_strings[4] =  " somehow died, but time will tell."
+death_strings[5] =  " died as they lived - running away!"
+death_strings[6] =  " could have done a better job when living."
+death_strings[7] =  " was just a pawn in the game of life."
+death_strings[8] =  " didn't think mobs would spawn here."
+death_strings[9] =  " died by stupidity."
+death_strings[10] = " looked left and right, but not behind oneself."
+death_strings[11] = " could have easily avoided death, but still managed to die."
+death_strings[12] = " drank from the wrong pool of liquid."
+
+
+
 minetest.register_node("bones:bones", {
-	description = "Bones",
+	description = "Headstone",
 	tiles = {
-		"bones_top.png",
-		"bones_bottom.png",
-		"bones_side.png",
-		"bones_side.png",
-		"bones_rear.png",
-		"bones_front.png"
+		"deco_cobble.png",
+		"deco_cobble.png",
+		"deco_cobble.png",
+		"deco_cobble.png",
+		"deco_cobble.png",
+		"deco_cobble.png^bones_overlay.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{0.375, -0.5, 0.5, -0.375, -0.375, 0}, --base
+			{0.3125, -0.375, 0.375, -0.3125, 0.375, 0.125}, --mid segment
+			{0.25, 0.375, 0.375, -0.25, 0.5, 0.125}, --top segment
+		},
 	},
 	paramtype2 = "facedir",
 	groups = {dig_immediate=2},
@@ -52,7 +79,7 @@ minetest.register_node("bones:bones", {
 	on_metadata_inventory_take = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
 		if meta:get_string("owner") ~= "" and meta:get_inventory():is_empty("main") then
-			meta:set_string("infotext", meta:get_string("owner").."'s old bones")
+			--meta:set_string("infotext", meta:get_string("owner").."'s old bones")
 			meta:set_string("formspec", "")
 			meta:set_string("owner", "")
 		end
@@ -61,7 +88,7 @@ minetest.register_node("bones:bones", {
 	on_timer = function(pos, elapsed)
 		local meta = minetest.get_meta(pos)
 		local time = meta:get_int("time")+elapsed
-		local publish = 1200
+		local publish = 240
 		if tonumber(minetest.setting_get("share_bones_time")) then
 			publish = tonumber(minetest.setting_get("share_bones_time"))
 		end
@@ -69,7 +96,7 @@ minetest.register_node("bones:bones", {
 			return
 		end
 		if time >= publish then
-			meta:set_string("infotext", meta:get_string("owner").."'s old bones")
+			--meta:set_string("infotext", meta:get_string("owner").."'s old headstone")
 			meta:set_string("owner", "")
 		else
 			return true
@@ -119,12 +146,16 @@ minetest.register_on_dieplayer(function(player)
 		player_inv:set_stack("craft", i, nil)
 	end
 	
+	local d_msg = math.random(1, #death_strings)
+	local p_name = player:get_player_name()
+	
 	meta:set_string("formspec", "size[8,9;]"..
 			"list[current_name;main;0,0;8,4;]"..
 			"list[current_player;main;0,5;8,4;]"..
 			"listcolors[#49413f;#7c7371;#7b7675;#8d7e77;#ffffff]"..
 			"background[-0.5,-0.65;9,10.35;".."bones.png".."]")
-	meta:set_string("infotext", player:get_player_name().."'s fresh bones")
+	
+	meta:set_string("infotext", player:get_player_name()..death_strings[d_msg])
 	meta:set_string("owner", player:get_player_name())
 	meta:set_int("time", 0)
 	
