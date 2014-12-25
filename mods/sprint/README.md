@@ -1,17 +1,25 @@
 Sprint Mod For Minetest by GunshipPenguin  
 
-Allows the player to sprint by double tapping w. By default, 
-sprinting will make the player travel 50% faster and allow him/her 
-to jump 10% higher.
- 
-Licence: WTFPL (see LICENCE file)
+Allows the player to sprint by either double tapping w or pressing e. 
+By default, sprinting will make the player travel 80% faster and 
+allow him/her to jump 10% higher. Also adds a stamina bar that goes 
+down when the player sprints and goes up when he/she isn't 
+sprinting.
 
+Licence: CC0 (see COPYING file)
 
 ---
 
 This mod can be configured by changing the variables declared in 
 the start of init.lua. The following is a brief explanation of each 
 one.
+
+SPRINT_METHOD (default 1)
+
+What a player has to do to start sprinting. 0 = double tap w, 1 = press e.
+Note that if you have the fast privlige, and have the fast 
+speed turned on, you will run very, very fast. You can toggle this 
+by pressing j.
  
 SPRINT_SPEED (default 1.5)
  
@@ -33,20 +41,14 @@ How long the player can sprint for in seconds. Each player has a
 stamina variable assigned to them, it is initially set to 
 SPRINT_STAMINA and can go no higher. When the player is sprinting, 
 this variable ticks down once each second, and when it reaches 0, 
-the player stops sprinting and may be sent a warning depending on 
-the value of SPRINT_WARN. It ticks back up when the player isn't 
+the player stops sprinting. It ticks back up when the player isn't 
 sprinting and stops at SPRINT_STAMINA. Set this to a huge value if 
 you want unlimited sprinting.
 
 SPRINT_TIMEOUT (default 0.5)
 
+Only used if SPRINT_METHOD = 0.
 How much time the player has after releasing w, to press w again and 
 start sprinting. Setting this too high will result in unwanted 
 sprinting and setting it too low will result in it being 
 difficult/impossible to sprint.
-
-SPRINT_WARN (default true)
-
-If the player should be warned that his/her stamina has run out via 
-the in game chat system. You may want to set this to false if the 
-notifications get annoying.
