@@ -18,11 +18,11 @@ dofile(minetest.get_modpath("awards").."/api.lua")
 awards.register_achievement("award_lightitup",{
 	title = S("Light It Up"),
 	description = S("Place 100 torches."),
-	prizes = {"moreblocks:super_glow_glass 5"},
+	prizes = {"jdclamps:frame_glass 5"},
 	icon = "novicebuilder.png",
 	trigger = {
 		type = "place",
-		node = "default:torch",
+		node = "deco:torch",
 		target = 100
 	}
 })
@@ -31,11 +31,11 @@ awards.register_achievement("award_lightitup",{
 awards.register_achievement("award_light_all_the_things",{
 	title = S("Light ALL The Things!"),
 	description = S("Place 1,000 torches."),
-	prizes = {"moreblocks:super_glow_glass 25"},
+	prizes = {"jdclamps:frame_glass 25"},
 	icon = "novicebuilder.png",
 	trigger = {
 		type = "place",
-		node = "default:torch",
+		node = "deco:torch",
 		target = 1000
 	}
 })
@@ -100,92 +100,92 @@ awards.register_achievement("award_obsessed_with_obsidian",{
 awards.register_achievement("award_on_the_way",{
 	title = S("On The Way"),
 	description = S("Place 100 rails."),
-	prizes = {"default:rail 10"},
+	prizes = {"deco:rail 100"},
 	icon = "novicebuilder.png",
 	trigger = {
 		type = "place",
-		node = "default:rail",
+		node = "deco:rail",
 		target = 100
 	}
 })
 
--- Lumberjack
-awards.register_achievement("award_lumberjack",{
-	title = S("Lumberjack"),
-	description = S("Dig 100 tree blocks."),
-	prizes = {"default:axe_bronze"},
-	icon = "default_tree.png",
-	trigger = {
-		type = "dig",
-		node = "default:tree",
-		target = 100
-	}
-})
+-- -- Lumberjack
+-- awards.register_achievement("award_lumberjack",{
+	-- title = S("Lumberjack"),
+	-- description = S("Dig 100 tree blocks."),
+	-- prizes = {"default:axe_bronze"},
+	-- icon = "default_tree.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:tree",
+		-- target = 100
+	-- }
+-- })
 
--- Semi-pro Lumberjack
-awards.register_achievement("award_lumberjack_semipro",{
-	title = S("Semi-pro Lumberjack"),
-	description = S("Dig 1,000 tree blocks."),
-	prizes = {"default:wood 99", "default:axe_mese"},
-	icon = "default_tree.png",
-	trigger = {
-		type = "dig",
-		node = "default:tree",
-		target = 1000
-	}
-})
+-- -- Semi-pro Lumberjack
+-- awards.register_achievement("award_lumberjack_semipro",{
+	-- title = S("Semi-pro Lumberjack"),
+	-- description = S("Dig 1,000 tree blocks."),
+	-- prizes = {"default:wood 99", "default:axe_mese"},
+	-- icon = "default_tree.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:tree",
+		-- target = 1000
+	-- }
+-- })
 
--- Professional Lumberjack
-awards.register_achievement("award_lumberjack_professional",{
-	title = S("Professional Lumberjack"),
-	description = S("Dig 10,000 tree blocks."),
-	prizes = {"default:stick 999"},
-	icon = "default_tree.png",
-	trigger = {
-		type = "dig",
-		node = "default:tree",
-		target = 10000
-	}
-})
+-- -- Professional Lumberjack
+-- awards.register_achievement("award_lumberjack_professional",{
+	-- title = S("Professional Lumberjack"),
+	-- description = S("Dig 10,000 tree blocks."),
+	-- prizes = {"default:stick 999"},
+	-- icon = "default_tree.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:tree",
+		-- target = 10000
+	-- }
+-- })
 
--- L33T Lumberjack
-awards.register_achievement("award_lumberjack_leet",{
-	title = S("L33T Lumberjack"),
-	description = S("Dig 100,000 tree blocks."),
-	prizes = {"default:axe_diamond"},
-	icon = "default_tree.png",
-	trigger = {
-		type = "dig",
-		node = "default:tree",
-		target = 100000
-	}
-})
+-- -- L33T Lumberjack
+-- awards.register_achievement("award_lumberjack_leet",{
+	-- title = S("L33T Lumberjack"),
+	-- description = S("Dig 100,000 tree blocks."),
+	-- prizes = {"default:axe_diamond"},
+	-- icon = "default_tree.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:tree",
+		-- target = 100000
+	-- }
+-- })
 
--- Junglebaby
-awards.register_achievement("award_junglebaby",{
-	title = S("Junglebaby"),
-	description = S("Dig 100 jungle tree blocks."),
-	prizes = {"default:wood 10"},
-	icon = "default_jungletree.png",
-	trigger = {
-		type = "dig",
-		node = "default:jungletree",
-		target = 100
-	}
-})
+-- -- Junglebaby
+-- awards.register_achievement("award_junglebaby",{
+	-- title = S("Junglebaby"),
+	-- description = S("Dig 100 jungle tree blocks."),
+	-- prizes = {"default:wood 10"},
+	-- icon = "default_jungletree.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:jungletree",
+		-- target = 100
+	-- }
+-- })
 
--- Jungleman
-awards.register_achievement("award_jungleman",{
-	title = S("Jungleman"),
-	description = S("Dig 1,000 jungle tree blocks."),
-	prizes = {"default:wood 99"},
-	icon = "default_jungletree.png",
-	trigger = {
-		type = "dig",
-		node = "default:jungletree",
-		target = 1000
-	}
-})
+-- -- Jungleman
+-- awards.register_achievement("award_jungleman",{
+	-- title = S("Jungleman"),
+	-- description = S("Dig 1,000 jungle tree blocks."),
+	-- prizes = {"default:wood 99"},
+	-- icon = "default_jungletree.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:jungletree",
+		-- target = 1000
+	-- }
+-- })
 
 -- Found some Mese!
 awards.register_achievement("award_mesefind",{
@@ -195,7 +195,7 @@ awards.register_achievement("award_mesefind",{
 	background = "bg_mining.png",
 	trigger = {
 		type = "dig",
-		node = "default:stone_with_mese",
+		node = "ores:mese_ore",
 		target = 1
 	}
 })
@@ -209,88 +209,88 @@ awards.register_achievement("award_youre_a_copper",{
 	background = "bg_mining.png",
 	trigger = {
 		type = "dig",
-		node = "default:stone_with_copper",
+		node = "ores:copper_ore",
 		target = 1000
 	}
 })
 
--- You're winner
-awards.register_achievement("award_youre_winner",{
-	title = S("YOU'RE A WINNER!"),
-	description = S("Dig 1 mossy cobblestone."),
-	icon = "miniminer.png",
-	background = "bg_mining.png",
-	trigger = {
-		type = "dig",
-		node = "default:mossycobble",
-		target = 1
-	},
-	secret = true,
-})
+-- -- You're winner
+-- awards.register_achievement("award_youre_winner",{
+	-- title = S("YOU'RE A WINNER!"),
+	-- description = S("Dig 1 mossy cobblestone."),
+	-- icon = "miniminer.png",
+	-- background = "bg_mining.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:mossycobble",
+		-- target = 1
+	-- },
+	-- secret = true,
+-- })
 
--- Found a Nyan cat!
-awards.register_achievement("award_nyanfind",{
-	title = S("OMG, Nyan Cat!"),
-	description = S("Find a nyan cat."),
-	icon = "default_nc_rb.png",
-	trigger = {
-		type = "dig",
-		node = "default:nyancat",
-		target = 1
-	}
-})
+-- -- Found a Nyan cat!
+-- awards.register_achievement("award_nyanfind",{
+	-- title = S("OMG, Nyan Cat!"),
+	-- description = S("Find a nyan cat."),
+	-- icon = "default_nc_rb.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:nyancat",
+		-- target = 1
+	-- }
+-- })
 
--- Mini Miner
-awards.register_achievement("award_mine2",{
-	title = S("Mini Miner"),
-	description = S("Dig 100 stone blocks."),
-	prizes = {"default:steel_ingot"},
-	icon = "miniminer.png",
-	background = "bg_mining.png",
-	trigger = {
-		type = "dig",
-		node = "default:stone",
-		target = 100
-	}
-})
+-- -- Mini Miner
+-- awards.register_achievement("award_mine2",{
+	-- title = S("Mini Miner"),
+	-- description = S("Dig 100 stone blocks."),
+	-- prizes = {"default:steel_ingot"},
+	-- icon = "miniminer.png",
+	-- background = "bg_mining.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:stone",
+		-- target = 100
+	-- }
+-- })
 
--- Hardened Miner
-awards.register_achievement("award_mine3",{
-	title = S("Hardened Miner"),
-	description = S("Dig 1,000 stone blocks"),
-	prizes = {"default:pick_mese"},
-	icon = "miniminer.png",
-	background = "bg_mining.png",
-	trigger = {
-		type = "dig",
-		node = "default:stone",
-		target = 1000
-	}
-})
+-- -- Hardened Miner
+-- awards.register_achievement("award_mine3",{
+	-- title = S("Hardened Miner"),
+	-- description = S("Dig 1,000 stone blocks"),
+	-- prizes = {"default:pick_mese"},
+	-- icon = "miniminer.png",
+	-- background = "bg_mining.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:stone",
+		-- target = 1000
+	-- }
+-- })
 
--- Master Miner
-awards.register_achievement("award_mine4",{
-	title = S("Master Miner"),
-	description = S("Dig 10,000 stone blocks."),
-	prizes = {"default:pick_diamond"},
-	icon = "miniminer.png",
-	background = "bg_mining.png",
-	trigger = {
-		type = "dig",
-		node = "default:stone",
-		target = 10000
-	}
-})
+-- -- Master Miner
+-- awards.register_achievement("award_mine4",{
+	-- title = S("Master Miner"),
+	-- description = S("Dig 10,000 stone blocks."),
+	-- prizes = {"default:pick_diamond"},
+	-- icon = "miniminer.png",
+	-- background = "bg_mining.png",
+	-- trigger = {
+		-- type = "dig",
+		-- node = "default:stone",
+		-- target = 10000
+	-- }
+-- })
 
 -- Marchand de sable
 awards.register_achievement("award_marchand_de_sable",{
-	title = S("Marchand De Sable"),
+	title = S("Sandy Shoes"),
 	description = S("Dig 1,000 sand."),
-	prizes = {"default:shovel_mese"},
+	prizes = {"tools:shovel_mese"},
 	background = "bg_mining.png",
 	trigger = {
 		type = "dig",
-		node = "default:sand",
+		node = "mapgen:sand",
 		target = 1000
 	}
 })
@@ -299,7 +299,7 @@ awards.register_achievement("award_marchand_de_sable",{
 awards.register_achievement("award_join2",{
 	title = S("Frequent Visitor"),
 	description = S("Connect to the server 50 times."),
-	prizes = {"default:sword_mese"},
+	prizes = {"tools:sword_mese"},
 	trigger = {
 		type = "join",
 		target = 50
@@ -311,7 +311,7 @@ awards.register_achievement("award_join2",{
 awards.register_achievement("award_dying_spree",{
 	title = S("Dying Spree"),
 	description = S("Die 5 times."),
-	prizes = {"maptools:superapple 2"},
+	prizes = {"farming:bread 10"},
 	trigger = {
 		type = "death",
 		target = 5
@@ -322,7 +322,7 @@ awards.register_achievement("award_dying_spree",{
 awards.register_achievement("award_bot_like",{
 	title = S("Bot-like"),
 	description = S("Die 10 times."),
-	prizes = {"maptools:superapple 4"},
+	prizes = {"farming:bread 20"},
 	trigger = {
 		type = "death",
 		target = 10
@@ -333,7 +333,7 @@ awards.register_achievement("award_bot_like",{
 awards.register_achievement("award_you_suck",{
 	title = S("You Suck!"),
 	description = S("Die 100 times."),
-	prizes = {"3d_armor:boots_diamond"},
+	prizes = {"farming:bread 30"},
 	trigger = {
 		type = "death",
 		target = 100
@@ -363,7 +363,7 @@ awards.register_achievement("award_in_the_flow",{
 })
 awards.register_onDeath(function(player,data)
 	local pos = player:getpos()
-	if pos and minetest.find_node_near(pos, 2, "default:lava_flowing") ~= nil then
+	if pos and minetest.find_node_near(pos, 2, "mapgen:lava_flowing") ~= nil then
 		return "award_in_the_flow"
 	end	
 	return nil
@@ -377,7 +377,7 @@ awards.register_achievement("award_this_is_sad",{
 })
 awards.register_onDeath(function(player,data)
 	local pos = player:getpos()
-	if pos and minetest.find_node_near(pos, 5, "default:stone_with_diamond") ~= nil then
+	if pos and minetest.find_node_near(pos, 5, "ores:diamond_ore") ~= nil then
 		return "award_this_is_sad"
 	end	
 	return nil
@@ -386,7 +386,7 @@ end)
 -- Die near diamond ore
 awards.register_achievement("award_the_stack",{
 	title = S("The Stack"),
-	description = S("Die near bones.")
+	description = S("Die near a headstone.")
 })
 awards.register_onDeath(function(player,data)
 	local pos = player:getpos()
