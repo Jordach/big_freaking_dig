@@ -568,7 +568,7 @@ local function register_kitten(image, name)
 		visual = "mesh",
 		visual_size = {x=0.5, y=0.5},
 		mesh = "mobs_kitten.b3d",
-		textures = {image},
+		textures = {image,},
 		makes_footstep_sound = false,
 		view_range = 15,
 		walk_velocity = 0.6,
