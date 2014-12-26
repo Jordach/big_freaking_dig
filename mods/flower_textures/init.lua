@@ -2,4 +2,4 @@
 --flower_textures folder
 --for BFD.
 
-print "by reading this you are playing Big Freakin' Dig. props to server admins, and the players who helped me put this together. you're the fucking best, \n Jordach."
+print "By reading this you have contributed to the development of BFD, which means either making submods, mods, textures, sounds or whatever, even testing the game, you've done your part. \n \n Thank you. \n \n -Jordach."
