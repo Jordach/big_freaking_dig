@@ -1,0 +1,13 @@
+Many sounds, code and other stuff have been taken from other open source games:
+
+mods/default/sounds/player{join, leave, death}.ogg, healthgain.ogg: from OpenArena – GNU GPL 2. mods/default/sounds/player_%.ogg: from Xonotic – GNU GPL 3.
+
+mods/default/sounds/{lava, waterfall}.ogg: from Red Eclipse – CC BY-SA 3.0.
+
+mods/default/sounds/{hit, hit_death}.ogg: from Freesound – CC0.
+
+Some code has also been taken from Carbone:
+
+https://gitorious.org/calinou/carbone
+
+LGPL for the joining and leaving noises as far as I know.
