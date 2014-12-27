@@ -1,5 +1,7 @@
 --init.lua
 
+minetest.clear_registered_biomes()
+
 dofile(minetest.get_modpath("mapgen").."/mapgen.lua")
 dofile(minetest.get_modpath("mapgen").."/nodes.lua")
 dofile(minetest.get_modpath("mapgen").."/flowers.lua")
@@ -376,7 +378,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local p_pos = area:index(x,y,z)
 				local node_name = data[p_pos]
 				if minetest.get_name_from_content_id(node_name) == "mapgen:stone" then
-					local random_choice math.random(1,4)
+					local random_choice = math.random(1,4)
 					if random_choice == 1 then
 						data[p_pos] = c_stone1
 					elseif random_choice == 2 then
