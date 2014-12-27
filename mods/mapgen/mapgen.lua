@@ -1,4 +1,4 @@
-minetest.clear_registered_biomes()
+
 	
 minetest.register_biome({
 	name = "plains",
