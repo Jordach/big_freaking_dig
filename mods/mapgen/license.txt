@@ -1,3 +1,33 @@
 mapgen_cobble.png is by Esteban. Licensed CC-BY-SA
 
 https://forum.minetest.net/viewtopic.php?f=4&t=10293
+
+Stuff taken from moretrees:
+
+Saplings:
+
+mapgen_cherry_sapling.png (modified) CC-BY-SA 3.0 Unported
+Source: https://github.com/VanessaE/moretrees/blob/master/textures/moretrees_willow_sapling.png
+
+mapgen_birch_sapling.png (modified) CC-BY-SA 3.0 Unported
+Source: https://github.com/VanessaE/moretrees/blob/master/textures/moretrees_birch_sapling.png
+
+© 2013, Tim Huppertz <mitroman@naturalnet.de>
+Published under the terms and conditions of CC-BY-SA-3.0 Unported.
+
+Tree Trunk Sides:
+
+mapgen_birch_side.png CC-BY-SA 3.0 Unported
+Source: 
+
+mapgen_cherry_side.png (modified version) CC-BY-SA 3.0 Unported
+Source: https://github.com/VanessaE/moretrees/blob/master/textures/moretrees_pine_trunk.png
+
+mapgen_oak_side.png (modified version) CC-BY-SA 3.0 Unported
+Source: https://github.com/VanessaE/moretrees/blob/master/textures/moretrees_beech_trunk.png
+
+mapgen_oak_top.png
+Source: https://github.com/VanessaE/moretrees/blob/master/textures/moretrees_beech_trunk_top.png
+
+© 2013, Vanessa Ezekowitz <vanessaezekowitz@gmail.com>
+Published under the terms and conditions of CC-BY-SA-3.0 Unported.

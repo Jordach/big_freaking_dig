@@ -170,26 +170,6 @@ minetest.register_node("mapgen:stone_4", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
--- stone -> random textured stone
-
-minetest.register_abm({
-	nodenames = {"mapgen:stone"},
-	interval = 1,
-	chance = 1,
-	action = function(pos)
-		local rotationrand = math.random(1,4)
-		if rotationrand == 1 then
-			minetest.env:add_node(pos,{name="mapgen:stone_1"})
-		elseif rotationrand == 2 then
-			minetest.env:add_node(pos,{name="mapgen:stone_2"})
-		elseif rotationrand == 3 then
-			minetest.env:add_node(pos,{name="mapgen:stone_3"})
-		else
-			minetest.env:add_node(pos,{name="mapgen:stone_4"})
-		end
-	end,
-})
-
 -- cobble
 
 minetest.register_node("mapgen:cobble", {
@@ -359,32 +339,93 @@ minetest.register_node("mapgen:lava_source", {
 	groups = {lava=3, liquid=2, hot=3, igniter=1},
 })
 
-minetest.register_abm({
-	nodenames = {"ignore", "content_ignore"},
-	interval = 1,
-	chance = 1,
-	action = function(pos)
-		minetest.env:add_node(pos,{name="air"})
-	end
-})
+-- node names as content ids
 
-minetest.register_abm({
-	nodenames = {"mapgen:grass"},
-	interval = 1,
-	chance = 1,
-	action = function(pos)
-		local rotationrand = math.random(1,4)
-		if rotationrand == 1 then
-			minetest.env:add_node(pos,{name="mapgen:grass1"})
-		elseif rotationrand == 2 then
-			minetest.env:add_node(pos,{name="mapgen:grass2"})
-		elseif rotationrand == 3 then
-			minetest.env:add_node(pos,{name="mapgen:grass3"})
-		else
-			minetest.env:add_node(pos,{name="mapgen:grass4"})
+local c_air = minetest.get_content_id("air")
+local c_ignore = minetest.get_content_id("ignore")
+local c_stone = minetest.get_content_id("mapgen:stone")
+local c_stone1 = minetest.get_content_id("mapgen:stone_1")
+local c_stone2 = minetest.get_content_id("mapgen:stone_2")
+local c_stone3 = minetest.get_content_id("mapgen:stone_3")
+local c_stone4 = minetest.get_content_id("mapgen:stone_4")
+
+local c_grass = minetest.get_content_id("mapgen:grass")
+local c_grass1 = minetest.get_content_id("mapgen:grass1")
+local c_grass2 = minetest.get_content_id("mapgen:grass2")
+local c_grass3 = minetest.get_content_id("mapgen:grass3")
+local c_grass4 = minetest.get_content_id("mapgen:grass4")
+
+local cdgrass = minetest.get_content_id("mapgen:deathly_grass")
+local cdgrass1 = minetest.get_content_id("mapgen:deathly_grass_1")
+local cdgrass2 = minetest.get_content_id("mapgen:deathly_grass_2")
+local cdgrass3 = minetest.get_content_id("mapgen:deathly_grass_3")
+local cdgrass4 = minetest.get_content_id("mapgen:deathly_grass_4")
+
+-- this voxelmanip saves SO MUCH CPU TIME IT IS UNREAL
+
+minetest.register_on_generated(function(minp, maxp, seed)
+	-- begin to randomise grass into grassx
+	local timer = os.clock()
+	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+	local data = vm:get_data()
+	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+	
+	for x=minp.x, maxp.x, 1 do
+		for z=minp.z, maxp.z, 1 do
+			for y=minp.y, maxp.y, 1 do
+				local p_pos = area:index(x,y,z)
+				local node_name = data[p_pos]
+				if minetest.get_name_from_content_id(node_name) == "mapgen:stone" then
+					local random_choice math.random(1,4)
+					if random_choice == 1 then
+						data[p_pos] = c_stone1
+					elseif random_choice == 2 then
+						data[p_pos] = c_stone2
+					elseif random_choice == 3 then
+						data[p_pos] = c_stone3
+					else
+						data[p_pos] = c_stone4
+					end
+				elseif minetest.get_name_from_content_id(node_name) == "mapgen:grass" then
+					local random_choice = math.random(1,4)
+					if random_choice == 1 then
+						data[p_pos] = c_grass1
+					elseif random_choice == 2 then
+						data[p_pos] = c_grass2
+					elseif random_choice == 3 then
+						data[p_pos] = c_grass3
+					else
+						data[p_pos] = c_grass4
+					end
+				elseif minetest.get_name_from_content_id(node_name) == "ignore" then
+					-- doing this fixes mgv5's generation of ignore for some reason.
+					data[p_pos] = c_air
+				elseif minetest.get_name_from_content_id(node_name) == "mapgen:deathly_grass" then
+					local random_choice = math.random(1,4)
+					if random_choice == 1 then
+						data[p_pos] = cdgrass1
+					elseif random_choice == 2 then
+						data[p_pos] = cdgrass2
+					elseif random_choice == 3 then
+						data[p_pos] = cdgrass3
+					else
+						data[p_pos] = cdgrass4
+					end
+				else
+					--do nothin
+				end
+			end
 		end
-	end,
-})
+	end
+	
+	vm:set_data(data)
+	vm:calc_lighting()
+	vm:update_liquids()
+	vm:write_to_map()
+		
+	local geninfo = string.format("node randomisation done after: %.2fs", os.clock() - timer)
+	print(geninfo)
+end)
 	
 minetest.register_abm({
 	nodenames = {"mapgen:dirt"},
@@ -414,7 +455,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"mapgen:dirt",},
-	neighbors = {"mapgen:edens_grass", "mapgen:grass1", "mapgen:grass2", "mapgen:grass3", "mapgen:grass4"},
+	neighbors = {"mapgen:edens_grass"},
 	interval = 60,
 	chance = 2,
 	action = function(pos)
@@ -583,7 +624,7 @@ minetest.register_abm({
 	interval = 1.8,
 	chance = 1.5,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.sound_play("mapgen_water", {pos = pos, gain = 0.025, max_hear_distance = 5})
+		minetest.sound_play("mapgen_water", {pos = pos, gain = 0.005, max_hear_distance = 2})
 end})
 
 
