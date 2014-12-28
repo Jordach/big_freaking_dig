@@ -66,7 +66,7 @@ male_statue_names = {"Adarqet",
 					 "Josh",
 					 "Kacey",
 					 "kaeza",
-					 "Jordach",
+					 --"Jordach",
 					 "KingBOBO",
 					 "KOD",
 					 "Lalluffi",
@@ -213,7 +213,7 @@ female_statue_names = {"abigail",
 					   "Hoodedice",
 					  }
 
-cloth_statue_names = {"18_test", "Sokomine"}
+cloth_statue_names = {"18_test", "Sokomine", "Jordach",}
 
 -- create a statue that looks like the default skins
 minetest.register_node("statues:default_skin", {
