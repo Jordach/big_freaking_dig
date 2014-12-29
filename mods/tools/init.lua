@@ -814,7 +814,7 @@ minetest.register_tool("tools:shovel_mese", {
 		full_punch_interval = 1.67,
 		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times={[1]=0.77, [2]=0.385, [3]=0.192}}, uses = 122, maxlevel=1},
+			crumbly = {times={[1]=0.77, [2]=0.385, [3]=0.192}, uses = 122, maxlevel=1},
 		},
 		damage_groups = {fleshy=5},
 	}
@@ -830,7 +830,7 @@ minetest.register_tool("tools:axe_mese", {
 			choppy = {times={[1]=2.1, [2]=1.05, [3]=0.525}, uses = 42, maxlevel=1},
 		},
 		damage_groups = {fleshy=8},
-	}
+	},
 })
 
 minetest.register_tool("tools:sword_mese", {
@@ -840,10 +840,10 @@ minetest.register_tool("tools:sword_mese", {
 		full_punch_interval = 1.78,
 		max_drop_level = 0,
 		groupcaps = {
-			times={[1]=0.3=15, [2]=0.075, [3]=0.0375}, uses = 32, maxlevel=1},
+			snappy = {times={[1]=0.15, [2]=0.075, [3]=0.0375}, uses = 32, maxlevel=1},
 		},
 		damage_groups = {fleshy = 12},
-	}
+	},
 })
 
 -- mese tool crafting
