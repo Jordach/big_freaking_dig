@@ -37,9 +37,9 @@ minetest.register_item(":", {
 		full_punch_interval = 0.9,
 		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times={[2]=12.4, [3]=6.2}, uses=0, maxlevel=1},
-			snappy = {times={[3]=2.3}, uses=0, maxlevel=1},
-			oddly_breakable_by_hand = {times={[1]=22.7,[2]=7.8,[3]=2.3}, uses=0}
+			crumbly = {times={[2]=6.2, [3]=3.1}, uses=0, maxlevel=1},
+			snappy = {times={[3]=1.15}, uses=0, maxlevel=1},
+			oddly_breakable_by_hand = {times={[1]=7.8,[2]=2.3,[3]=1.15}, uses=0}
 		},
 		damage_groups = {fleshy=1},
 	}
