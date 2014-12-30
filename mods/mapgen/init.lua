@@ -58,6 +58,15 @@ minetest.register_item(":", {
 	-- })
 -- end)
 
+minetest.register_node("mapgen:gravel", {
+	description = "Gravel",
+	tiles = {"mapgen_gravel.png"},
+	is_ground_content = true,
+	drop = 'mapgen:gravel',
+	groups = {crumbly=2, soil=1, falling_node=1},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
 minetest.register_node("mapgen:grass", {
 	description = "Dirt with Grass",
 	tiles = {"mapgen_grass.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_1.png"},
