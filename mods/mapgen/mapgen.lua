@@ -9,8 +9,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 60,
-	height_max = 160,
+	y_min = 60,
+	y_max = 160,
 	heat_point = 45,
 	humidity_point = 45,
 })
@@ -24,8 +24,8 @@ minetest.register_biome({
 	depth_filler = 40,
 	node_dust = "air",
 	
-	height_min = 10,
-	height_max = 30000,
+	y_min = 10,
+	y_max = 30000,
 	heat_point = 35,
 	humidity_point = 34,
 })
@@ -39,8 +39,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 160,
+	y_min = 1,
+	y_max = 160,
 	heat_point = 4,
 	humidity_point = 4,
 })
@@ -54,8 +54,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 160,
+	y_min = 1,
+	y_max = 160,
 	heat_point = 6,
 	humidity_point = 3,
 })
@@ -69,8 +69,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 160,
+	y_min = 1,
+	y_max = 160,
 	heat_point = 3,
 	humidity_point = 0,
 })
@@ -105,8 +105,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 31000,
+	y_min = 1,
+	y_max = 31000,
 	heat_point = 18,
 	humidity_point = 20,
 })
@@ -120,8 +120,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 4,
-	height_max = 31000,
+	y_min = 4,
+	y_max = 31000,
 	heat_point = 23,
 	humidity_point = 31,
 })
@@ -134,9 +134,9 @@ minetest.register_biome({
 	node_filler = "mapgen:dirt",
 	depth_filler = 3,
 	node_dust = "air",
-	node_dust_water = "mapgen:ice",
-	height_min = 1,
-	height_max = 4,
+	node_water_top = "mapgen:ice",
+	y_min = 1,
+	y_max = 4,
 	heat_point = 13,
 	humidity_point = 16,
 })
@@ -149,9 +149,9 @@ minetest.register_biome({
 	node_filler = "mapgen:ice",
 	depth_filler = 3,
 	node_dust = "air",
-	node_dust_water = "mapgen:ice",
-	height_min = 0,
-	height_max = 80,
+	node_water_top = "mapgen:ice",	
+	y_min = 0,
+	y_max = 80,
 	heat_point = 6,
 	humidity_point = 9,
 })
@@ -165,8 +165,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 4,
-	height_max = 200,
+	y_min = 4,
+	y_max = 200,
 	heat_point = 36,
 	humidity_point = 40,
 })
@@ -180,8 +180,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 60,
+	y_min = 1,
+	y_max = 60,
 	heat_point = 39,
 	humidity_point = 55,
 })
@@ -195,8 +195,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 60,
+	y_min = 1,
+	y_max = 60,
 	heat_point = 60,
 	humidity_point = 55,
 })
@@ -210,8 +210,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 60,
+	y_min = 1,
+	y_max = 60,
 	heat_point = 75,
 	humidity_point = 65,
 })
@@ -223,8 +223,8 @@ minetest.register_biome({
 	node_filler = "mapgen:dirt",
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 160,
+	y_min = 1,
+	y_max = 160,
 	depth_filler = 3,
 	heat_point = 41,
 	humidity_point = 58,
@@ -239,8 +239,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 40,
+	y_min = 1,
+	y_max = 40,
 	heat_point = 50,
 	humidity_point = 55,
 })
@@ -254,8 +254,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 40,
+	y_min = 1,
+	y_max = 40,
 	heat_point = 47,
 	humidity_point = 50,
 })
@@ -269,8 +269,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 42,
+	y_min = 1,
+	y_max = 42,
 	heat_point = 55,
 	humidity_point = 55,
 })
@@ -284,8 +284,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 50,
+	y_min = 1,
+	y_max = 50,
 	heat_point = 52,
 	humidity_point = 45,
 })
@@ -299,8 +299,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 50,
+	y_min = 1,
+	y_max = 50,
 	heat_point = 50,
 	humidity_point = 43,
 })
@@ -314,8 +314,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 50,
+	y_min = 1,
+	y_max = 50,
 	heat_point = 58,
 	humidity_point = 52,
 })
@@ -328,8 +328,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 60,
+	y_min = 1,
+	y_max = 60,
 	heat_point = 43,
 	humidity_point = 38,
 })
@@ -343,8 +343,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 60,
+	y_min = 1,
+	y_max = 60,
 	heat_point = 47,
 	humidity_point = 58,
 })
@@ -358,8 +358,8 @@ minetest.register_biome({
 	depth_filler = 3,
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 60,
+	y_min = 1,
+	y_max = 60,
 	heat_point = 45,
 	humidity_point = 58,
 })
@@ -372,8 +372,8 @@ minetest.register_biome({
 	depth_filler = 36,
 	
 	node_dust = "air",
-	height_min = -34,
-	height_max = 3,
+	y_min = -34,
+	y_max = 3,
 	heat_point = 54,
 	humidity_point = 51,
 })
@@ -385,8 +385,8 @@ minetest.register_biome({
 	node_filler = "mapgen:perma_dirt",
 	node_dust = "air",
 	
-	height_min = 3,
-	height_max = 60,
+	y_min = 3,
+	y_max = 60,
 	heat_point = 67,
 	humidity_point = 14,
 	depth_filler = 4,
@@ -399,8 +399,8 @@ minetest.register_biome({
 	node_filler = "mapgen:sandstone",
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 80,
+	y_min = 1,
+	y_max = 80,
 	depth_filler = 4,
 	heat_point = 79,
 	humidity_point = 12,
@@ -413,8 +413,8 @@ minetest.register_biome({
 	node_filler = "mapgen:perma_dirt",
 	node_dust = "air",
 	
-	height_min = 1,
-	height_max = 160,
+	y_min = 1,
+	y_max = 160,
 	depth_filler = 4,
 	heat_point = 70,
 	humidity_point = 7,
@@ -438,7 +438,7 @@ minetest.register_decoration({
 	decoration = "mapgen:cactus",
 	biomes = {"desert"},
 	height = 3,
-	height_max = 4,
+	y_max = 4,
 })
 
 minetest.register_decoration({
@@ -469,7 +469,7 @@ minetest.register_decoration({
 	decoration = "mapgen:dead_oak",
 	biomes = {"dead_forest"},
 	height = 4,
-	height_max = 6,
+	y_max = 6,
 })
 
 minetest.register_decoration({
