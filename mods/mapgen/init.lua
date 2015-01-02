@@ -13,6 +13,7 @@ minetest.register_alias("mapgen_lava_source", "mapgen:lava_source")
 minetest.register_alias("mapgen_stone", "mapgen:stone")
 minetest.register_alias("mapgen_dirt", "mapgen:dirt")
 minetest.register_alias("mapgen_dirt_with_grass", "mapgen:grass")
+minetest.register_alias("mapgen_sand", "mapgen:sand")
 
 local function player_join_sounds()
 	minetest.register_on_joinplayer(function()
