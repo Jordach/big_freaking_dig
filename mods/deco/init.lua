@@ -1385,3 +1385,25 @@ minetest.register_craft({
 		{'deco:soapstone_brick', 'deco:soapstone_brick'},
 	}
 })
+
+-- clay bricks
+
+minetest.register_craft({
+	output = 'deco:brick_block 1',
+	recipe = {
+		{'deco:brick', 'deco:brick'},
+		{'deco:brick', 'deco:brick'},
+	}
+})
+
+minetest.register_node("deco:brick_block", {
+	description = "Brick Block",
+	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=3},
+	tiles = {"deco_brick.png"},
+})
+
+minetest.register_craftitem("deco:brick", {
+	description = "Brick",
+	inventory_image = "deco_brick_wield.png",
+})

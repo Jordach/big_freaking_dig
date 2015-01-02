@@ -11,6 +11,7 @@ minetest.register_biome({
 	node_underwater = "mapgen:sand",
 	y_min = 60,
 	y_max = 160,
+	node_shore_filler = "mapgen:sand",
 	heat_point = 45,
 	humidity_point = 45,
 })

@@ -63,9 +63,45 @@ minetest.register_node("mapgen:gravel", {
 	tiles = {"mapgen_gravel.png"},
 	is_ground_content = true,
 	drop = 'mapgen:gravel',
-	groups = {crumbly=2, soil=1, falling_node=1},
+	groups = {crumbly=2, falling_node=1},
+	sounds = default.node_sound_gravel_defaults(),
+})
+
+minetest.register_node("mapgen:clay", {
+	description = "Clay Block",
+	tiles = {"mapgen_clay.png"},
+	is_ground_content = true,
+	drop = "mapgen:clay_lump 4",
+	groups = {crumbly = 3, oddly_breakable_by_hand=3, falling_node=1},
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+minetest.register_craftitem("mapgen:clay_lump", {
+	description = "Clay Lump",
+	inventory_image = "mapgen_clay_lump.png",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "deco:brick",
+	recipe = "mapgen:clay_lump",
+})
+
+minetest.register_craft({
+	output = 'mapgen:clay_lump 4',
+	recipe = {
+		{'mapgen:clay'},
+	}
+})
+
+minetest.register_craft({
+	output = 'mapgen:clay 1',
+	recipe = {
+		{'mapgen:clay_lump', 'mapgen:clay_lump'},
+		{'mapgen:clay_lump', 'mapgen:clay_lump'},
+	}
+})
+
 
 minetest.register_node("mapgen:grass", {
 	description = "Dirt with Grass",
@@ -731,4 +767,18 @@ minetest.register_node(":base:leaves", {
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("mapgen:force_field", {
+	description = "Alien Forcefield",
+	tiles = {
+		{name="mapgen_force.png", animation={type="vertical_frames", aspect_w=128, aspect_h=128, length=1.5}},
+	},
+	sunlight_propagates = true,
+	paramtype = "light",
+	drawtype = "glasslike",
+	inventory_image = minetest.inventorycube("mapgen_force_inv_wield.png"),
+	wield_image = minetest.inventorycube("mapgen_force_inv_wield.png"),
+	is_ground_content = true,
+	groups = {not_in_creative_inventory=1},
 })
