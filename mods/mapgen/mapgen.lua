@@ -436,7 +436,7 @@ minetest.register_decoration({
 	sidelen = 8,
 	fill_ratio = 0.047,
 	decoration = {"mapgen:long_grass_1", "mapgen:long_grass_2", "mapgen:long_grass_3", "mapgen:long_grass_4", "mapgen:long_grass_5"},
-	biomes = {"grassy_plains"},
+	biomes = {"grassy_plains", "v6_forest"},
 	height = 1,
 })
 
@@ -488,7 +488,7 @@ minetest.register_decoration({
 	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
 	sidelen = 8,
 	fill_ratio = 0.034,
-	biomes = {"oak_forest", "floral_oak_forest", "floral_oakg_forest"},
+	biomes = {"oak_forest", "floral_oak_forest", "floral_oakg_forest", "v6_forest"},
 	flags = "place_center_x, place_center_z",
 	replacements = {["base:leaves"] = "mapgen:oak_leaves", ["base:tree"] = "mapgen:oak_log_tree", ["base:dirt"] = "mapgen:dirt"},
 })
@@ -499,7 +499,7 @@ minetest.register_decoration({
 	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
 	sidelen = 8,
 	fill_ratio = 0.034,
-	biomes = {"cherry_blossom_forest"},
+	biomes = {"cherry_blossom_forest", "v6_forest"},
 	flags = "place_center_x, place_center_z",
 	replacements = {["base:leaves"] = "mapgen:cherry_blossom_leaves", ["base:tree"] = "mapgen:cherry_tree", ["base:dirt"] = "mapgen:dirt"},
 })
@@ -521,7 +521,7 @@ minetest.register_decoration({
 	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
 	sidelen = 8,
 	fill_ratio = 0.061,
-	biomes = {"evergreens_forest"},
+	biomes = {"evergreens_forest", "v6_forest"},
 	flags = "place_center_x, place_center_z",
 	replacements = {["base:leaves"] = "mapgen:evergreen_leaves", ["base:tree"] = "mapgen:evergreen_tree", ["base:dirt"] = "mapgen:dirt"},
 })
@@ -541,7 +541,7 @@ minetest.register_decoration({
 	place_on = {"mapgen:edens_grass", "mapgen:grass"},
 	sidelen = 8,
 	fill_ratio = 0.08,
-	biomes = {"edens_garden", "floral_plains", "floral_oak_forest", "floral_oakg_forest", "cherry_blossom_forest_floral", "birch_forest_floral"},
+	biomes = {"edens_garden", "floral_plains", "floral_oak_forest", "floral_oakg_forest", "cherry_blossom_forest_floral", "birch_forest_floral", "v6_forest"},
 	height = 1,
 	decoration = {"flowers:dandelion_white", "flowers:dandelion_yellow", "flowers:geranium", "flowers:rose", "flowers:tulip", "flowers:viola", "mapgen:long_grass_1", "mapgen:long_grass_2", "mapgen:long_grass_3", "mapgen:long_grass_4", "mapgen:long_grass_5"},
 })
@@ -552,7 +552,7 @@ minetest.register_decoration({
 	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
 	sidelen = 8,
 	fill_ratio = 0.030,
-	biomes = {"birch_forest", "birch_forest_floral", "birch_forest_grassy"},
+	biomes = {"birch_forest", "birch_forest_floral", "birch_forest_grassy", "v6_forest"},
 	flags = "place_center_x, place_center_z",
 	replacements = {["base:leaves"] = "mapgen:birch_leaves", ["base:tree"] = "mapgen:birch_tree", ["base:dirt"] = "mapgen:dirt"},
 })
@@ -623,4 +623,21 @@ minetest.register_ore({
 	clust_size = 4,
 	height_max = 16385,
 	height_min = -16385,
+})
+
+-- V6 styled biome
+
+minetest.register_biome({
+	name = "v6_forest",
+	node_top = "mapgen:grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 4,
+	node_dust = "air",
+	node_underwater = "mapgen:dirt",
+	y_min = -31000,
+	y_max = 31000,
+	node_shore_filler = "mapgen:sand",
+	heat_point = 35,
+	humidity_point = 55,
 })

@@ -169,20 +169,16 @@ end
 
 minetest.register_node("deco:torch", {
 	description = "Torch",
-	drawtype = "torchlike",
-	tiles = {
-		{name="deco_torch_floor.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
-		{name="deco_torch_ceiling.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
-		{name="deco_torch.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
-	},
-	inventory_image = "deco_torch_wield.png",
-	wield_image = "deco_torch_wield.png",
+	drawtype = "airlike",
+	tiles = {"xfences_space.png"},
+	inventory_image = "deco_torch_ng_wield.png",
+	wield_image = "deco_torch_ng_wield.png",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	is_ground_content = false,
 	walkable = false,
-	light_source = 13,
+	light_source = 15,
 	selection_box = {
 		type = "wallmounted",
 		wall_top = {-0.1, 0.5-0.6, -0.1, 0.1, 0.5, 0.1},
@@ -192,6 +188,98 @@ minetest.register_node("deco:torch", {
 	groups = {choppy=2,dig_immediate=3,flammable=1,attached_node=1,hot=2},
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
+	after_place_node = function(pos, placer)
+		--print (minetest.get_node(pos).param2)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_remove[1] == nil then
+			
+			if minetest.get_node(pos).param2 == 4 then --done
+			--list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 2 then --done
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then -- done				
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(-3.142/2)
+			elseif minetest.get_node(pos).param2 == 5 then --done
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(0)
+			elseif minetest.get_node(pos).param2 == 0 then
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_c") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(0)
+			else
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_f") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(0)
+			end
+		end
+	end,
+	on_rightclick = function(pos, node)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		if entity_remove[1] == nil then
+			if minetest.get_node(pos).param2 == 4 then --done
+			--list of rad to 90 degree: 3.142/2 = 90; 3.142 = 180; 3*3.142 = 270
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(3.142)
+			elseif minetest.get_node(pos).param2 == 2 then --done
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(3.142/2)
+			elseif minetest.get_node(pos).param2 == 3 then -- done				
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(-3.142/2)
+			elseif minetest.get_node(pos).param2 == 5 then --done
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_w") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(0)
+			elseif minetest.get_node(pos).param2 == 0 then
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_c") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(0)
+			else
+				minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "deco:mesh_torch_f") --+(0.0625*10)
+				entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+				entity_remove[1]:setyaw(0)
+			end
+		end
+	end,
+	after_dig_node = function(pos)
+		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
+		entity_remove[1]:remove()
+	end,
+})
+
+minetest.register_entity("deco:mesh_torch_f", {
+    collisionbox = { 0, 0, 0, 0, 0, 0 },
+    visual = "mesh",
+	mesh = "TorchNG_Floor.b3d",
+    textures = {"deco_torch_ng.png"},
+	visual_size = {x=20, y=20},
+})
+
+minetest.register_entity("deco:mesh_torch_c", {
+    collisionbox = { 0, 0, 0, 0, 0, 0 },
+    visual = "mesh",
+	mesh = "TorchNG_Ceiling.b3d",
+    textures = {"deco_torch_ng.png"},
+	visual_size = {x=20, y=20},
+})
+
+minetest.register_entity("deco:mesh_torch_w", {
+    collisionbox = { 0, 0, 0, 0, 0, 0 },
+    visual = "mesh",
+	mesh = "TorchNG_Wall.b3d",
+    textures = {"deco_torch_ng.png"},
+	visual_size = {x=20, y=20},
 })
 
 minetest.register_craft({
