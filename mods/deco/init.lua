@@ -221,7 +221,7 @@ minetest.register_node("deco:torch", {
 			end
 		end
 	end,
-	on_rightclick = function(pos, node)
+	on_punch = function(pos, node)
 		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
 		if entity_remove[1] == nil then
 			if minetest.get_node(pos).param2 == 4 then --done
@@ -254,7 +254,20 @@ minetest.register_node("deco:torch", {
 	end,
 	after_dig_node = function(pos)
 		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
-		entity_remove[1]:remove()
+		if entity_remove == nil then
+			--nothing
+		else
+			entity_remove[1]:remove()
+		end
+	end,
+})
+
+minetest.register_abm({
+	nodenames = {"deco:torch"},
+	interval = 60*60,
+	chance = 1,
+	action = function(pos, node)
+		minetest.punch_node(pos)
 	end,
 })
 
