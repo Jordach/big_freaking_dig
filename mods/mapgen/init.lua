@@ -418,12 +418,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local data = vm:get_data()
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	
-	for x=minp.x, maxp.x, 1 do
-		for z=minp.z, maxp.z, 1 do
-			for y=minp.y, maxp.y, 1 do
+	for z=minp.z, maxp.z, 1 do
+		for y=minp.y, maxp.y, 1 do
+			for x=minp.x, maxp.x, 1 do
 				local p_pos = area:index(x,y,z)
-				local node_name = data[p_pos]
-				if minetest.get_name_from_content_id(node_name) == "mapgen:stone" then
+				local content_id = data[p_pos]
+				if content_id == c_stone then
 					local random_choice = math.random(1,4)
 					if random_choice == 1 then
 						data[p_pos] = c_stone1
@@ -434,7 +434,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					else
 						data[p_pos] = c_stone4
 					end
-				elseif minetest.get_name_from_content_id(node_name) == "mapgen:grass" then
+				elseif content_id == c_grass then
 					local random_choice = math.random(1,4)
 					if random_choice == 1 then
 						data[p_pos] = c_grass1
@@ -445,10 +445,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					else
 						data[p_pos] = c_grass4
 					end
-				elseif minetest.get_name_from_content_id(node_name) == "ignore" then
+				elseif content_id == c_ignore then
 					-- doing this fixes mgv5's generation of ignore for some reason.
 					data[p_pos] = c_air
-				elseif minetest.get_name_from_content_id(node_name) == "mapgen:deathly_grass" then
+				elseif content_id == c_dgrass then
 					local random_choice = math.random(1,4)
 					if random_choice == 1 then
 						data[p_pos] = cdgrass1
