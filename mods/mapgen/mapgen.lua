@@ -410,14 +410,13 @@ minetest.register_biome({
 })
 
 minetest.register_decoration({
-	deco_type = "schematic",
+	deco_type = "simple",
 	place_on = "mapgen:deathly_grass",
-	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	decoration = {"mapgen:deathly_sapling",},
 	sidelen = 8,
 	fill_ratio = 0.034,
 	biomes = {"deathly_forest"},
-	flags = "place_center_x, place_center_z",
-	replacements = {["base:leaves"] = "mapgen:deathly_leaves", ["base:tree"] = "mapgen:deathly_tree", ["base:dirt"] = "mapgen:dirt"},
+	height = 1,
 })
 
 minetest.register_decoration({
@@ -483,47 +482,43 @@ minetest.register_decoration({
 })
 
 minetest.register_decoration({
-	deco_type = "schematic",
+	deco_type = "simple",
 	place_on = "mapgen:grass",
-	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	decoration = "mapgen:mg_oak_sapling",
 	sidelen = 8,
 	fill_ratio = 0.034,
 	biomes = {"oak_forest", "floral_oak_forest", "floral_oakg_forest", "v6_forest"},
-	flags = "place_center_x, place_center_z",
-	replacements = {["base:leaves"] = "mapgen:oak_leaves", ["base:tree"] = "mapgen:oak_log_tree", ["base:dirt"] = "mapgen:dirt"},
+	height = 1,
 })
 
 minetest.register_decoration({
-	deco_type = "schematic",
+	deco_type = "simple",
 	place_on = "mapgen:grass",
-	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	decoration = "mapgen:mg_cherry_sapling",
 	sidelen = 8,
 	fill_ratio = 0.034,
 	biomes = {"cherry_blossom_forest", "v6_forest"},
-	flags = "place_center_x, place_center_z",
-	replacements = {["base:leaves"] = "mapgen:cherry_blossom_leaves", ["base:tree"] = "mapgen:cherry_tree", ["base:dirt"] = "mapgen:dirt"},
+	height = 1,
 })
 
 minetest.register_decoration({
-	deco_type = "schematic",
+	deco_type = "simple",
 	place_on = "mapgen:snowy_grass",
-	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
+	decoration = "mapgen:mg_evergreen_snow",
 	sidelen = 8,
 	fill_ratio = 0.051,
 	biomes = {"taiga"},
-	flags = "place_center_x, place_center_z",
-	replacements = {["base:leaves"] = "mapgen:evergreen_leaves_snowy", ["base:tree"] = "mapgen:evergreen_tree", ["base:dirt"] = "mapgen:dirt"},
+	height = 1,
 })
 
 minetest.register_decoration({
-	deco_type = "schematic",
+	deco_type = "simple",
 	place_on = "mapgen:grass",
-	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
+	decoration = "mapgen:mg_evergreen_sapling",
 	sidelen = 8,
 	fill_ratio = 0.061,
 	biomes = {"evergreens_forest", "v6_forest"},
-	flags = "place_center_x, place_center_z",
-	replacements = {["base:leaves"] = "mapgen:evergreen_leaves", ["base:tree"] = "mapgen:evergreen_tree", ["base:dirt"] = "mapgen:dirt"},
+	height = 1,
 })
 
 minetest.register_decoration({
@@ -547,14 +542,13 @@ minetest.register_decoration({
 })
 
 minetest.register_decoration({
-	deco_type = "schematic",
+	deco_type = "simple",
 	place_on = "mapgen:grass",
-	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	decoration = "mapgen:mg_birch_sapling",
 	sidelen = 8,
 	fill_ratio = 0.030,
 	biomes = {"birch_forest", "birch_forest_floral", "birch_forest_grassy", "v6_forest"},
-	flags = "place_center_x, place_center_z",
-	replacements = {["base:leaves"] = "mapgen:birch_leaves", ["base:tree"] = "mapgen:birch_tree", ["base:dirt"] = "mapgen:dirt"},
+	height = 1,
 })
 
 minetest.register_decoration({

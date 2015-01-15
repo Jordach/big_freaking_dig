@@ -1,11 +1,13 @@
 --init.lua
 
+mapgen = {}
+
 minetest.clear_registered_biomes()
 
 dofile(minetest.get_modpath("mapgen").."/mapgen.lua")
 dofile(minetest.get_modpath("mapgen").."/nodes.lua")
 dofile(minetest.get_modpath("mapgen").."/flowers.lua")
-
+dofile(minetest.get_modpath("mapgen").."/functions.lua")
 
 minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
 minetest.register_alias("mapgen_water_source", "mapgen:water_source")
@@ -470,11 +472,89 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:calc_lighting()
 	vm:update_liquids()
 	vm:write_to_map()
-		
-	local geninfo = string.format("node randomisation done after: %.2fs", os.clock() - timer)
-	print(geninfo)
-end)
 	
+	local geninfo = string.format("node randomisation done after: %.2fs", os.clock() - timer)
+	print(geninfo)	
+end)
+
+-- generate trees
+
+minetest.register_node("mapgen:mg_birch_sapling", {
+	description = "Impossible to get node.",
+	drawtype = "airlike",
+	paramtype = "light",
+	tiles = {"xfences_space.png"},
+	groups = {not_in_creative_inventory=1},
+})
+
+minetest.register_node("mapgen:mg_cherry_sapling", {
+	description = "Impossible to get node.",
+	drawtype = "airlike",
+	paramtype = "light",
+	tiles = {"xfences_space.png"},
+	groups = {not_in_creative_inventory=1},
+})
+
+minetest.register_node("mapgen:mg_oak_sapling", {
+	description = "Impossible to get node.",
+	drawtype = "airlike",
+	paramtype = "light",
+	tiles = {"xfences_space.png"},
+	groups = {not_in_creative_inventory=1},
+})
+
+minetest.register_node("mapgen:mg_evergreen_sapling", {
+	description = "Impossible to get node.",
+	drawtype = "airlike",
+	paramtype = "light",
+	tiles = {"xfences_space.png"},
+	groups = {not_in_creative_inventory=1},
+})
+
+local c_mg_oak_sapling = minetest.get_content_id("mapgen:mg_oak_sapling")
+local c_mg_cherry_sapling = minetest.get_content_id("mapgen:mg_cherry_sapling")
+local c_mg_birch_sapling = minetest.get_content_id("mapgen:mg_birch_sapling")
+local c_mg_evergreen_sapling = minetest.get_content_id("mapgen:mg_evergreen_sapling")
+local c_mg_evergreen_snow = minetest.get_content_id("mapgen:mg_evergreen_snow")
+
+minetest.register_on_generated(function(minp, maxp, seed)
+	local timer = os.clock()
+	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+	local data = vm:get_data()
+	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+	local trees_grown = 0
+	for z=minp.z, maxp.z, 1 do
+		for y=minp.y, maxp.y, 1 do
+			for x=minp.x, maxp.x, 1 do
+				local p_pos = area:index(x,y,z)
+				local content_id = data[p_pos]
+				if content_id == c_mg_birch_sapling then
+					mapgen.grow_tree({x=x, y=y, z=z}, false, "mapgen:birch_tree", "mapgen:birch_leaves")
+					trees_grown = trees_grown + 1
+				elseif content_id == c_mg_cherry_sapling then
+					mapgen.grow_tree({x=x, y=y, z=z}, false, "mapgen:cherry_tree", "mapgen:cherry_blossom_leaves")
+					trees_grown = trees_grown + 1
+				elseif content_id == c_mg_evergreen_sapling then
+					mapgen.grow_evergreen({x=x, y=y, z=z}, false)
+					trees_grown = trees_grown + 1
+				elseif content_id == c_mg_evergreen_snow then
+					mapgen.grow_evergreen({x=x, y=y, z=z}, true)
+					trees_grown = trees_grown + 1
+				elseif content_id == c_mg_oak_sapling then
+					mapgen.grow_tree({x=x, y=y, z=z}, false, "mapgen:oak_log_tree", "mapgen:oak_leaves")
+					trees_grown = trees_grown + 1
+				else
+					-- nope
+				end
+			end
+		end
+	end
+	local geninfo = string.format(" trees grown after: %.2fs", os.clock() - timer)
+	print (trees_grown..geninfo)
+end)
+
+-- abms here
+
 minetest.register_abm({
 	nodenames = {"mapgen:dirt"},
 	neighbors = {"mapgen:grass", "mapgen:grass_1", "mapgen:grass_2", "mapgen:grass_3", "mapgen:grass_4"},
@@ -559,7 +639,7 @@ minetest.register_abm({
 		
 		
 		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:oak_leaves"}, {"base:tree", "mapgen:oak_log_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+		mapgen.grow_tree(pos, false, "mapgen:oak_log_tree", "mapgen:oak_leaves")
 	end,
 })
 
@@ -578,7 +658,7 @@ minetest.register_abm({
 		
 		
 		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:birch_leaves"}, {"base:tree", "mapgen:birch_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+		mapgen.grow_tree(pos, false, "mapgen:birch_tree", "mapgen:birch_leaves")
 	end,
 })
 
@@ -597,13 +677,13 @@ minetest.register_abm({
 		
 		
 		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-		minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts", "random", {{"base:leaves", "mapgen:cherry_blossom_leaves"}, {"base:tree", "mapgen:cherry_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+		mapgen.grow_tree(pos, false, "mapgen:cherry_tree", "mapgen:cherry_blossom_leaves")
 	end,
 })
 
 minetest.register_abm({
 	nodenames = {"mapgen:evergreen_sapling"},
-	interval = 80,
+	interval = 80*3,
 	chance = 3,
 	action = function(pos, node)
 		
@@ -620,7 +700,7 @@ minetest.register_abm({
 		else
 			
 			minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-			minetest.place_schematic({x=pos.x-2, y=pos.y-1, z=pos.z-2}, minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts", "random", {{"base:leaves", "mapgen:evergreen_leaves"}, {"base:tree", "mapgen:evergreen_tree"}, {"base:dirt", "mapgen:dirt"}}, false)
+			mapgen.grow_evergreen(pos, true)
 		end
 	end,
 })
