@@ -209,10 +209,78 @@ minetest.register_abm({
 	end,
 })
 
+local function register_corner_stairs(subname, recipeitem, groups, images, desc, sounds)
+	minetest.register_node(":stairs:corner_stair_"..subname, {
+		description = desc,
+		drawtype = "mesh",
+		mesh = "stairs_corner.b3d",
+		tiles = images,
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = true,
+		groups = groups,
+		sounds = sounds,
+		collision_box = {
+			type = "fixed",
+			fixed = {
+				{0.5, 0.5, 0.5, 0.16667, 0.16657, 0.16667},
+				{0.5, 0.16667, 0.5, -0.16667, -0.16667, -0.16667},
+				{0.5, -0.16667, 0.5, -0.5, -0.5, -0.5},
+			},
+		},
+		
+		on_place = function(itemstack, placer, pointed_thing)
+			if pointed_thing.type ~= "node" then
+				return itemstack
+			end
+
+			local p0 = pointed_thing.under
+			local p1 = pointed_thing.above
+			local param2 = 0
+
+			local placer_pos = placer:getpos()
+			if placer_pos then
+				local dir = {
+					x = p1.x - placer_pos.x,
+					y = p1.y - placer_pos.y,
+					z = p1.z - placer_pos.z
+				}
+				param2 = minetest.dir_to_facedir(dir)
+			end
+
+			if p0.y-1 == p1.y then
+				param2 = param2 + 20
+				if param2 == 21 then
+					param2 = 23
+				elseif param2 == 23 then
+					param2 = 21
+				end
+			end
+
+			return minetest.item_place(itemstack, placer, pointed_thing, param2)
+		end,
+	})
+	
+	minetest.register_craft({
+		output = "stairs:corner_stair_"..subname..' 1',
+		recipe = {
+			{"stairs:stair_"..subname..' 1'},
+		},
+	})
+	
+	minetest.register_craft({
+		output = "stairs:stair_"..subname..' 1',
+		recipe = {
+			{"stairs:corner_stair_"..subname},
+		},
+	})
+end
+
 -- Nodes will be called stairs:{stair,slab}_<subname>
-function stairs.register_stair_and_slab(subname, recipeitem, groups, images, desc_stair, desc_slab, sounds)
+function stairs.register_stair_and_slab(subname, recipeitem, groups, images, desc_stair, desc_slab, desc_corner, sounds)
 	stairs.register_stair(subname, recipeitem, groups, images, desc_stair, sounds)
 	stairs.register_slab(subname, recipeitem, groups, images, desc_slab, sounds)
+	register_corner_stairs(subname, recipeitem, groups, images, desc_corner, sounds)
 end
 
 stairs.register_stair_and_slab("oak_wood", "deco:oak_plank",
@@ -220,6 +288,7 @@ stairs.register_stair_and_slab("oak_wood", "deco:oak_plank",
 		{"deco_wood_oak_planks.png"},
 		"Oak Plank Stair",
 		"Oak Plank Slab",
+		"Oak Plank Corner Stair",
 		default.node_sound_wood_defaults())
 		
 stairs.register_stair_and_slab("birch_wood", "deco:birch_plank",
@@ -227,6 +296,7 @@ stairs.register_stair_and_slab("birch_wood", "deco:birch_plank",
 		{"deco_wood_birch_planks.png"},
 		"Birch Plank Stair",
 		"Birch Plank Slab",
+		"Birch Plank Corner Stair",
 		default.node_sound_wood_defaults())
 
 stairs.register_stair_and_slab("cherry_wood", "deco:cherry_plank",
@@ -234,6 +304,7 @@ stairs.register_stair_and_slab("cherry_wood", "deco:cherry_plank",
 		{"deco_wood_cherry_planks.png"},
 		"Cherry Plank Stair",
 		"Cherry Plank Slab",
+		"Cherry Plank Corner Stair",
 		default.node_sound_wood_defaults())		
 
 stairs.register_stair_and_slab("evergreen_wood", "deco:evergreen_plank",
@@ -241,6 +312,7 @@ stairs.register_stair_and_slab("evergreen_wood", "deco:evergreen_plank",
 		{"deco_wood_evergreen_planks.png"},
 		"Evergreen Plank Stair",
 		"Evergreen Plank Slab",
+		"Evergreen Plank Corner Stair",
 		default.node_sound_wood_defaults())		
 		
 stairs.register_stair_and_slab("stone", "mapgen:stone",
@@ -248,6 +320,7 @@ stairs.register_stair_and_slab("stone", "mapgen:stone",
 		{"mapgen_stone.png"},
 		"Stone Stair",
 		"Stone Slab",
+		"Stone Corner Stair",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("cobble", "mapgen:cobble",
@@ -255,6 +328,7 @@ stairs.register_stair_and_slab("cobble", "mapgen:cobble",
 		{"mapgen_cobble.png"},
 		"Cobble Stair",
 		"Cobble Slab",
+		"Cobble Corner Stair",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("brick", "deco:brick",
@@ -262,6 +336,7 @@ stairs.register_stair_and_slab("brick", "deco:brick",
 		{"deco_brick.png"},
 		"Brick Stair",
 		"Brick Slab",
+		"Brick Corner Stair",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("sandstone", "mapgen:sandstone",
@@ -269,6 +344,7 @@ stairs.register_stair_and_slab("sandstone", "mapgen:sandstone",
 		{"mapgen_sandstone.png"},
 		"Sandstone Stair",
 		"Sandstone Slab",
+		"Sandstone Corner Stair",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("ice", "mapgen:ice",
@@ -276,6 +352,7 @@ stairs.register_stair_and_slab("ice", "mapgen:ice",
 		{"mapgen_ice.png"},
 		"Solid Ice Stair",
 		"Solid Ice Slab",
+		"Solid Ice Corner Stair",
 		default.node_sound_stone_defaults())
 		
 stairs.register_stair_and_slab("stone_brick", "deco:stone_brick",
@@ -283,6 +360,7 @@ stairs.register_stair_and_slab("stone_brick", "deco:stone_brick",
 		{"deco_stone_brick.png"},
 		"Stone Brick Stair",
 		"Stone Brick Slab",
+		"Stone Brick Corner Stair",
 		default.node_sound_stone_defaults())
 		
 stairs.register_stair_and_slab("stone_tile", "deco:stone_tile",
@@ -290,6 +368,7 @@ stairs.register_stair_and_slab("stone_tile", "deco:stone_tile",
 		{"deco_stone_tile.png"},
 		"Stone Tile Stair",
 		"Stone Tile Slab",
+		"Stone Tile Corner Stair",
 		default.node_sound_stone_defaults())
 		
 -- soap stone
@@ -299,6 +378,7 @@ stairs.register_stair_and_slab("soapstone", "mapgen:soap_stone",
 		{"mapgen_soap_stone.png"},
 		"Soapstone Stair",
 		"Soapstone Slab",
+		"Soapstone Corner Stair",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("soapstone_tile", "deco:soapstone_tile",
@@ -306,6 +386,7 @@ stairs.register_stair_and_slab("soapstone_tile", "deco:soapstone_tile",
 		{"deco_soapstone_tile.png"},
 		"Soapstone Tile Stair",
 		"Soapstone Tile Slab",
+		"Soapstone Tile Corner Stair",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("soapstone_brick", "deco:soapstone_brick",
@@ -313,22 +394,23 @@ stairs.register_stair_and_slab("soapstone_brick", "deco:soapstone_brick",
 		{"deco_soapstone_brick.png"},
 		"Soapstone Brick Stair",
 		"Soapstone Brick Slab",
+		"Soapstone Brick Corner Stair",
 		default.node_sound_stone_defaults())
 
 --mother fuckin wool
 
-stairs.register_stair_and_slab("black_wool",      "wool:black",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_black.png"},      "Black Wool Stair",      "Black Wool Slab")
-stairs.register_stair_and_slab("blue_wool",       "wool:blue",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_blue.png"},       "Blue Wool Stair",       "Blue Wool Slab")
-stairs.register_stair_and_slab("brown_wool",      "wool:brown",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_black.png"},      "Brown Wool Stair",      "Brown Wool Slab")
-stairs.register_stair_and_slab("cyan_wool",       "wool:cyan",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_cyan.png"},       "Cyan Wool Stair",       "Cyan Wool Slab")
-stairs.register_stair_and_slab("dark_green_wool", "wool:dark_green", {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_dark_green.png"}, "Dark Green Wool Stair", "Dark Green Wool Slab")
-stairs.register_stair_and_slab("dark_grey_wool",  "wool:dark_grey",  {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_dark_grey.png"},  "Dark Grey Wool Stair",  "Dark Grey Wool Slab")
-stairs.register_stair_and_slab("green_wool",      "wool:green",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_green.png"},      "Green Wool Stair",      "Green Wool Slab")
-stairs.register_stair_and_slab("grey_wool",       "wool:grey",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_grey.png"},       "Grey Wool Stair",       "Grey Wool Slab")
-stairs.register_stair_and_slab("magenta_wool",    "wool:magenta",    {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_magenta.png"},    "Magenta Wool Stair",    "Magenta Wool Slab")
-stairs.register_stair_and_slab("orange_wool",     "wool:orange",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_orange.png"},     "Orange Wool Stair",     "Orange Wool Slab")
-stairs.register_stair_and_slab("pink_wool",       "wool:pink",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_pink.png"},       "Pink Wool Stair",       "Pink Wool Slab")
-stairs.register_stair_and_slab("red_wool",        "wool:red",        {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_red.png"},        "Red Wool Stair",        "Red Wool Slab")
-stairs.register_stair_and_slab("violet_wool",     "wool:violet",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_violet.png"},     "Violet Wool Stair",     "Violet Wool Slab")
-stairs.register_stair_and_slab("white_wool",      "wool:white",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_white.png"},      "White Wool Stair",      "White Wool Slab")
-stairs.register_stair_and_slab("yellow_wool",     "wool:yellow",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_yellow.png"},     "Yellow Wool Stair",     "Yellow Wool Slab")
+stairs.register_stair_and_slab("black_wool",      "wool:black",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_black.png"},      "Black Wool Stair",      "Black Wool Slab",      "Black Wool Corner Stair")
+stairs.register_stair_and_slab("blue_wool",       "wool:blue",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_blue.png"},       "Blue Wool Stair",       "Blue Wool Slab",       "Blue Wool Corner Stair")
+stairs.register_stair_and_slab("brown_wool",      "wool:brown",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_black.png"},      "Brown Wool Stair",      "Brown Wool Slab",      "Brown Wool Corner Stair" )
+stairs.register_stair_and_slab("cyan_wool",       "wool:cyan",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_cyan.png"},       "Cyan Wool Stair",       "Cyan Wool Slab",       "Cyan Wool Corner Stair")
+stairs.register_stair_and_slab("dark_green_wool", "wool:dark_green", {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_dark_green.png"}, "Dark Green Wool Stair", "Dark Green Wool Slab", "Dark Green Wool Corner Stair")
+stairs.register_stair_and_slab("dark_grey_wool",  "wool:dark_grey",  {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_dark_grey.png"},  "Dark Grey Wool Stair",  "Dark Grey Wool Slab",  "Dark Grey Wool Corner Stair")
+stairs.register_stair_and_slab("green_wool",      "wool:green",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_green.png"},      "Green Wool Stair",      "Green Wool Slab",      "Green Wool Corner Stair")
+stairs.register_stair_and_slab("grey_wool",       "wool:grey",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_grey.png"},       "Grey Wool Stair",       "Grey Wool Slab",       "Grey Wool Corner Stair")
+stairs.register_stair_and_slab("magenta_wool",    "wool:magenta",    {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_magenta.png"},    "Magenta Wool Stair",    "Magenta Wool Slab",    "Magenta Wool Corner Stair")
+stairs.register_stair_and_slab("orange_wool",     "wool:orange",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_orange.png"},     "Orange Wool Stair",     "Orange Wool Slab",     "Orange Wool Corner Stair")
+stairs.register_stair_and_slab("pink_wool",       "wool:pink",       {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_pink.png"},       "Pink Wool Stair",       "Pink Wool Slab",       "Pink Wool Corner Stair")
+stairs.register_stair_and_slab("red_wool",        "wool:red",        {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_red.png"},        "Red Wool Stair",        "Red Wool Slab",        "Red Wool Corner Stair")
+stairs.register_stair_and_slab("violet_wool",     "wool:violet",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_violet.png"},     "Violet Wool Stair",     "Violet Wool Slab",     "Violet Wool Corner Stair")
+stairs.register_stair_and_slab("white_wool",      "wool:white",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_white.png"},      "White Wool Stair",      "White Wool Slab",      "White Wool Corner Stair")
+stairs.register_stair_and_slab("yellow_wool",     "wool:yellow",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_yellow.png"},     "Yellow Wool Stair",     "Yellow Wool Slab",     "Yellow Wool Corner Stair")
