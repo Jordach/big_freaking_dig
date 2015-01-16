@@ -123,29 +123,6 @@ function mapgen.grow_evergreen(pos, boolsnow)
 		end
 		dev = dev - 1
 	end
-	
-	dev = 2
-	for yy = my - 5, my - 3 do
-		for zz = z - dev, z + dev do
-			local vi = a:index(x - dev, yy, zz)
-			local via = a:index(x - dev, yy + 1, zz)
-			for xx = x - dev, x + dev do
-				if random() < 0.95 - dev * 0.05 then
-					if boolsnow == false then
-						add_pine_needles(data, vi, c_air, c_ignore, c_snow,	c_pine_needles)
-					elseif boolsnow == true then
-						add_pine_snow(data, vi, c_air, c_ignore, c_snow, c_pine_needles)
-						add_pine_needles(data, vi, c_air, c_ignore, c_snow,	c_pine_needles)
-					else
-						add_pine_snow(data, vi, c_air, c_ignore, c_snow, c_pine_needles)
-					end
-				end
-				vi  = vi + 1
-				via = via + 1
-			end
-		end
-		dev = dev - 1
-	end
 
 	-- Trunk
 	for yy = y, maxy do
