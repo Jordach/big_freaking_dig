@@ -2,7 +2,7 @@
 
 -- special variable used to concatenate 
 
-co = "player_"
+local co = "player_"
 
 -- create a table to store skins texture names and player names, requires -two tables- one table
 -- i worked out an optimisation

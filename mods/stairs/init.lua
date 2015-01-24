@@ -414,3 +414,6 @@ stairs.register_stair_and_slab("red_wool",        "wool:red",        {snappy=2,c
 stairs.register_stair_and_slab("violet_wool",     "wool:violet",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_violet.png"},     "Violet Wool Stair",     "Violet Wool Slab",     "Violet Wool Corner Stair")
 stairs.register_stair_and_slab("white_wool",      "wool:white",      {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_white.png"},      "White Wool Stair",      "White Wool Slab",      "White Wool Corner Stair")
 stairs.register_stair_and_slab("yellow_wool",     "wool:yellow",     {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1}, {"wool_yellow.png"},     "Yellow Wool Stair",     "Yellow Wool Slab",     "Yellow Wool Corner Stair")
+
+stairs.register_stair_and_slab("dirt", "mapgen:dirt", {crumbly=3}, {"mapgen_dirt.png"}, "Dirt Stair", "Dirt Slab", "Dirt Corner Stair", default.node_sound_dirt_defaults())
+stairs.register_stair_and_slab("grass", "mapgen:grass", {crumbly=3}, {"mapgen_grass.png"}, "Grassy Stair", "Grassy Slab", "Grassy Corner Stair", default.node_sound_dirt_defaults())

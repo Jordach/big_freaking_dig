@@ -110,7 +110,7 @@ minetest.register_tool("farming:hoe_wood", {
 	description = "Wooden Hoe",
 	inventory_image = "farming_tool_woodhoe.png",
 	
-	on_use = function(itemstack, user, pointed_thing)
+	on_place = function(itemstack, user, pointed_thing)
 		return farming.hoe_on_use(itemstack, user, pointed_thing, 30)
 	end,
 })
@@ -119,7 +119,7 @@ minetest.register_tool("farming:hoe_stone", {
 	description = "Stone Hoe",
 	inventory_image = "farming_tool_stonehoe.png",
 	
-	on_use = function(itemstack, user, pointed_thing)
+	on_place = function(itemstack, user, pointed_thing)
 		return farming.hoe_on_use(itemstack, user, pointed_thing, 90)
 	end,
 })
@@ -128,7 +128,7 @@ minetest.register_tool("farming:hoe_steel", {
 	description = "Steel Hoe",
 	inventory_image = "farming_tool_steelhoe.png",
 	
-	on_use = function(itemstack, user, pointed_thing)
+	on_place = function(itemstack, user, pointed_thing)
 		return farming.hoe_on_use(itemstack, user, pointed_thing, 200)
 	end,
 })
@@ -137,7 +137,7 @@ minetest.register_tool("farming:hoe_bronze", {
 	description = "Bronze Hoe",
 	inventory_image = "farming_tool_bronzehoe.png",
 	
-	on_use = function(itemstack, user, pointed_thing)
+	on_place = function(itemstack, user, pointed_thing)
 		return farming.hoe_on_use(itemstack, user, pointed_thing, 220)
 	end,
 })

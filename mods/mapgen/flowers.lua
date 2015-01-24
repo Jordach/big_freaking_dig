@@ -3,7 +3,8 @@
 
 minetest.register_node(":flowers:dandelion_white", {
 	description = "White Dandelion",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "dandelion.b3d",
 	tiles = { "flowers_dandelion_white.png" },
 	inventory_image = "flowers_dandelion_white.png",
 	wield_image = "flowers_dandelion_white.png",
@@ -22,7 +23,8 @@ minetest.register_node(":flowers:dandelion_white", {
 
 minetest.register_node(":flowers:dandelion_yellow", {
 	description = "Yellow Dandelion",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "dandelion.b3d",
 	tiles = { "flowers_dandelion_yellow.png" },
 	inventory_image = "flowers_dandelion_yellow.png",
 	wield_image = "flowers_dandelion_yellow.png",
@@ -41,7 +43,8 @@ minetest.register_node(":flowers:dandelion_yellow", {
 
 minetest.register_node(":flowers:geranium", {
 	description = "Blue Geranium",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "geranium.b3d",
 	tiles = { "flowers_geranium.png" },
 	inventory_image = "flowers_geranium.png",
 	wield_image = "flowers_geranium.png",
@@ -60,7 +63,8 @@ minetest.register_node(":flowers:geranium", {
 
 minetest.register_node(":flowers:rose", {
 	description = "Rose",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "rose.b3d",
 	tiles = { "flowers_rose.png" },
 	inventory_image = "flowers_rose.png",
 	wield_image = "flowers_rose.png",
@@ -79,7 +83,8 @@ minetest.register_node(":flowers:rose", {
 
 minetest.register_node(":flowers:tulip", {
 	description = "Tulip",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "tulip.b3d",
 	tiles = { "flowers_tulip.png" },
 	inventory_image = "flowers_tulip.png",
 	wield_image = "flowers_tulip.png",
@@ -98,7 +103,8 @@ minetest.register_node(":flowers:tulip", {
 
 minetest.register_node(":flowers:viola", {
 	description = "Viola",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "viola.b3d",
 	tiles = { "flowers_viola.png" },
 	inventory_image = "flowers_viola.png",
 	wield_image = "flowers_viola.png",
