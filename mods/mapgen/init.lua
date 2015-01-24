@@ -105,14 +105,26 @@ minetest.register_craft({
 	}
 })
 
-
+minetest.register_craft({
+	type = "shapeless",
+	output = "mapgen:grass 1",
+	recipe = {"mapgen:dirt", "mapgen:edens_grass"},
+	replacements = {{"mapgen:edens_grass", "mapgen:edens_grass"}},
+})
+	
 minetest.register_node("mapgen:grass", {
 	description = "Dirt with Grass",
-	tiles = {"mapgen_grass.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_1.png"},
+	tiles = {"mapgen_grass_rot1.png", "mapgen_dirt.png", "mapgen_dirt.png^mapgen_grass_side_1.png"},
 	is_ground_content = true,
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1},
 	sounds = default.node_sound_dirt_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("mapgen:grass"..math.random(1,4))
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("mapgen:grass".. " "..itemstack:get_count()-(1-ret:get_count()))
+	end,
 })
 
 minetest.register_node("mapgen:grass1", {
