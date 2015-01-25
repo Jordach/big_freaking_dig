@@ -3,6 +3,8 @@
 
 farming = {}
 
+dofile(minetest.get_modpath("farming").."/carrot.lua")
+
 --
 -- Soil
 --
@@ -181,7 +183,7 @@ minetest.register_craft({
 --
 -- Place seeds
 --
-local function place_seed(itemstack, placer, pointed_thing, plantname)
+function place_seed(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 	-- check if pointing at a node
 	if not pt then
@@ -314,7 +316,7 @@ minetest.register_abm({
 		if not minetest.get_node_light(pos) then
 			return
 		end
-		if minetest.get_node_light(pos) < 13 then
+		if minetest.get_node_light(pos) < 10 then
 			return
 		end
 		
