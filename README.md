@@ -35,4 +35,4 @@ If a .lua file is being worked on lots, you'll know that it will be finished by 
 
 Keep in mind that pull requests may get ignored as mail is not often checked.
 
-If you create a pull that happens to modify huge amounts of core code by using this as an example, http://dev.minetest.net/Lua_code_style_guidelines that PULL REQUEST WILL BE CLOSED AND NOT MERGED.
+If you create a pull that happens to modify huge amounts of core code by using this as an example, http://dev.minetest.net/Lua_code_style_guidelines will be ignored.
