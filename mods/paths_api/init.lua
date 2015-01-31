@@ -37,10 +37,18 @@ minetest.register_craftitem("paths_api:path_tool", {
 			minetest.add_node(pointed_thing.under,{name="paths_api:grass_path"})
 		elseif node.name == "mapgen:dirt" then
 			minetest.add_node(pointed_thing.under,{name="paths_api:dirt_path"})
+		elseif node.name == "deco:stone_tile" then
+			minetest.add_node(pointed_thing.under,{name="paths_api:stone_tile"})
+		elseif node.name == "deco:stone_brick" then
+			minetest.add_node(pointed_thing.under,{name="paths_api:stone_brick"})
 		end
 	end,
 })
 
-register_path_node("grass_path", {"paths_grass_top.png", "mapgen_dirt.png", "mapgen_dirt.png^paths_grass_side.png"}, "Grass Path", default.node_sound_dirt_defaults(), {crumbly=3}, "mapgen:dirt 1")
+register_path_node("grass_path", {"mapgen_grass_rot1.png", "paths_dirt.png", "paths_dirt.png^mapgen_grass_side_1.png"}, "Grass Path", default.node_sound_dirt_defaults(), {crumbly=3}, "mapgen:dirt 1")
 
 register_path_node("dirt_path", {"paths_dirt.png"}, "Dirt Path", default.node_sound_dirt_defaults(), {crumbly=3}, "mapgen:dirt 1")
+
+register_path_node("stone_tile", {"deco_stone_tile.png"}, "Stone Tile Path", default.node_sound_stone_defaults(), {cracky=3}, "deco:cobble 1")
+
+register_path_node("stone_brick", {"deco_stone_brick.png"}, "Stone Brick Path", default.node_sound_stone_defaults(), {cracky=3}, "deco:stone_brick 1")
