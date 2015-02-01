@@ -399,9 +399,9 @@ doors:register_door("doors:door_steel", {
 minetest.register_craft({
 	output = "doors:door_steel",
 	recipe = {
-		{"default:steel_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "default:steel_ingot"}
+		{"tools:steel_ingot", "tools:steel_ingot"},
+		{"tools:steel_ingot", "tools:steel_ingot"},
+		{"tools:steel_ingot", "tools:steel_ingot"}
 	}
 })
 
@@ -418,9 +418,9 @@ doors:register_door("doors:door_glass", {
 minetest.register_craft({
 	output = "doors:door_glass",
 	recipe = {
-		{"default:glass", "default:glass"},
-		{"default:glass", "default:glass"},
-		{"default:glass", "default:glass"}
+		{"deco:glass", "deco:glass"},
+		{"deco:glass", "deco:glass"},
+		{"deco:glass", "deco:glass"}
 	}
 })
 
@@ -437,9 +437,9 @@ doors:register_door("doors:door_obsidian_glass", {
 minetest.register_craft({
 	output = "doors:door_obsidian_glass",
 	recipe = {
-		{"default:obsidian_glass", "default:obsidian_glass"},
-		{"default:obsidian_glass", "default:obsidian_glass"},
-		{"default:obsidian_glass", "default:obsidian_glass"}
+		{"deco:obsidian_glass", "deco:obsidian_glass"},
+		{"deco:obsidian_glass", "deco:obsidian_glass"},
+		{"deco:obsidian_glass", "deco:obsidian_glass"}
 	}
 })
 minetest.register_alias("doors:door_wood_a_c", "doors:door_wood_t_1")
