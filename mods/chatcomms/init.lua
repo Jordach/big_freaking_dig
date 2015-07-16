@@ -22,7 +22,7 @@ minetest.register_chatcommand("skins", {
 	description = "Instructions on getting your skin into the game",
 	func = function(name)
 		minetest.chat_send_player(name, "To install a skin, go to minecraftskins.com for a skin and then paste the website address to the chat eg,")
-		minetest.chat_send_player(name, "http://www.minecraftskins.net/guymanuel and paste it into the chat, as the")
+		minetest.chat_send_player(name, "http://www.minecraftskins.net/ and paste it into the chat, as the")
 		minetest.chat_send_player(name, "server operator / admin will install it and will be availible at server restart, which is usually 10AM PDT.")
 	end,
 })
@@ -37,7 +37,7 @@ minetest.register_chatcommand("admin", {
 		if minetest.get_modpath("irc") ~= nil then
 			mt_irc:say(adminname, param)
 		else
-
+			return
 		end
 	end,
 })
