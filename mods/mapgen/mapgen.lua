@@ -519,3 +519,219 @@ minetest.register_biome({
 	heat_point = 50,
 	humidity_point = 50,
 })
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:deathly_grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	sidelen = 8,
+	fill_ratio = 0.034,
+	biomes = {"deathly_forest"},
+	flags = "place_center_x, place_center_z",
+	replacements = {["base:leaves"] = "mapgen:deathly_leaves", ["base:tree"] = "mapgen:deathly_tree", ["base:dirt"] = "mapgen:dirt"},
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:deathly_grass",
+	sidelen = 8,
+	fill_ratio = 0.047,
+	decoration = {"mapgen:deathly_long_grass_1", "mapgen:deathly_long_grass_2", "mapgen:deathly_long_grass_3"},
+	biomes = {"deathly_gplains"},
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:grass",
+	sidelen = 8,
+	fill_ratio = 0.047,
+	decoration = {"mapgen:long_grass_1", "mapgen:long_grass_2", "mapgen:long_grass_3", "mapgen:long_grass_4", "mapgen:long_grass_5"},
+	biomes = {"grassy_plains"},
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:sand",
+	sidelen = 80,
+	fill_ratio = 0.001,
+	decoration = "mapgen:cactus",
+	biomes = {"desert"},
+	height = 3,
+	y_max = 4,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:sand",
+	sidelen = 80,
+	fill_ratio = 0.003,
+	decoration = "mapgen:dead_bush",
+	biomes = {"desert"},
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:perma_dirt",
+	sidelen = 8,
+	fill_ratio = 0.023,
+	decoration = "mapgen:dead_bush",
+	biomes = {"no_man"},
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:perma_dirt",
+	sidelen = 8,
+	fill_ratio = 0.034,
+	decoration = "mapgen:dead_oak",
+	biomes = {"dead_forest"},
+	height = 4,
+	y_max = 6,
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	sidelen = 8,
+	fill_ratio = 0.034,
+	biomes = {"oak_forest", "floral_oak_forest", "floral_oakg_forest"},
+	flags = "place_center_x, place_center_z",
+	replacements = {["base:leaves"] = "mapgen:oak_leaves", ["base:tree"] = "mapgen:oak_log_tree", ["base:dirt"] = "mapgen:dirt"},
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	sidelen = 8,
+	fill_ratio = 0.034,
+	biomes = {"cherry_blossom_forest"},
+	flags = "place_center_x, place_center_z",
+	replacements = {["base:leaves"] = "mapgen:cherry_blossom_leaves", ["base:tree"] = "mapgen:cherry_tree", ["base:dirt"] = "mapgen:dirt"},
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:snowy_grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
+	sidelen = 8,
+	fill_ratio = 0.051,
+	biomes = {"taiga"},
+	flags = "place_center_x, place_center_z",
+	replacements = {["base:leaves"] = "mapgen:evergreen_leaves_snowy", ["base:tree"] = "mapgen:evergreen_tree", ["base:dirt"] = "mapgen:dirt"},
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_evergreen.mts",
+	sidelen = 8,
+	fill_ratio = 0.061,
+	biomes = {"evergreens_forest"},
+	flags = "place_center_x, place_center_z",
+	replacements = {["base:leaves"] = "mapgen:evergreen_leaves", ["base:tree"] = "mapgen:evergreen_tree", ["base:dirt"] = "mapgen:dirt"},
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:grass",
+	sidelen = 8,
+	fill_ratio = 0.05,
+	biomes = {"edens_garden", "floral_plains", "cherry_blossom_forest_grassy"},
+	height = 1,
+	decoration = {"flowers:dandelion_white", "flowers:dandelion_yellow", "flowers:geranium", "flowers:rose", "flowers:tulip", "flowers:viola"},
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"mapgen:edens_grass", "mapgen:grass"},
+	sidelen = 8,
+	fill_ratio = 0.08,
+	biomes = {"edens_garden", "floral_plains", "floral_oak_forest", "floral_oakg_forest", "cherry_blossom_forest_floral", "birch_forest_floral"},
+	height = 1,
+	decoration = {"flowers:dandelion_white", "flowers:dandelion_yellow", "flowers:geranium", "flowers:rose", "flowers:tulip", "flowers:viola", "mapgen:long_grass_1", "mapgen:long_grass_2", "mapgen:long_grass_3", "mapgen:long_grass_4", "mapgen:long_grass_5"},
+})
+
+minetest.register_decoration({
+	deco_type = "schematic",
+	place_on = "mapgen:grass",
+	schematic = minetest.get_modpath("mapgen").."/schematics/mapgen_oak_tree.mts",
+	sidelen = 8,
+	fill_ratio = 0.030,
+	biomes = {"birch_forest", "birch_forest_floral", "birch_forest_grassy"},
+	flags = "place_center_x, place_center_z",
+	replacements = {["base:leaves"] = "mapgen:birch_leaves", ["base:tree"] = "mapgen:birch_tree", ["base:dirt"] = "mapgen:dirt"},
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:grass",
+	sidelen = 8,
+	fill_ratio = 4,
+	decoration = {"mapgen:wheat_grass_1", "mapgen:wheat_grass_2", "mapgen:wheat_grass_3", "mapgen:wheat_grass_4", "mapgen:wheat_grass_5"},
+	biomes = {"pasture"},
+	height = 1,
+})
+
+-- springs, cubes of dirt, sand and gravel (you can grovel about gravel!)
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "mapgen:water_source",
+	ore_param2 = 128,
+	wherein = "mapgen:stone",
+	clust_scarcity = 20 * 20 * 20,
+	clust_num_ores = 10,
+	clust_size = 4,
+	height_min = -32000,
+	height_max = 32000,
+})
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "mapgen:dirt",
+	wherein = "mapgen:stone",
+	clust_scarcity = 16 * 16 * 16,
+	clust_num_ores = 64,
+	clust_size = 5,
+	height_max = 32000,
+	height_min = -16385,
+})
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "mapgen:gravel",
+	wherein = "mapgen:stone",
+	clust_scarcity = 16 * 16 * 16,
+	clust_num_ores = 64,
+	clust_size = 5,
+	height_max = 16385,
+	height_min = -31000,
+})
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "mapgen:sand",
+	wherein = "mapgen:stone",
+	clust_scarcity = 24 * 24 * 24,
+	clust_num_ores = 32,
+	clust_size = 4,
+	height_max = 32000,
+	height_min = -32000,
+})
+
+minetest.register_ore({
+	ore_type = "scatter",
+	ore = "mapgen:clay",
+	wherein = "mapgen:stone",
+	clust_scarcity = 32 * 32 * 32,
+	clust_num_ores = 32,
+	clust_size = 4,
+	height_max = 16385,
+	height_min = -16385,
+})

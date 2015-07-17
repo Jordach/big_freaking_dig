@@ -127,6 +127,9 @@ minetest.register_on_joinplayer(function(player)
 	elseif player:get_player_name() == "Hoodedice" then
 		default.player_set_model(player, "characterfemale.b3d")
 		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
+	elseif player:get_player_name() == "singleplayer" then
+		default.player_set_model(player, "character_18.b3d")
+		player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 	else
 		local filename = minetest.get_modpath("player_textures").."/textures/player_"..player:get_player_name()
 		
