@@ -50,14 +50,14 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			if obj:get_luaentity() ~= nil then
 				if obj:get_luaentity().name ~= "throwing:arrow_fire_entity" and obj:get_luaentity().name ~= "__builtin:item" then
 					if self.node ~= "" then
-						minetest.env:set_node(self.lastpos, {name="default:torch"})
+						minetest.env:set_node(self.lastpos, {name="deco:torch"})
 						minetest.sound_play("default_place_node", {pos = self.lastpos})
 					end
 					self.object:remove()
 				end
 			else
 				if self.node ~= "" then
-					minetest.env:set_node(self.lastpos, {name="default:torch"})
+					minetest.env:set_node(self.lastpos, {name="deco:torch"})
 					minetest.sound_play("default_place_node", {pos = self.lastpos})
 				end
 				self.object:remove()
@@ -68,7 +68,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" then
 			if self.node ~= "" then
-				minetest.env:set_node(self.lastpos, {name="default:torch"})
+				minetest.env:set_node(self.lastpos, {name="deco:torch"})
 				minetest.sound_play("default_place_node", {pos = self.lastpos})
 			end
 			self.object:remove()
