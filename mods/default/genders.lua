@@ -45,6 +45,7 @@ minetest.register_chatcommand("player_male", {
 			if changed then
 				local output = io.open(gender_file, "w")
 				output:write("1".." "..player:get_player_name().."\n")
+				output:close()
 			end
 			changed = false
 		end
@@ -74,6 +75,7 @@ minetest.register_chatcommand("player_cloth", {
 			if changed then
 				local output = io.open(gender_file, "w")
 				output:write("2".." "..player:get_player_name().."\n")
+				output:close()
 			end
 			changed = false
 		end
@@ -103,6 +105,7 @@ minetest.register_chatcommand("player_female", {
 			if changed then
 				local output = io.open(gender_file, "w")
 				output:write("0".." "..player:get_player_name().."\n")
+				output:close()
 			end
 			changed = false
 		end
@@ -129,51 +132,9 @@ minetest.register_on_joinplayer(function(player)
 		
 		local f = io.open(filename..".png")
 		
-		if read_image_size(player) == 1 then
-			if f == nil then
-				default.player_set_model(player, "character_18.b3d")
-				player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
-				minetest.chat_send_player(player:get_player_name(), "Model automatically set to 1.8 skin compatible.")
-				changed = true
-				if changed then
-					local output = io.open(gender_file, "w")
-					output:write("2".." "..player:get_player_name().."\n")
-				end
-				changed = false
-			end
-		else
 			default.player_set_model(player, "character.b3d")
 			player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 			minetest.chat_send_player(player:get_player_name(), "Please set your gender via /player_male or /player_female, thank you. You can also ignore this message and use the ")
 			minetest.chat_send_player(player:get_player_name(), "default male model. This message will be shown again when you rejoin.")
-		end
 	end
 end)
-
-local PNG_HDR = string.char(0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)
-
-function read_image_size(player2)
-	local filename = minetest.get_modpath("player_textures").."/textures/player_"..player2:get_player_name()
-	local filenameb = minetest.get_modpath("default").."/models/character"
-	local f = io.open(filename..".png")
-	if f then
-		--f:close()
-	else
-		player2:set_properties({textures = {filenameb..".png"},})
-		return 0
-	end
-	--f = 
-	f:seek("set", 0x0)
-	local hdr = f:read(8)
-	if hdr ~= PNG_HDR then
-		f:close()
-		return
-	end
-	f:seek("set", 0x13)
-	local ws = f:read(1)
-	f:seek("set", 0x17)
-	local hs = f:read(1)
-	f:close()
-	local ratio = ws:byte() / hs:byte()
-	return ratio
-end
