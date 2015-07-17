@@ -408,7 +408,26 @@ minetest.register_biome({
 	humidity_point = 7,
 })
 
--- Ice shelf
+-- V6 styled biome
+
+minetest.register_biome({
+	name = "v6_forest",
+	--node_dust = "",
+	node_top = "mapgen:grass",
+	depth_top = 1,
+	node_filler = "mapgen:dirt",
+	depth_filler = 4,
+	--node_stone = "",
+	--node_water_top = "",
+	--depth_water_top = ,
+	--node_water = "",
+	y_min = 4,
+	y_max = 31000,
+	heat_point = 35,
+	humidity_point = 55,
+})
+
+-- Icy
 
 minetest.register_biome({
 	name = "ice_lands",
