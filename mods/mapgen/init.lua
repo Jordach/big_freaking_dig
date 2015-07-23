@@ -9,6 +9,9 @@ dofile(minetest.get_modpath("mapgen").."/nodes.lua")
 dofile(minetest.get_modpath("mapgen").."/flowers.lua")
 dofile(minetest.get_modpath("mapgen").."/functions.lua")
 
+-- enable forcefields (useful for server admins
+dofile(minetest.get_modpath("mapgen").."/forcefields.lua")
+
 minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
 minetest.register_alias("mapgen_water_source", "mapgen:water_source")
 minetest.register_alias("mapgen_lava_source", "mapgen:lava_source")
@@ -860,18 +863,4 @@ minetest.register_node(":base:leaves", {
 	drop = 'mapgen:dirt',
 	groups = {crumbly=3, soil=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_dirt_defaults(),
-})
-
-minetest.register_node("mapgen:force_field", {
-	description = "Alien Forcefield",
-	tiles = {
-		{name="mapgen_force.png", animation={type="vertical_frames", aspect_w=128, aspect_h=128, length=1.5}},
-	},
-	sunlight_propagates = true,
-	paramtype = "light",
-	drawtype = "glasslike",
-	inventory_image = minetest.inventorycube("mapgen_force_inv_wield.png"),
-	wield_image = minetest.inventorycube("mapgen_force_inv_wield.png"),
-	is_ground_content = true,
-	groups = {not_in_creative_inventory=1},
 })
