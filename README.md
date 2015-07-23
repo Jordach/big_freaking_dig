@@ -6,19 +6,19 @@ Repo containing the game for the Minetest Engine.
 How to Install:
 ================
 
-1) Download Minetest 0.4.9-dev from the Minetest forums, https://forum.minetest.net
+1) Download Minetest minetest-0.4.12-7b171ea from the Minetest forums, https://forum.minetest.net
 
 2) Unzip the folder, eg, your Desktop or Documents.
 
-3) Go to minetest-0.4.9-dev-<commit>
+3) Go to minetest-0.4.12-7b171ea
 
 4) Go into games folder.
 
-4a) With Windows, double click the zipfile named big_freaking_dig, then move the folder big_funking_dig into the games folder stated earlier.
+4a) With Windows, double click the zipfile named big_freaking_dig, then move the folder big_freaking_dig into the games folder stated earlier.
 
 5) Start Minetest (may require MSVC 2010, you might want to google msvc 2010 redist or MinGW dlls)
 
-6) Under singleplayer, press new, then type a world name, make sure the world generator is on v7.
+6) Under singleplayer, press new, then type a world name, make sure the world generator is on v7 or v5.
 
 7) Press enter or create.
 
