@@ -16,12 +16,15 @@ y_nega_position = -31000
 z_pos_position = 31000
 z_nega_position = -31000
 
+--psuedo ignore node - however, can be built on as it's a solid object.
+
 minetest.register_node("mapgen:force_field", {
 	description = "Alien Forcefield",
 	tiles = {"mapgen_force.png"},
 	sunlight_propagates = true,
 	paramtype = "light",
-	drawtype = "glasslike",
+	drawtype = "airlike",
+	pointable = false,
 	inventory_image = minetest.inventorycube("mapgen_force_inv_wield.png"),
 	wield_image = minetest.inventorycube("mapgen_force_inv_wield.png"),
 	is_ground_content = true,
