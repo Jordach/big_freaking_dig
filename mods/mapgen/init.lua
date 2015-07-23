@@ -10,7 +10,7 @@ dofile(minetest.get_modpath("mapgen").."/flowers.lua")
 dofile(minetest.get_modpath("mapgen").."/functions.lua")
 
 -- enable forcefields (useful for server admins
-dofile(minetest.get_modpath("mapgen").."/forcefields.lua")
+--dofile(minetest.get_modpath("mapgen").."/forcefields.lua")
 
 minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
 minetest.register_alias("mapgen_water_source", "mapgen:water_source")

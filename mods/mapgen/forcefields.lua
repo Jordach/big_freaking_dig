@@ -1,4 +1,5 @@
 --forcefields, used to limit the world size. Once the walls have been assembled you can disable the mod by commenting out line 13 for mapgen/init.lua
+-- note: by default - the forcefields are disabled by default! enable them by uncommenting out line 13 for mapgen/init.lua
 
 -- configure world size here - max = 30000, min = 32 (can be smaller, spawn might be outside of area.)
 
