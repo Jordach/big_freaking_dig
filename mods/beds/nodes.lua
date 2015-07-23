@@ -249,3 +249,77 @@ for i in ipairs(beds_list) do
 	})
 	
 end
+
+minetest.register_node("beds:steel_bed", {
+	drawtype = "mesh",
+	mesh = "bed_steel.b3d",
+	description = "Steel Bed",
+	tiles = {"bed_steel.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+	sounds = default.node_sound_wood_defaults(),
+	after_place_node = function(pos, placer)
+		local pn = placer:get_player_name()
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("bed_owner", pn)
+		meta:set_string("infotext", "Bed owned by "..pn)
+	end,
+	can_dig = function(pos, player)
+		local pn = player:get_player_name()
+		local meta = minetest.env:get_meta(pos)
+		if pn == meta:get_string("bed_owner") then
+			return true
+		else
+			return false
+		end
+	end,
+	on_rightclick = function(pos, node, clicker)
+		local pn = clicker:get_player_name()
+		local meta = minetest.env:get_meta(pos)
+		
+		if pn == meta:get_string("bed_owner") then
+			beds.on_rightclick(pos, clicker)
+		else
+			minetest.chat_send_player(pn, "HEY! This is not your bed! Sleep in your own bed or a wooden bed!")
+		end
+	end,
+})
+
+minetest.register_craft({
+	output = "beds:steel_bed",
+	recipe = {
+		{'carpet:red_wool', 'carpet:red_wool', 'wool:grey'},
+		{'wool:white', 'wool:white', 'wool:white'},
+		{'tools:steel_ingot', 'tools:steel_ingot', 'tools:steel_ingot'},
+	}
+})
+
+minetest.register_node("beds:admin_bed", {
+	drawtype = "mesh",
+	mesh = "bed_steel.b3d",
+	description = "Steel Bed",
+	tiles = {"bed_steel.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3,not_in_creative_inventory=1},
+	sounds = default.node_sound_wood_defaults(),
+	after_place_node = function(pos, placer)
+		local pn = placer:get_player_name()
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("bed_owner", pn)
+		meta:set_string("infotext", "Bed owned by "..pn)
+	end,
+	can_dig = function(pos, player)
+		local pn = player:get_player_name()
+		local meta = minetest.env:get_meta(pos)
+		if pn == meta:get_string("bed_owner") then
+			return true
+		else
+			return false
+		end
+	end,
+	on_rightclick = function(pos, node, clicker)
+		beds.on_rightclick(pos, clicker)
+	end,
+})
