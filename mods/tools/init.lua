@@ -618,7 +618,7 @@ minetest.register_tool("tools:pick_bronze", {
 
 minetest.register_tool("tools:shovel_bronze", {
 	description = "Bronze Shovel",
-	inventory_image = "tool_bronzehovel.png^[transformR90",
+	inventory_image = "tool_bronzeshovel.png^[transformR90",
 	tool_capabilities = {
 		full_punch_interval = 1.67,
 		max_drop_level = 0,
